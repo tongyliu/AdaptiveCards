@@ -50,24 +50,17 @@ std::shared_ptr<TextBlock> TextBlock::Deserialize(const Json::Value& json)
 
 std::string TextBlock::Serialize()
 {
-    Json::Value json;
-
-    TextBlock* obj = this;
-
-    // append base class card element stuff
-    json.append(Json::Value(CardElementTypeToString(obj->GetElementType())));
-    json.append(Json::Value(obj->GetSpeak()));
-    json.append(Json::Value(HorizontalAlignmentToString(obj->GetHorizontalAlignment())));
-    json.append(Json::Value(SizeToString(obj->GetSize())));
+    Json::Value root = ParseUtil::BaseCardElementSerialize(this);
 
     // append derived class stuff
-    json.append(Json::Value(TextSizeToString(obj->GetTextSize())));
-    json.append(Json::Value(TextColorToString(obj->GetTextColor())));
-    json.append(Json::Value(TextWeightToString(obj->GetTextWeight())));
-    json.append(Json::Value(TextWrapToString(obj->GetWrap() ==  true ? TextWrap::Wrap : TextWrap::NoWrap)));
+    root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::TextSize)]= TextSizeToString(GetTextSize());
+    root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::TextColor)] = TextColorToString(GetTextColor());
+    root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::TextWeight)] = TextWeightToString(GetTextWeight());
+    root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::TextWrap)] = TextWrapToString(GetWrap() ==  true ? TextWrap::Wrap : TextWrap::NoWrap);
+    root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::Text)] = GetText();
 
     Json::FastWriter fastWriter;
-    std::string output = fastWriter.write(json);
+    std::string output = fastWriter.write(root);
     return output;
 }
 

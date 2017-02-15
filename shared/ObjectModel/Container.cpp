@@ -55,12 +55,6 @@ void Container::AddItem(std::shared_ptr<BaseCardElement>& item)
     m_items.emplace_back(item);
 }
 
-
-std::string Container::Serialize()
-{
-    return "";
-}
-
 std::shared_ptr<Container> Container::Deserialize(const Json::Value& root)
 {
     // Try to get the cardelement container. If it it doesn't exist we return an empty container
@@ -113,6 +107,30 @@ std::shared_ptr<Container> Container::Deserialize(const Json::Value& root)
         }
     }
     return container;
+}
+
+std::string Container::Serialize()
+{
+    Json::Value root;
+
+    // Serialize all card elements then apppend them to the root json object.
+    // The serialized card elements need to be appended as Json::Values in order to
+    // serialize properly.
+    for (auto cardElement : GetItems())
+    {
+        Json::Reader reader;
+        Json::Value cardElementJson;
+        bool serializeResults = reader.parse(cardElement->Serialize(), cardElementJson);
+        if (!serializeResults)
+        {
+            throw AdaptiveCardParseException("Could not serialize card element: " + CardElementTypeToString(cardElement->GetElementType()));
+        }
+        root.append(cardElementJson);
+    }
+
+    Json::FastWriter fastWriter;
+    std::string output = fastWriter.write(root);
+    return output;
 }
 
 std::string Container::GetBackgroundImageUrl() const

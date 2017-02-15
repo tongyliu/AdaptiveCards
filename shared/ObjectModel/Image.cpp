@@ -41,22 +41,14 @@ std::shared_ptr<Image> Image::Deserialize(const Json::Value& json)
 
 std::string Image::Serialize()
 {
-    Json::Value json;
-
-    Image* obj = this;
-
-    // append base class card element stuff
-    json.append(Json::Value(CardElementTypeToString(obj->GetElementType())));
-    json.append(Json::Value(obj->GetSpeak()));
-    json.append(Json::Value(HorizontalAlignmentToString(obj->GetHorizontalAlignment())));
-    json.append(Json::Value(SizeToString(obj->GetSize())));
+    Json::Value root = ParseUtil::BaseCardElementSerialize(this);
 
     // append derived class stuff
-    json.append(Json::Value(obj->GetUri()));
-    json.append(Json::Value(ImageStyleToString(obj->GetImageStyle())));
+    root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::Uri)]= GetUri();
+    root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::ImageStyle)] = ImageStyleToString(GetImageStyle());
 
     Json::FastWriter fastWriter;
-    std::string output = fastWriter.write(json);
+    std::string output = fastWriter.write(root);
     return output;
 }
 

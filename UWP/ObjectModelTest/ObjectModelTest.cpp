@@ -9,49 +9,57 @@
 #include <memory>
 #include <iostream>
 #include <string>
+#include "ObjectModelTest.h"
+#include "ParserTest.h"
 
 using namespace std;
 using namespace AdaptiveCards;
-typedef  std::tuple< std::string, std::string> ParserTest;
 
 int main(int argc, const char* argv[])
 {
     std::vector<ParserTest> tests =
     {
-        std::make_tuple("TestJsonFiles\\imagetest.json", ""),
-        //std::make_tuple("TestJsonFiles\\textblock_noUnicode.json", ""),
-        //std::make_tuple("TestJsonFiles\\nounicode.json", ""),
-        //std::make_tuple("TestJsonFiles\\test1.json", ""),
+        ParserTest("TestJsonFiles\\imagetest.json", "ExpectedSerializedJson\\expected_imagetest.json"),
+        ParserTest("TestJsonFiles\\textblock_noUnicode.json", "ExpectedSerializedJson\\expected_textblock_noUnicode.json"),
+        ParserTest("TestJsonFiles\\nounicode.json", "ExpectedSerializedJson\\expected_nounicode.json"),
+        //ParserTest("TestJsonFiles\\test1.json", "ExpectedSerializedJson\\expected_test1.json"),
     };
 
-    for (size_t i = 0; i < tests.size(); i++)
+    int testCount = 0;
+    int passCount = 0;
+    for (auto test : tests)
     {
-        auto test = tests[i];
-        std::string path = std::get<0>(test);
-        const std::string expectedResult = std::get<1>(test);
-        printf("Running test %zu, (%s, %s)\n", i, path.c_str(), expectedResult.c_str());
+        ++testCount;
+
+        printf("Running test %i/%zu, (%s)", testCount, tests.size(), test.m_inputFile.c_str());
         try
         {
-            auto result = AdaptiveCard::DeserializeFromFile(path);
-            if (!expectedResult.empty() || result == nullptr)
+            auto deserializedCard = AdaptiveCard::DeserializeFromFile(test.m_inputFile);
+            std::string actualResult = deserializedCard->Serialize();
+
+            const std::string expectedResult = test.GetExpectedResults();
+            if (expectedResult != actualResult)
             {
-                printf("  Failed test %zu, (%s, %s)\n", i, path.c_str(), expectedResult.c_str());
+                printf(" | Failed\r\n Expected:\r\n%s\r\n\r\n", expectedResult.c_str());
             }
             else
             {
-                printf("  Passed test %zu, (%s, %s)\n", i, path.c_str(), expectedResult.c_str());
+                ++passCount;
+                printf(" | Passed \r\n\r\n");
             }
         }
         catch (const AdaptiveCards::AdaptiveCardParseException& e)
         {
-            printf("  Failed test %zu, (%s, %s)\n  ", i, path.c_str(), expectedResult.c_str());
+            printf(" | Failed\r\n Expected:\r\n%s\r\n\r\n", test.GetExpectedResults().c_str());
             printf(e.what());
         }
         catch (...)
         {
-            printf("  Failed test %zu, (%s, %s)\n", i, path.c_str(), expectedResult.c_str());
+            printf(" | Failed\r\n Expected:\r\n%s\r\n\r\n", test.GetExpectedResults().c_str());
         }
     }
+
+    printf("Test Results: (%i/%zu) Passed", passCount, tests.size());
 
     return 0;
 }

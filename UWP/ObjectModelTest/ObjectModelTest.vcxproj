@@ -91,14 +91,21 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="ObjectModelTest.h" />
+    <ClInclude Include="ParserTest.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ObjectModelTest.cpp" />
+    <ClCompile Include="ParserTest.cpp" />
     <ClCompile Include="stdafx.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="ExpectedSerializedJson\expected_imagetest.json" />
+    <None Include="ExpectedSerializedJson\expected_nounicode.json" />
+    <None Include="ExpectedSerializedJson\expected_test1.json" />
+    <None Include="ExpectedSerializedJson\expected_textblock_noUnicode.json" />
     <None Include="TestJsonFiles\imagetest.json" />
     <None Include="TestJsonFiles\nounicode.json" />
     <None Include="TestJsonFiles\test1.json" />

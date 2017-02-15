@@ -2,6 +2,7 @@
 
 #include "pch.h"
 #include "AdaptiveCardParseException.h"
+#include "BaseCardElement.h"
 #include "Enums.h"
 #include "json\json.h"
 
@@ -35,6 +36,9 @@ public:
     // throws if the key is missing or the value mapped to the key is the wrong type
     static void ExpectKeyAndValueType(const Json::Value& json, const char* expectedKey, std::function<void(const Json::Value&)> throwIfWrongType);
 
+    static Json::Value BaseCardElementSerialize(BaseCardElement* element);
+
+    static Json::Value StringToJsonValue(std::string jsonStr, std::string errorMessage);
 
 private:
     ParseUtil();

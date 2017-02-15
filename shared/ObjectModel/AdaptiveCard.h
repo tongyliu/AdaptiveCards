@@ -26,6 +26,9 @@ public:
 
     const CardElementType GetElementType() const;
 
+    std::string Serialize();
+
+    static std::shared_ptr<AdaptiveCard> DeserializeFromJsonString(const std::string & json);
     static std::shared_ptr<AdaptiveCard> DeserializeFromFile(const std::string & jsonFile);
     static std::shared_ptr<AdaptiveCard> Deserialize(const Json::Value& json);
 
