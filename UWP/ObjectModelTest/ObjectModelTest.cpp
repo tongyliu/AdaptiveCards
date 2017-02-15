@@ -22,7 +22,6 @@ int main(int argc, const char* argv[])
         ParserTest("TestJsonFiles\\imagetest.json", "ExpectedSerializedJson\\expected_imagetest.json"),
         ParserTest("TestJsonFiles\\textblock_noUnicode.json", "ExpectedSerializedJson\\expected_textblock_noUnicode.json"),
         ParserTest("TestJsonFiles\\nounicode.json", "ExpectedSerializedJson\\expected_nounicode.json"),
-        //ParserTest("TestJsonFiles\\test1.json", "ExpectedSerializedJson\\expected_test1.json"),
     };
 
     int testCount = 0;
