@@ -7,7 +7,7 @@
 namespace AdaptiveCards
 {
 class BaseCardElement;
-class Container : public std::enable_shared_from_this<Container>, BaseCardElement
+class Container : public std::enable_shared_from_this<Container>, public BaseCardElement
 {
 public:
     Container();
@@ -27,7 +27,8 @@ public:
         std::vector<std::shared_ptr<BaseCardElement>> &items
     );
 
-    virtual std::string Serialize();
+    virtual Json::Value SerializeToJsonValue();
+
     const std::vector<std::shared_ptr<BaseCardElement>>& GetItems() const;
 
     void AddItem(std::shared_ptr<BaseCardElement>& item);

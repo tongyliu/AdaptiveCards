@@ -10,8 +10,6 @@ public:
     std::string GetExpectedResults();
 
     const std::string m_inputFile;
-
-private:
-    const std::string m_expectedResults;
     const bool m_getExpectedResultsFromFile;
+    const std::string m_expectedResults;
 };

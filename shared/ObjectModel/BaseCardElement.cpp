@@ -71,3 +71,23 @@ const CardElementType AdaptiveCards::BaseCardElement::GetElementType() const
     return m_type;
 }
 
+std::string BaseCardElement::SerializeToJsonString()
+{
+   auto root = this->SerializeToJsonValue();
+
+    Json::FastWriter fastWriter;
+    std::string output = fastWriter.write(root);
+    return output;
+}
+
+Json::Value BaseCardElement::SerializeToJsonValue()
+{
+    Json::Value root;
+    root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::Type)] = CardElementTypeToString(GetElementType());
+    root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::Speak)] = GetSpeak();
+    root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::HorizontalAlignment)] = HorizontalAlignmentToString(GetHorizontalAlignment());
+    root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::CardElementSize)] = SizeToString(GetSize());
+
+    return root;
+}
+

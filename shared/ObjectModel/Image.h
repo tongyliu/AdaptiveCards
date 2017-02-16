@@ -19,7 +19,7 @@ public:
 
     static std::shared_ptr<Image> Deserialize(const Json::Value& root);
 
-    virtual std::string Serialize();
+    virtual Json::Value SerializeToJsonValue();
 
     std::string GetUri() const;
     void SetUri(const std::string value);

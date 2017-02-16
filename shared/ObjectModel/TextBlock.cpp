@@ -47,9 +47,9 @@ std::shared_ptr<TextBlock> TextBlock::Deserialize(const Json::Value& json)
     return textBlock;
 }
 
-std::string TextBlock::Serialize()
+Json::Value TextBlock::SerializeToJsonValue()
 {
-    Json::Value root = ParseUtil::BaseCardElementSerialize(this);
+    Json::Value root = BaseCardElement::SerializeToJsonValue();
 
     // append derived class stuff
     root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::TextSize)]= TextSizeToString(GetTextSize());
@@ -58,9 +58,7 @@ std::string TextBlock::Serialize()
     root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::TextWrap)] = TextWrapToString(GetWrap() ==  true ? TextWrap::Wrap : TextWrap::NoWrap);
     root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::Text)] = GetText();
 
-    Json::FastWriter fastWriter;
-    std::string output = fastWriter.write(root);
-    return output;
+    return root;
 }
 
 std::string TextBlock::GetText() const

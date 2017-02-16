@@ -24,6 +24,7 @@ int main(int argc, const char* argv[])
         ParserTest("TestJsonFiles\\nounicode.json", "ExpectedSerializedJson\\expected_nounicode.json"),
     };
 
+    bool relpaceExpectedResultsWithActual = false;
     int testCount = 0;
     int passCount = 0;
     for (auto test : tests)
@@ -34,7 +35,14 @@ int main(int argc, const char* argv[])
         try
         {
             auto deserializedCard = AdaptiveCard::DeserializeFromFile(test.m_inputFile);
-            std::string actualResult = deserializedCard->Serialize();
+            std::string actualResult = deserializedCard->SerializeToJsonString();
+
+            // If there are major changes to the cards, we will want to replace all our expected results quickly.
+            if (relpaceExpectedResultsWithActual && test.m_getExpectedResultsFromFile)
+            {
+                std::ofstream expectedFile(test.m_expectedResults);
+                expectedFile << actualResult;
+            }
 
             const std::string expectedResult = test.GetExpectedResults();
             if (expectedResult != actualResult)

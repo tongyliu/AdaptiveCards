@@ -136,6 +136,7 @@ static std::unordered_map<std::string, TextWeight, CaseInsensitiveHash, CaseInse
     {"Normal", TextWeight::Normal},
     {"Bolder", TextWeight::Bolder},
 };
+
 static std::unordered_map<TextWeight, std::string> TextWeightEnumToName =
 {
     {TextWeight::Lighter, "Lighter"},

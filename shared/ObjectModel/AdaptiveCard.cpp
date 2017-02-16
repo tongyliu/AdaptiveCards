@@ -9,7 +9,7 @@ AdaptiveCard::AdaptiveCard()
 
 AdaptiveCard::AdaptiveCard(std::string title, std::string description1, std::string description2, std::shared_ptr<Container> root) : m_title(title), m_description1(description1), m_description2(description2), m_root(root) {}
 
-std::shared_ptr<AdaptiveCard> AdaptiveCards::AdaptiveCard::DeserializeFromJsonString(const std::string & json)
+std::shared_ptr<AdaptiveCard> AdaptiveCards::AdaptiveCard::DeserializeFromJsonString(const std::string& json)
 {
     std::string error = "Could not serialize AdaptiveCard from json string:\r\n" + json;
     return Deserialize(ParseUtil::StringToJsonValue(json, error));
@@ -45,22 +45,14 @@ std::shared_ptr<AdaptiveCard> AdaptiveCard::Deserialize(const Json::Value& json)
     return result;
 }
 
-std::string AdaptiveCard::Serialize()
+std::string AdaptiveCard::SerializeToJsonString()
 {
     Json::Value root;
 
-    AdaptiveCard* obj = this;
-
-    root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::Type)] = CardElementTypeToString(obj->GetElementType());
+    root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::Type)] = CardElementTypeToString(GetElementType());
 
     Json::Reader reader;
-    Json::Value container;
-    bool containerSerializeResult = reader.parse(obj->GetRoot()->Serialize(), container);
-    if (!containerSerializeResult)
-    {
-        throw AdaptiveCardParseException("Could not serialize container");
-    }
-    root[CardElementTypeToString(CardElementType::Container)] = container;
+    root[CardElementTypeToString(CardElementType::Container)] = GetRoot()->SerializeToJsonValue();
 
     Json::FastWriter fastWriter;
     std::string output = fastWriter.write(root);

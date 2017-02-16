@@ -34,20 +34,18 @@ std::shared_ptr<Image> Image::Deserialize(const Json::Value& json)
     return image;
 }
 
-std::string Image::Serialize()
+Json::Value Image::SerializeToJsonValue()
 {
-    Json::Value root = ParseUtil::BaseCardElementSerialize(this);
+    Json::Value root = BaseCardElement::SerializeToJsonValue();
 
     // append derived class stuff
     root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::Uri)]= GetUri();
     root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::ImageStyle)] = ImageStyleToString(GetImageStyle());
 
-    Json::FastWriter fastWriter;
-    std::string output = fastWriter.write(root);
-    return output;
+    return root;
 }
 
-std::string AdaptiveCards::Image::GetUri() const
+std::string Image::GetUri() const
 {
     return m_uri;
 }

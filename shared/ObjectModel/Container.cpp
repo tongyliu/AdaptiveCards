@@ -109,7 +109,7 @@ std::shared_ptr<Container> Container::Deserialize(const Json::Value& root)
     return container;
 }
 
-std::string Container::Serialize()
+Json::Value Container::SerializeToJsonValue()
 {
     Json::Value root;
 
@@ -118,19 +118,13 @@ std::string Container::Serialize()
     // serialize properly.
     for (auto cardElement : GetItems())
     {
-        Json::Reader reader;
-        Json::Value cardElementJson;
-        bool serializeResults = reader.parse(cardElement->Serialize(), cardElementJson);
-        if (!serializeResults)
+        if (cardElement != nullptr)
         {
-            throw AdaptiveCardParseException("Could not serialize card element: " + CardElementTypeToString(cardElement->GetElementType()));
+            root.append(cardElement->SerializeToJsonValue());
         }
-        root.append(cardElementJson);
     }
 
-    Json::FastWriter fastWriter;
-    std::string output = fastWriter.write(root);
-    return output;
+    return root;
 }
 
 std::string Container::GetBackgroundImageUrl() const

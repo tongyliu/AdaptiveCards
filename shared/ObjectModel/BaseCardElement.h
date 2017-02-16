@@ -29,7 +29,9 @@ public:
 
     const CardElementType GetElementType() const;
 
-    virtual std::string Serialize() = 0;
+    std::string SerializeToJsonString();
+
+    virtual Json::Value SerializeToJsonValue();
 
     template <typename T>
     static std::shared_ptr<T> Deserialize(const Json::Value& json);

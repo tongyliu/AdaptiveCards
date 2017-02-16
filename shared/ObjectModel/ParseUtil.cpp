@@ -89,17 +89,6 @@ void ParseUtil::ExpectKeyAndValueType(const Json::Value& json, const char* expec
     throwIfWrongType(value);
 }
 
-Json::Value ParseUtil::BaseCardElementSerialize(BaseCardElement* element)
-{
-    Json::Value root;
-    root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::Type)] = CardElementTypeToString(element->GetElementType());
-    root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::Speak)] = CardElementTypeToString(element->GetElementType());
-    root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::HorizontalAlignment)] = HorizontalAlignmentToString(element->GetHorizontalAlignment());
-    root[AdaptiveCardSchemaKeyToString(AdaptiveCardSchemaKey::CardElementSize)] = SizeToString(element->GetSize());
-
-    return root;
-}
-
 Json::Value ParseUtil::StringToJsonValue(std::string jsonStr, std::string errorMessage = "")
 {
     Json::Reader reader;
