@@ -976,6 +976,7 @@ export class ActionCollection {
 
 export class Container extends CardElement {
     static TypeName: string = "Container";
+    static defaultActionButtonStyle: Enums.ActionButtonStyle = Enums.ActionButtonStyle.Push;
 
     private _items: Array<CardElement> = [];
     private _element: HTMLDivElement;
