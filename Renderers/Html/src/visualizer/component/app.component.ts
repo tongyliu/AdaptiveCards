@@ -1,17 +1,12 @@
-import {Component, ElementRef, ViewChild, Inject, OnInit, AfterViewInit} from '@angular/core';
-import {URLSearchParams, RequestOptions, BaseRequestOptions} from '@angular/http';
+import {Component, OnInit, AfterViewInit} from '@angular/core';
 import {HostApp} from '../App';
 
 @Component({
   selector: 'adaptive-cards',
   templateUrl: './component/app.html'
 })
-export class AdaptiveCardComponent implements OnInit, AfterViewInit {
+export class AdaptiveCardComponent implements AfterViewInit {
   constructor() {}
-
-  ngOnInit() {
-
-  }
 
   ngAfterViewInit() {
     console.log("Master component");
