@@ -26,7 +26,7 @@ namespace Adaptive
         {
             if (AlternateRenderer != null)
                 return AlternateRenderer(this, context);
-            WrapPanel
+
             var uiGallery = new ListBox();
             uiGallery.Style = context.GetStyle("Adaptive.ImageGallery");
 

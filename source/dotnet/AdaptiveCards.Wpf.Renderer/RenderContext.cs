@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -20,6 +21,16 @@ namespace Adaptive
 
     public static class DictionaryHelper
     {
+        public static T TryGetValue<T>(this IDictionary dictionary, string key)
+        {
+            if (dictionary.Contains(key))
+            {
+                return (T)dictionary[key];
+            }
+
+            return default(T);
+        }
+
         public static T TryGetValue<T>(this IDictionary<string, object> dictionary, string key)
         {
             if (dictionary.ContainsKey(key))

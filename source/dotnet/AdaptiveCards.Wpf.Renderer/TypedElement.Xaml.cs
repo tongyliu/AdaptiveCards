@@ -1,6 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Windows;
+#if WPF
+using System.Windows.Controls;
+#elif Xamarin
 using Xamarin.Forms;
+#endif
 
 namespace Adaptive
 {
