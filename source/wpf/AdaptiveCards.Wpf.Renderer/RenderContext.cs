@@ -4,13 +4,21 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Adaptive;
+#if Xamarin
+using Xamarin.Forms;
+#elif WPF
 using System.Windows;
 using System.Windows.Controls;
-using Newtonsoft.Json.Linq;
 using Xceed.Wpf.Toolkit;
+#endif
+using Newtonsoft.Json.Linq;
 
 namespace Adaptive
 {
+
+
+
     public class RenderOptions
     {
         public bool ShowInput { get; set; } = true;
@@ -32,7 +40,7 @@ namespace Adaptive
                 Options = new RenderOptions()
                 {
                     ShowAction = this.Options.ShowAction,
-                    ShowInput  = this.Options.ShowInput
+                    ShowInput = this.Options.ShowInput
                 },
                 OnAction = this.OnAction,
                 OnMissingInput = this.OnMissingInput
@@ -65,7 +73,11 @@ namespace Adaptive
         /// </summary>
         public event MissingInputEventHandler OnMissingInput;
 
+#if WPF
         public void Action(FrameworkElement ui, ActionEventArgs args)
+#elif Xamarin
+        public void Action(Element ui, ActionEventArgs args)
+#endif
         {
             this.OnAction?.Invoke(ui, args);
         }
@@ -74,7 +86,7 @@ namespace Adaptive
         {
             this.OnMissingInput?.Invoke(sender, args);
         }
-        
+
         public virtual Style GetStyle(string styleName)
         {
             if (!styleName.Contains(".Tap"))
@@ -127,7 +139,7 @@ namespace Adaptive
                         if (value is string && !String.IsNullOrEmpty((string)value))
                             hasValue = true;
                     }
-                            
+
                     if (hasValue)
                     {
                         data[input.Id] = JToken.FromObject(value);
@@ -149,6 +161,8 @@ namespace Adaptive
         /// <returns></returns>
         public virtual object GetValueFromInputControl(FrameworkElement inputControl)
         {
+#if WPF
+            // TODO: Enable
             if (inputControl is WatermarkTextBox)
             {
                 return ((WatermarkTextBox)inputControl).Text;
@@ -224,6 +238,7 @@ namespace Adaptive
                 }
             }
             Debug.Print($"Unknown control {inputControl.GetType().Name}");
+#endif
             return null;
         }
 
@@ -241,6 +256,7 @@ namespace Adaptive
         /// <param name="control"></param>
         public virtual void ResetInputControl(FrameworkElement control)
         {
+#if WPF
             if (control is TextBox)
             {
                 InputText input = control.DataContext as InputText;
@@ -301,8 +317,9 @@ namespace Adaptive
                 InputChoiceSet choiceInput = comboBox.DataContext as InputChoiceSet;
                 comboBox.SelectedIndex = 0;
             }
-        }
+#endif
 
+        }
     }
 
 
@@ -339,7 +356,7 @@ namespace Adaptive
     public class MissingInputException : Exception
     {
         public MissingInputException(string message, Input input, FrameworkElement frameworkElement)
-            :base(message)
+            : base(message)
         {
             this.FrameworkElement = frameworkElement;
             this.Input = input;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Adaptive;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -6,9 +7,10 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+#if WPF
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using Adaptive;
+#endif
 
 namespace Adaptive
 {
@@ -18,8 +20,8 @@ namespace Adaptive
     /// <typeparam name="ElementT">the base type of rendered elements</typeparam>
     public static class Utilities
     {
-        private static Regex TextFunctionRegex = new Regex(@"\{\{(?<func>DATE|TIME){1}\((?<date>.+?){1}(?:,\s*(?<hint>Short|Long){1}\s*)??\)\}\}", RegexOptions.Compiled | RegexOptions.ExplicitCapture | RegexOptions.IgnoreCase);
-        private static Regex _regexBinding = new Regex(@"(?<property>\{\{\w+?\}\})+?", RegexOptions.Compiled | RegexOptions.ExplicitCapture);
+        private static Regex TextFunctionRegex = new Regex(@"\{\{(?<func>DATE|TIME){1}\((?<date>.+?){1}(?:,\s*(?<hint>Short|Long){1}\s*)??\)\}\}", RegexOptions.ExplicitCapture | RegexOptions.IgnoreCase);
+        private static Regex _regexBinding = new Regex(@"(?<property>\{\{\w+?\}\})+?", RegexOptions.ExplicitCapture);
 
         private enum Functions { DATE, TIME };
 
@@ -81,6 +83,7 @@ namespace Adaptive
             return text;
         }
 
+#if WPF
         /// <summary>
         /// Render card to desired width (height is variable)
         /// </summary>
@@ -99,6 +102,6 @@ namespace Adaptive
             bitmapImage.Render(uiElement);
             return bitmapImage;
         }
-
+#endif
     }
 }

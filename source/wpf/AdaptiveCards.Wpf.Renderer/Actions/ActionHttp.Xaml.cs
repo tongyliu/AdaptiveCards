@@ -1,14 +1,18 @@
 ﻿using System.Windows;
+#if WPF
 using System.Windows.Controls;
 using WPF = System.Windows.Controls;
+#elif Xamarin
+using Xamarin.Forms;
+using Button = AdaptiveCards.XamarinForms.Renderer.ContentButton;
+
+#endif
 using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
 
 namespace Adaptive
 {
-
-
     public partial class ActionHttp : ActionBase
     {
         /// <summary>
@@ -21,6 +25,7 @@ namespace Adaptive
         /// </summary>
         /// <param name="httpAction"></param>
         /// <returns></returns>
+
         public override FrameworkElement Render(RenderContext context)
         {
             if (AlternateRenderer != null)

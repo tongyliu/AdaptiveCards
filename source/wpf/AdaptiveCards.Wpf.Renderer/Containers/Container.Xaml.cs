@@ -2,12 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+#if WPF
 using System.Windows.Controls;
 using WPF = System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
+#elif Xamarin
+using Xamarin.Forms;
+using Button = AdaptiveCards.XamarinForms.Renderer.ContentButton;
+#endif
 namespace Adaptive
 {
     public partial class Container
@@ -63,6 +67,7 @@ namespace Adaptive
                         case SeparationStyle.None:
                             break;
                         case SeparationStyle.Default:
+#if WPF
                         case SeparationStyle.Strong:
                             {
                                 var sep = new Separator();
@@ -74,6 +79,9 @@ namespace Adaptive
                                 Grid.SetRow(sep, grid.RowDefinitions.Count - 1);
                                 grid.Children.Add(sep);
                             }
+#elif Xamarin
+                            // TODO: Separator
+#endif
                             break;
                     }
                 }
@@ -84,6 +92,7 @@ namespace Adaptive
 
             if (hasActions)
             {
+#if WPF
                 var uiActionBar = new UniformGrid();
                 uiActionBar.Rows = 1;
                 uiActionBar.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
@@ -101,6 +110,9 @@ namespace Adaptive
                 grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
                 Grid.SetRow(uiActionBar, grid.RowDefinitions.Count - 1);
                 grid.Children.Add(uiActionBar);
+#elif Xamarin
+                // TODO: Action bar
+#endif
             }
         }
 

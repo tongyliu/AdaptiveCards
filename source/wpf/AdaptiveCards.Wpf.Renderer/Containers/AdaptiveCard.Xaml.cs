@@ -2,12 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+#if WPF
 using System.Windows.Controls;
 using WPF = System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-
+#elif Xamarin
+using Xamarin.Forms;
+#endif
 namespace Adaptive
 {
     public partial class AdaptiveCard
@@ -33,7 +36,7 @@ namespace Adaptive
             if (this.BackgroundImage != null)
             {
                 Uri uri = new Uri(this.BackgroundImage);
-                grid.Background = new ImageBrush(new BitmapImage(uri));
+                //grid.Background = new ImageBrush(new BitmapImage(uri));
             }
             grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(1, GridUnitType.Star) });
 
