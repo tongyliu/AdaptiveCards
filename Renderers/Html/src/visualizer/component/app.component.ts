@@ -1,9 +1,9 @@
 import {Component, OnInit, AfterViewInit, AfterViewChecked,
 ChangeDetectionStrategy, ChangeDetectorRef,
-ViewChild} from '@angular/core';
+ViewChild, OnDestroy} from '@angular/core';
 import {HostApp} from '../App';
 import {CardRendererComponent} from './card-renderer.component';
-import {Observable} from 'rxjs/Rx';
+import {Observable, Subscription} from 'rxjs/Rx';
 
 @Component({
   selector: 'adaptive-cards',
@@ -11,26 +11,32 @@ import {Observable} from 'rxjs/Rx';
   providers: [HostApp],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AdaptiveCardComponent implements AfterViewInit {
+export class AdaptiveCardComponent implements AfterViewInit, OnDestroy {
   @ViewChild(CardRendererComponent) cardRenderer:CardRendererComponent;
   schemaObj:JSON;
-  
-  constructor(private host:HostApp) {}
+  valueSubscription:Subscription;
+
+  constructor(private host:HostApp, private cd:ChangeDetectorRef) {}
 
   ngAfterViewInit() {
     this.host.initialize();
     let schemaElement = this.host.schemaParentElement();
     let strokes = Observable.fromEvent<Event>(schemaElement.getSession(), 'change');
-    let valueString = strokes.map(event => schemaElement.getValue() as string);
-    valueString
-        .subscribe(enteredValue => this.callRenderer(enteredValue));
+    let valueObservable = strokes.map(event => schemaElement.getValue() as string);
+    this.valueSubscription = valueObservable.subscribe(enteredValue => this.callRenderer(enteredValue));
     this.callRenderer(this.host.schemaParentElement().getValue());
+  }
+
+  ngOnDestroy(){
+    this.valueSubscription.unsubscribe();
   }
 
   callRenderer(schemaText: string)
   {
+    console.log("parent calling renderer");
     this.schemaObj = JSON.parse(schemaText);
-    this.cardRenderer.renderCard(this.schemaObj);
+    this.cd.markForCheck();
+    // this.cardRenderer.renderCard(this.schemaObj);
   }
 
   actionHandler(event:string){
