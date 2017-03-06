@@ -19,8 +19,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdaptiveCards.XamarinForms.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdaptiveCards.XamarinForms.BotClient.UWP", "AdaptiveCards.XamarinForms.BotClient\AdaptiveCards.XamarinForms.BotClient.UWP\AdaptiveCards.XamarinForms.BotClient.UWP.csproj", "{732594E9-8585-4EE8-ABA7-70F4AEDC56AF}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "AdaptiveCards.XamarinForms.BotClient2", "AdaptiveCards.XamarinForms.BotClient2\AdaptiveCards.XamarinForms.BotClient2.xproj", "{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -134,22 +132,6 @@ Global
 		{732594E9-8585-4EE8-ABA7-70F4AEDC56AF}.Release|x86.ActiveCfg = Release|x86
 		{732594E9-8585-4EE8-ABA7-70F4AEDC56AF}.Release|x86.Build.0 = Release|x86
 		{732594E9-8585-4EE8-ABA7-70F4AEDC56AF}.Release|x86.Deploy.0 = Release|x86
-		{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5}.Debug|ARM.Build.0 = Debug|Any CPU
-		{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5}.Debug|x64.Build.0 = Debug|Any CPU
-		{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5}.Debug|x86.Build.0 = Debug|Any CPU
-		{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5}.Release|ARM.ActiveCfg = Release|Any CPU
-		{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5}.Release|ARM.Build.0 = Release|Any CPU
-		{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5}.Release|x64.ActiveCfg = Release|Any CPU
-		{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5}.Release|x64.Build.0 = Release|Any CPU
-		{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5}.Release|x86.ActiveCfg = Release|Any CPU
-		{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -160,6 +142,5 @@ Global
 		{67F9D3A8-F71E-4428-913F-C37AE82CDB24} = {C443BF0A-C616-4E98-8994-C5BAE76AE556}
 		{8FBF1B9B-4DA1-45A1-A682-0C87E4AC34CC} = {C443BF0A-C616-4E98-8994-C5BAE76AE556}
 		{732594E9-8585-4EE8-ABA7-70F4AEDC56AF} = {C443BF0A-C616-4E98-8994-C5BAE76AE556}
-		{EF7D4305-BAEF-4FE8-984B-A4D61AA5BEF5} = {C443BF0A-C616-4E98-8994-C5BAE76AE556}
 	EndGlobalSection
 EndGlobal
