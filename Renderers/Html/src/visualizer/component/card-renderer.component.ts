@@ -1,33 +1,54 @@
 import {Component, OnInit, AfterViewInit, 
-        Input, Output, EventEmitter,
-        ChangeDetectionStrategy, ChangeDetectorRef,
-        OnChanges, SimpleChange
+        Input, Output, EventEmitter, OnDestroy,
+        ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 import {HostApp} from '../App';
+import {DataTransferService} from './DataTransferService';
+import {Subscription} from 'rxjs/Rx';
 
 @Component({
   selector: 'card-renderer',
   templateUrl: './component/card-renderer.html',
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CardRendererComponent implements AfterViewInit, OnChanges {
-    @Input('schema-model') schemaObj: JSON;
+export class CardRendererComponent implements AfterViewInit, OnDestroy {
     @Output('execute-action') execute = new EventEmitter<string>();
+    _dataSubscription: Subscription;
 
-    constructor(private host:HostApp) {}
+    constructor(private host:HostApp, private transferService:DataTransferService) {}
 
     ngAfterViewInit() {
+        this._dataSubscription = this.transferService.SchemaSubject.subscribe(
+            jsonValue =>
+            {
+                this.renderCard(jsonValue);
+            },
+            error => 
+            {
+                this.handleError(error);
+            },
+            () => 
+            {
+                this.handleComplete();
+            });
     }
 
-    ngOnChanges(changes: {[propertyName: string]: SimpleChange})
-    {
-        console.log("changed called", changes);
-        this.renderCard(this.schemaObj);
+    ngOnDestroy(){
+        this._dataSubscription.unsubscribe();
     }
 
     renderCard(schema: JSON)
     {
-        this.schemaObj = schema;
-        this.host.renderCardHelper(JSON.stringify(this.schemaObj));
+        this.host.renderCardHelper(JSON.stringify(schema));
+    }
+
+    handleError(err:any)
+    {
+        console.log("DTO error");
+    }
+
+    handleComplete()
+    {
+        console.log("DTO completes");
     }
 }

@@ -4,19 +4,21 @@ ViewChild, OnDestroy} from '@angular/core';
 import {HostApp} from '../App';
 import {CardRendererComponent} from './card-renderer.component';
 import {Observable, Subscription} from 'rxjs/Rx';
+import {DataTransferService} from './DataTransferService';
 
 @Component({
   selector: 'adaptive-cards',
   templateUrl: './component/app.html',
-  providers: [HostApp],
+  providers: [HostApp, DataTransferService],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AdaptiveCardComponent implements AfterViewInit, OnDestroy {
   @ViewChild(CardRendererComponent) cardRenderer:CardRendererComponent;
-  schemaObj:JSON;
   valueSubscription:Subscription;
 
-  constructor(private host:HostApp, private cd:ChangeDetectorRef) {}
+  constructor(private host:HostApp, 
+              private cdRef:ChangeDetectorRef, 
+              private transferService:DataTransferService) {}
 
   ngAfterViewInit() {
     this.host.initialize();
@@ -34,9 +36,7 @@ export class AdaptiveCardComponent implements AfterViewInit, OnDestroy {
   callRenderer(schemaText: string)
   {
     console.log("parent calling renderer");
-    this.schemaObj = JSON.parse(schemaText);
-    this.cd.markForCheck();
-    // this.cardRenderer.renderCard(this.schemaObj);
+    this.transferService.SchemaSubject.next(JSON.parse(schemaText));
   }
 
   actionHandler(event:string){
