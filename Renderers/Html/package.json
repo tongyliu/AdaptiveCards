@@ -21,14 +21,14 @@
     "brace": "^0.9.1",
     "markdown-it": "^8.2.2",
     "vkbeautify": "^0.99.1",
-    "webpack": "^2.2.1"
-  },
-  "devDependencies": {
+    "webpack": "^2.2.1",
     "@angular/common": "^2.4.7",
     "@angular/core": "^2.4.7",
     "@angular/http": "^2.4.7",
     "@angular/platform-browser": "^2.4.7",
     "@angular/platform-browser-dynamic": "^2.4.7",
+    "@angular/compiler": "^2.4.7",
+    "reflect-metadata": "^0.1.10",
     "@types/ace": "0.0.32",
     "@types/core-js": "^0.9.35",
     "@types/markdown-it": "0.0.1",
