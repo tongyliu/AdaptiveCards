@@ -21,6 +21,6 @@
 
                 </div>
             </div>
-            <card-renderer></card-renderer>
+            <card-renderer [schema-model]="schemaObj" (execute-action)="actionHandler($event)"></card-renderer>
         </div>
 </div>

@@ -18,6 +18,9 @@ import "brace/mode/json";
 import "brace/theme/chrome";
 import * as vkbeautify from "vkbeautify";
 
+import {Injectable, Inject, Optional} from '@angular/core';
+
+@Injectable()
 export class HostApp
 {
     private editor: ace.Editor;
@@ -29,8 +32,17 @@ export class HostApp
     }
 
     renderCard() {
-        let jsonText = this.editor.getValue();
+       let jsonText = this.editor.getValue();
+       this.renderCardHelper(jsonText);
+    }
 
+    schemaParentElement():any
+    {
+        return this.editor;
+    }
+
+    renderCardHelper(jsonText: string)
+    {
         try {
             let json = JSON.parse(jsonText);
             let cardTypeName = json["type"];
@@ -99,7 +111,7 @@ export class HostApp
     }
 
     textareaChange() {
-        this.renderCard();
+        // this.renderCard();
     }
 
     openFilePicker() {
@@ -167,7 +179,10 @@ export class HostApp
             });
         let self = this;
         this.editor.getSession().setMode("ace/mode/json");
-        this.editor.getSession().on("change", function (e) { self.renderCard(); });
+        this.editor.getSession().on("change", 
+        function (e) { 
+           // self.renderCard(); 
+        });
 
         // Load the cached payload if the user had one
         try {
@@ -256,7 +271,7 @@ export class HostApp
 
     renderSelectedHostApp() {
         this.updateStyleSheet();
-        this.renderCard();
+        // this.renderCard();
     }
 
     setupFilePicker() {
@@ -277,7 +292,7 @@ export class HostApp
 
         this.updateStyleSheet();
 
-        this.renderCard();
+        // this.renderCard();
 
         // handle Back and Forward after the Container app drop down is changed
         window.addEventListener('popstate', function (e) {
