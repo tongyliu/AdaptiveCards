@@ -4,7 +4,7 @@ ViewChild, OnDestroy} from '@angular/core';
 import {HostAppService} from './app.service';
 import {CardRendererComponent} from './card-renderer.component';
 import {Observable, Subscription} from 'rxjs/Rx';
-import {DataTransferService} from './DataTransferService';
+import {DataTransferService} from './data-transfer.service';
 
 @Component({
   selector: 'adaptive-cards',

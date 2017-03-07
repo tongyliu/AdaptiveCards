@@ -1,6 +1,6 @@
 {
-  "name": "adaptive-card-html-renderer",
-  "version": "0.1.0",
+  "name": "adaptive-card",
+  "version": "0.0.1",
   "description": "adaptive card toolkit html rendering library",
   "main": "src/adaptiveCard.js",
   "types": "dist/adaptiveCard.d.ts",

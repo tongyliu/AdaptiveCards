@@ -2,3 +2,4 @@
 !webpack.config.js
 **/*.js
 **/*.js.map
+*.tgz

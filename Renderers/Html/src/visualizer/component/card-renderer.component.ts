@@ -4,7 +4,7 @@ import {Component, OnInit, AfterViewInit,
         ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
 import {HostAppService} from './app.service';
-import {DataTransferService} from './DataTransferService';
+import {DataTransferService} from './data-transfer.service';
 import {Subscription} from 'rxjs/Rx';
 import  {BING} from './styles/bing'
 
