@@ -1,23 +1,28 @@
 import {Component, OnInit, AfterViewInit, 
         Input, Output, EventEmitter, OnDestroy,
+        ViewEncapsulation, ViewChild, ElementRef,
         ChangeDetectionStrategy, ChangeDetectorRef
 } from '@angular/core';
-import {HostApp} from '../App';
+import {HostAppService} from './app.service';
 import {DataTransferService} from './DataTransferService';
 import {Subscription} from 'rxjs/Rx';
+import  {BING} from './styles/bing'
 
 @Component({
   selector: 'card-renderer',
   templateUrl: './component/card-renderer.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  styles: [
+    BING
+  ],
+  encapsulation: ViewEncapsulation.Native
 })
 export class CardRendererComponent implements AfterViewInit, OnDestroy {
-
-
+    @ViewChild('content') contentDiv:ElementRef 
     @Output('execute-action') execute = new EventEmitter<Array<any>>();
     _dataSubscription: Subscription;
 
-    constructor(private host:HostApp, private transferService:DataTransferService) {}
+    constructor(private host:HostAppService, private transferService:DataTransferService) {}
 
     ngAfterViewInit() {
         this._dataSubscription = this.transferService.SchemaSubject.subscribe(
@@ -41,9 +46,10 @@ export class CardRendererComponent implements AfterViewInit, OnDestroy {
 
     renderCard(schema: JSON)
     {
-        this.host.renderCardHelper(JSON.stringify(schema), (a: any, args: any) => { 
+        let cardNode =  this.host.renderCardHelper(schema, (a: any, args: any) => { 
             this.emitActionTriggered(a, args);
         });
+        this.contentDiv.nativeElement.appendChild(cardNode);
     }
 
     emitActionTriggered(action:any, actionParams:any)
