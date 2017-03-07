@@ -33,7 +33,10 @@ export class HostApp
 
     renderCard() {
        let jsonText = this.editor.getValue();
-       this.renderCardHelper(jsonText);
+       this.renderCardHelper(jsonText, 
+                        (a, args) => {
+                            alert("Action executed: " + a.name);
+                        });
     }
 
     schemaParentElement():any
@@ -41,7 +44,7 @@ export class HostApp
         return this.editor;
     }
 
-    renderCardHelper(jsonText: string)
+    renderCardHelper(jsonText: string, actionHandler: (a, args) => void)
     {
         try {
             let json = JSON.parse(jsonText);
@@ -65,11 +68,7 @@ export class HostApp
                     var jsonParser = new JsonParser();
                     var adaptiveCard = jsonParser.parse(json);
 
-                    adaptiveCard.onExecuteAction.subscribe(
-                        (a, args) => {
-                            alert("Action executed: " + a.name);
-                        }
-                    )
+                    adaptiveCard.onExecuteAction.subscribe(actionHandler);
 
                     var popupContainer = document.getElementById("popupCardContainer");
 

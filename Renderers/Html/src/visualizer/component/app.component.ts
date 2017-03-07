@@ -39,7 +39,7 @@ export class AdaptiveCardComponent implements AfterViewInit, OnDestroy {
     this.transferService.SchemaSubject.next(JSON.parse(schemaText));
   }
 
-  actionHandler(event:string){
-      console.log("action handler triggered with" + event);
+  actionHandler(event:Array<any>){
+      console.log("action handler triggered with", ...event);
   }
 }

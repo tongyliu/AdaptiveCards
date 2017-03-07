@@ -12,7 +12,9 @@ import {Subscription} from 'rxjs/Rx';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CardRendererComponent implements AfterViewInit, OnDestroy {
-    @Output('execute-action') execute = new EventEmitter<string>();
+
+
+    @Output('execute-action') execute = new EventEmitter<Array<any>>();
     _dataSubscription: Subscription;
 
     constructor(private host:HostApp, private transferService:DataTransferService) {}
@@ -39,7 +41,14 @@ export class CardRendererComponent implements AfterViewInit, OnDestroy {
 
     renderCard(schema: JSON)
     {
-        this.host.renderCardHelper(JSON.stringify(schema));
+        this.host.renderCardHelper(JSON.stringify(schema), (a: any, args: any) => { 
+            this.emitActionTriggered(a, args);
+        });
+    }
+
+    emitActionTriggered(action:any, actionParams:any)
+    {
+        this.execute.emit([action, actionParams]);
     }
 
     handleError(err:any)
