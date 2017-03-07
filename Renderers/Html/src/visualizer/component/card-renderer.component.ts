@@ -11,7 +11,6 @@ import  {BING} from './styles/bing'
 @Component({
   selector: 'card-renderer',
   templateUrl: './component/card-renderer.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styles: [
     BING
   ],
@@ -49,6 +48,7 @@ export class CardRendererComponent implements AfterViewInit, OnDestroy {
         let cardNode =  this.host.renderCardHelper(schema, (a: any, args: any) => { 
             this.emitActionTriggered(a, args);
         });
+        this.contentDiv.nativeElement.innerHTML = '';
         this.contentDiv.nativeElement.appendChild(cardNode);
     }
 

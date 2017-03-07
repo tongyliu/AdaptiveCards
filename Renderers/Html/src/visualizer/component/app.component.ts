@@ -9,8 +9,7 @@ import {DataTransferService} from './DataTransferService';
 @Component({
   selector: 'adaptive-cards',
   templateUrl: './component/app.html',
-  providers: [HostAppService, DataTransferService],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  providers: [HostAppService, DataTransferService]
 })
 export class AdaptiveCardComponent implements AfterViewInit, OnDestroy {
   @ViewChild(CardRendererComponent) cardRenderer:CardRendererComponent;

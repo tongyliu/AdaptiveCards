@@ -8,8 +8,7 @@ import {Subscription} from 'rxjs/Rx';
 
 @Component({
   selector: 'card-header',
-  templateUrl: './component/card-header.html',
-  changeDetection: ChangeDetectionStrategy.OnPush
+  templateUrl: './component/card-header.html'
 })
 export class CardHeaderComponent implements AfterViewInit, OnDestroy {
 
