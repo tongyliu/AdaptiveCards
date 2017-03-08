@@ -8,7 +8,7 @@ import {DataTransferService} from './data-transfer.service';
 
 @Component({
   selector: 'adaptive-cards',
-  templateUrl: './component/app.html',
+  templateUrl: './app.html',
   providers: [HostAppService, DataTransferService]
 })
 export class AdaptiveCardComponent implements AfterViewInit, OnDestroy {

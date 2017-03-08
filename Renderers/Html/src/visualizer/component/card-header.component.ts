@@ -5,7 +5,7 @@ import {Component, OnInit, AfterViewInit,
 
 @Component({
   selector: 'card-header',
-  templateUrl: './component/card-header.html'
+  templateUrl: './card-header.html'
 })
 export class CardHeaderComponent implements AfterViewInit, OnDestroy {
 

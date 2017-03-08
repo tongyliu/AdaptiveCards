@@ -18,9 +18,11 @@
     "url": "git://git@github.com/microsoft/AdaptiveCards.git"
   },
   "dependencies": {
-    "brace": "^0.9.1",
-    "markdown-it": "^8.2.2",
-    "vkbeautify": "^0.99.1",
+     "brace": "^0.9.1",
+     "markdown-it": "^8.2.2",
+     "vkbeautify": "^0.99.1"
+  },
+  "peerDependencies": {
     "webpack": "^2.2.1",
     "@angular/common": "^2.4.7",
     "@angular/core": "^2.4.7",

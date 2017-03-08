@@ -10,7 +10,7 @@ import  {BING} from './styles/bing'
 
 @Component({
   selector: 'card-renderer',
-  templateUrl: './component/card-renderer.html',
+  templateUrl: './card-renderer.html',
   styles: [
     BING
   ],
