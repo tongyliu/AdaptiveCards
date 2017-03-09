@@ -3,7 +3,7 @@ export * from './ConnectorContainer';
 export * from './CortanaCarContainer';
 export * from './HostContainer';
 export * from './LiveTileContainer';
-export * from './OutLookConnectorContainer';
+// export * from './OutLookConnectorContainer';
 export * from './SkypeContainer';
 export * from './SpeechContainer';
 export * from './TeamsConnectorContainer';

@@ -8,15 +8,14 @@ import {Subscription} from 'rxjs/Rx';
 
 @Component({
   selector: 'card-renderer',
-  styleUrls: ['../../css/outlookConnectorCard.css'],
+  styleUrls: ['../../../css/outlookConnectorCard.css'],
   encapsulation: ViewEncapsulation.Native,
   template: `
-<div class="rightPane">
     <div #content class="markupRender"></div>
     <div #popupCardContainer style="margin-top: 30px; padding: 10px; border: 1px solid #EEEEEE;">
         <div>ActionShowCard popups will appear in this box, according to container settings</div>
     </div>
-</div>`
+    `
 })
 export class CardRendererComponent implements AfterViewInit, OnDestroy {
     

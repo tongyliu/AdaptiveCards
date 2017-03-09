@@ -67,7 +67,7 @@ export class HostAppService
                 "showFoldWidgets": true,
                 "highlightSelectedWord": false,
                 "fontSize": "14px",
-                "maxLines": Infinity,
+                "maxLines": 50,
                 "minLines": 10
             });
         let self = this;

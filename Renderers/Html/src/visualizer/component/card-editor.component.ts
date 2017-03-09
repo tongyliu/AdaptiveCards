@@ -1,5 +1,5 @@
 import {Component, AfterViewInit, OnDestroy,
-        Output, EventEmitter, 
+        Output, EventEmitter,
         ViewChild, ElementRef
 } from '@angular/core';
 import {HostAppService} from './app.service';
@@ -9,10 +9,8 @@ import {DataTransferService} from './data-transfer.service';
 @Component({
   selector: 'card-editor',
   template: `
-<div class="leftPane" style="height: 500px; width: 500px;">
     <div #editor>
     </div>
-</div>
   `,
 })
 export class CardEditorComponent implements AfterViewInit, OnDestroy {
