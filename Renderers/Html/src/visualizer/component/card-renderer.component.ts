@@ -1,24 +1,30 @@
-import {Component, OnInit, AfterViewInit, 
-        Input, Output, EventEmitter, OnDestroy,
-        ViewEncapsulation, ViewChild, ElementRef,
-        ChangeDetectionStrategy, ChangeDetectorRef
+import {Component, AfterViewInit, OnDestroy,
+        Output, EventEmitter, ViewEncapsulation, 
+        ViewChild, ElementRef
 } from '@angular/core';
 import {HostAppService} from './app.service';
 import {DataTransferService} from './data-transfer.service';
 import {Subscription} from 'rxjs/Rx';
-import  {BING} from './styles/bing'
 
 @Component({
   selector: 'card-renderer',
-  templateUrl: './card-renderer.html',
-  styles: [
-    BING
-  ],
-  encapsulation: ViewEncapsulation.Native
+  styleUrls: ['../../css/outlookConnectorCard.css'],
+  encapsulation: ViewEncapsulation.Native,
+  template: `
+<div class="rightPane">
+    <div #content class="markupRender"></div>
+    <div #popupCardContainer style="margin-top: 30px; padding: 10px; border: 1px solid #EEEEEE;">
+        <div>ActionShowCard popups will appear in this box, according to container settings</div>
+    </div>
+</div>`
 })
 export class CardRendererComponent implements AfterViewInit, OnDestroy {
-    @ViewChild('content') contentDiv:ElementRef 
+    
+    @ViewChild('content') contentDiv:ElementRef
+    @ViewChild('popupCardContainer') popupCardContainerDiv:ElementRef  
+
     @Output('execute-action') execute = new EventEmitter<Array<any>>();
+    
     _dataSubscription: Subscription;
 
     constructor(private host:HostAppService, private transferService:DataTransferService) {}

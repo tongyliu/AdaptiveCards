@@ -57,8 +57,8 @@ export class HostAppService
         styleSheetLinkElement.href = this.hostContainerOptions[this.hostContainerPicker.selectedIndex].hostContainer.styleSheet;
     }
 
-    renderEditor():any {
-        this.editor = ace.edit("editor");
+    renderEditor(el: HTMLElement):ace.Editor {
+        this.editor = ace.edit(el);
         this.editor.setTheme("ace/theme/chrome");
         this.editor.setOptions(
             {
@@ -67,10 +67,17 @@ export class HostAppService
                 "showFoldWidgets": true,
                 "highlightSelectedWord": false,
                 "fontSize": "14px",
+                "maxLines": Infinity,
+                "minLines": 10
             });
         let self = this;
         this.editor.getSession().setMode("ace/mode/json");
+        this.loadData();
+        return this.editor;
+    }
 
+    loadData()
+    {
         // Load the cached payload if the user had one
         try {
             let cachedPayload = sessionStorage.getItem("AdaptivePayload");
@@ -84,7 +91,6 @@ export class HostAppService
         catch (e) {
             this.editor.session.setValue(Constants.defaultPayload);
         }
-        return this.editor;
     }
 
     renderContainerPicker() 
