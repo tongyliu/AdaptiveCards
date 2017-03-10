@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Newtonsoft.Json.Linq;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 #if Xamarin
 using Xamarin.Forms;
+using Xamarin.Forms.Xaml.Internals;
 #elif WPF
 using System.Windows;
 using System.Windows.Controls;
@@ -49,6 +51,11 @@ namespace Adaptive
     {
         public RenderContext()
         {
+        }
+
+        public RenderContext(ResourceDictionary resources)
+        {
+            this.resources = resources;
         }
 
         public RenderContext NewActionContext()
@@ -96,17 +103,20 @@ namespace Adaptive
         /// <summary>
         /// Event which fires when tree is ready to be snapshoted
         /// </summary>
-        public event RoutedEventHandler OnLoaded;
+        public event EventHandler OnLoaded;
 
         /// <summary>
         /// Is everything loaded
         /// </summary>
         public bool IsLoaded { get { return this.LoadingElements.Count == 0; } }
 
+
+        private ResourceDictionary _resources;
+        private ResourceDictionary resources;
+
         /// <summary>
         /// Resource dictionary to use when rendering
         /// </summary>
-        private ResourceDictionary _resources;
         public ResourceDictionary Resources
         {
             get
@@ -114,10 +124,11 @@ namespace Adaptive
                 if (_resources != null)
                     return _resources;
 
-                using (var styleStream = File.OpenRead(this.StylePath))
-                {
-                    _resources = (ResourceDictionary)XamlReader.Load(styleStream);
-                }
+                //using (var styleStream = File.OpenRead(this.StylePath))
+                //{
+
+                //    _resources = (ResourceDictionary)XamlReader.Load(styleStream);
+                //}
                 return _resources;
             }
             set
@@ -375,8 +386,9 @@ namespace Adaptive
                 InputChoiceSet choiceInput = comboBox.DataContext as InputChoiceSet;
                 comboBox.SelectedIndex = 0;
             }
-        }
 #endif
+
+        }
 
         public void AddLoadingElement(string id)
         {
@@ -389,11 +401,11 @@ namespace Adaptive
             {
                 this.LoadingElements.Remove(id);
             }
-            Debug.Print($"{id} finished");
+            Debug.WriteLine($"{id} finished");
 
             if (this.LoadingElements.Count == 0)
             {
-                Debug.Print($"Loaded");
+                Debug.WriteLine($"Loaded");
                 this.OnLoaded?.Invoke(this, null);
             }
         }

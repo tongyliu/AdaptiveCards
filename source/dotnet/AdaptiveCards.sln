@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdaptiveCards.Model", "AdaptiveCards.Model\AdaptiveCards.Model.csproj", "{1B1D0934-2B03-42A5-8322-D480CDFDD55B}"
 EndProject
@@ -18,6 +18,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdaptiveCards.XamarinForms.BotClient", "AdaptiveCards.XamarinForms.BotClient\AdaptiveCards.XamarinForms.BotClient\AdaptiveCards.XamarinForms.BotClient.csproj", "{8FBF1B9B-4DA1-45A1-A682-0C87E4AC34CC}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdaptiveCards.XamarinForms.BotClient.UWP", "AdaptiveCards.XamarinForms.BotClient\AdaptiveCards.XamarinForms.BotClient.UWP\AdaptiveCards.XamarinForms.BotClient.UWP.csproj", "{732594E9-8585-4EE8-ABA7-70F4AEDC56AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{CD0A2548-3B37-4DB0-90C6-D3AB354AF741}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -137,6 +139,7 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{1B1D0934-2B03-42A5-8322-D480CDFDD55B} = {CD0A2548-3B37-4DB0-90C6-D3AB354AF741}
 		{60619D62-59FA-4864-BA5B-6F6F87997671} = {34E7CAB1-15F6-4076-85F8-50662DC43AAD}
 		{012406C8-BB8F-493B-A3A1-0D02214ADAA1} = {34E7CAB1-15F6-4076-85F8-50662DC43AAD}
 		{67F9D3A8-F71E-4428-913F-C37AE82CDB24} = {C443BF0A-C616-4E98-8994-C5BAE76AE556}

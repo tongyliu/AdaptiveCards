@@ -7,15 +7,9 @@
     <ProjectGuid>{1B1D0934-2B03-42A5-8322-D480CDFDD55B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-<<<<<<< HEAD:source/dotnet/AdaptiveCards.Model/AdaptiveCards.Model.csproj
     <RootNamespace>AdaptiveCards</RootNamespace>
     <AssemblyName>AdaptiveCards</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-=======
-    <RootNamespace>Adaptive</RootNamespace>
-    <AssemblyName>Adaptive.NET</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
->>>>>>> refs/remotes/origin/master:builders/.NET/Adaptive.Net/Adaptive.Net.csproj
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -79,16 +73,12 @@
     <Compile Include="TypedElementConverter.cs" />
   </ItemGroup>
   <ItemGroup>
-<<<<<<< HEAD:source/dotnet/AdaptiveCards.Model/AdaptiveCards.Model.csproj
-    <None Include="packages.config" />
-=======
     <None Include="Adaptive.NET.nuspec" />
     <None Include="createpackage.cmd" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
     <None Include="pushpackage.cmd" />
->>>>>>> refs/remotes/origin/master:builders/.NET/Adaptive.Net/Adaptive.Net.csproj
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
