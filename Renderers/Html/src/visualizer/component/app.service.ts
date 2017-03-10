@@ -21,46 +21,30 @@ import "brace/theme/chrome";
 export class HostAppService
 {
      private hostContainerOptions: Array<HostContainerOption> = [];
-     private hostContainerPicker: HTMLSelectElement;
-     private editor: ace.Editor;
     
-    renderCardHelper(
-        jsonObj: JSON, 
+    renderCardHelper(jsonObj: JSON, 
         actionHandler: (a:any, args:any) => void): HTMLElement
     {
         if (this.hostContainerOptions.length == 0)
         {
-            this.renderContainerPicker();
+            this.loadHostContainerOptions();
         }    
-        let hostContainer = this.hostContainerOptions[this.hostContainerPicker.selectedIndex].hostContainer;
-                    hostContainer.applyOptions();
+        
         var jsonParser = new JsonParser();
         var adaptiveCard = jsonParser.parse(jsonObj);
         adaptiveCard.onExecuteAction.subscribe(actionHandler);
+        
+        let hostContainer = this.hostContainerOptions[0].hostContainer;
+        hostContainer.applyOptions();
+        
         let renderedHostContainer = hostContainer.render(adaptiveCard);
         return renderedHostContainer;
     }
-
-    renderWithStyleSheet() {
-        let styleSheetLinkElement = <HTMLLinkElement>document.getElementById("adaptiveCardStylesheet");
-
-        if (styleSheetLinkElement == null) {
-            styleSheetLinkElement = document.createElement("link");
-            styleSheetLinkElement.id = "adaptiveCardStylesheet";
-            // TODO: Is this a bug? Won't previous style sheets stick around then?
-            let headElement = document.getElementsByTagName("head")[0];
-            headElement.appendChild(styleSheetLinkElement);
-        }
-
-        styleSheetLinkElement.rel = "stylesheet";
-        styleSheetLinkElement.type = "text/css";
-        styleSheetLinkElement.href = this.hostContainerOptions[this.hostContainerPicker.selectedIndex].hostContainer.styleSheet;
-    }
-
+   
     renderEditor(el: HTMLElement):ace.Editor {
-        this.editor = ace.edit(el);
-        this.editor.setTheme("ace/theme/chrome");
-        this.editor.setOptions(
+        let editor = ace.edit(el);
+        editor.setTheme("ace/theme/chrome");
+        editor.setOptions(
             {
                 "showPrintMargin": false,
                 "displayIndentGuides": false,
@@ -70,32 +54,30 @@ export class HostAppService
                 "maxLines": 50,
                 "minLines": 10
             });
-        let self = this;
-        this.editor.getSession().setMode("ace/mode/json");
-        this.loadData();
-        return this.editor;
+        editor.getSession().setMode("ace/mode/json");
+        this.loadData(editor);
+        return editor;
     }
 
-    loadData()
+    loadData(editor: ace.Editor)
     {
         // Load the cached payload if the user had one
         try {
             let cachedPayload = sessionStorage.getItem("AdaptivePayload");
             if (cachedPayload) {
-                this.editor.session.setValue(cachedPayload);
+                editor.session.setValue(cachedPayload);
             }
             else {
-                this.editor.session.setValue(Constants.defaultPayload);
+                editor.session.setValue(Constants.defaultPayload);
             }
         }
         catch (e) {
-            this.editor.session.setValue(Constants.defaultPayload);
+            editor.session.setValue(Constants.defaultPayload);
         }
     }
 
-    renderContainerPicker() 
+    loadHostContainerOptions() 
     {
-        this.hostContainerPicker = <HTMLSelectElement>document.getElementById("hostContainerPicker");
         this.hostContainerOptions.push(
             new HostContainerOption(
                 "Outlook Connector",
@@ -131,28 +113,7 @@ export class HostAppService
         this.hostContainerOptions.push(
             new HostContainerOption(
                 "Speech",
-                new SpeechContainer("./../../css/bing.css")));
-
-        if (this.hostContainerPicker) {
-            this.hostContainerPicker.addEventListener("change", () => {
-                // update the query string
-                history.pushState(this.hostContainerPicker.value, `Visualizer - ${this.hostContainerPicker.value}`, `index.html?hostApp=${this.hostContainerPicker.value}`);
-
-                this.renderSelectedHostApp();
-            });
-
-            for (let i = 0; i < this.hostContainerOptions.length; i++) {
-                let option = document.createElement("option");
-                option.value = this.hostContainerOptions[i].name;
-                option.text = this.hostContainerOptions[i].name;
-                
-                this.hostContainerPicker.appendChild(option);
-            }
-        }
-    }
-
-    renderSelectedHostApp() {
-        this.renderWithStyleSheet();
+                new SpeechContainer("./../../css/bing.css")));       
     }
 }
 

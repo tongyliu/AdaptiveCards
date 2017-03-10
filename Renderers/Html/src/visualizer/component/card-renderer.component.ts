@@ -25,8 +25,11 @@ export class CardRendererComponent implements AfterViewInit, OnDestroy {
     @Output('execute-action') execute = new EventEmitter<Array<any>>();
     
     _dataSubscription: Subscription;
+    IsCardRendered:boolean;
 
-    constructor(private host:HostAppService, private transferService:DataTransferService) {}
+    constructor(private host:HostAppService, private transferService:DataTransferService) {
+        this.IsCardRendered = false;
+    }
 
     ngAfterViewInit() {
         this._dataSubscription = this.transferService.SchemaSubject.subscribe(
@@ -50,11 +53,23 @@ export class CardRendererComponent implements AfterViewInit, OnDestroy {
 
     renderCard(schema: JSON)
     {
-        let cardNode =  this.host.renderCardHelper(schema, (a: any, args: any) => { 
+        if (Object.keys(schema).length == 0){
+            return;
+        }
+
+        try
+        {
+            let cardNode =  this.host.renderCardHelper(schema, (a: any, args: any) => { 
             this.emitActionTriggered(a, args);
-        });
-        this.contentDiv.nativeElement.innerHTML = '';
-        this.contentDiv.nativeElement.appendChild(cardNode);
+            });
+            this.contentDiv.nativeElement.innerHTML = '';
+            this.contentDiv.nativeElement.appendChild(cardNode);
+            this.IsCardRendered = true;
+        }catch (Exception){
+            console.log("parsing and rendering failed");
+            this.contentDiv.nativeElement.innerHTML = '';
+            this.IsCardRendered = false;
+        }       
     }
 
     emitActionTriggered(action:any, actionParams:any)

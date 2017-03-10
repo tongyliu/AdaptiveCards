@@ -23,4 +23,50 @@ import {Component} from '@angular/core';
 export class CardHeaderComponent {
     constructor(){}
 
+/*
+    private hostContainerPicker: HTMLSelectElement;
+    this.hostContainerPicker = <HTMLSelectElement>document.getElementById("hostContainerPicker");      
+
+    renderWithStyleSheet() {
+        let styleSheetLinkElement = <HTMLLinkElement>document.getElementById("adaptiveCardStylesheet");
+
+        if (styleSheetLinkElement == null) {
+            styleSheetLinkElement = document.createElement("link");
+            styleSheetLinkElement.id = "adaptiveCardStylesheet";
+            // TODO: Is this a bug? Won't previous style sheets stick around then?
+            let headElement = document.getElementsByTagName("head")[0];
+            headElement.appendChild(styleSheetLinkElement);
+        }
+
+        styleSheetLinkElement.rel = "stylesheet";
+        styleSheetLinkElement.type = "text/css";
+        styleSheetLinkElement.href = this.hostContainerOptions[this.hostContainerPicker.selectedIndex].hostContainer.styleSheet;
+    }
+    */
+
+    /*
+        if (this.hostContainerPicker) {
+            this.hostContainerPicker.addEventListener("change", () => {
+                // update the query string
+                history.pushState(this.hostContainerPicker.value, `Visualizer - ${this.hostContainerPicker.value}`, `index.html?hostApp=${this.hostContainerPicker.value}`);
+
+                this.renderSelectedHostApp();
+            });
+
+            for (let i = 0; i < this.hostContainerOptions.length; i++) {
+                let option = document.createElement("option");
+                option.value = this.hostContainerOptions[i].name;
+                option.text = this.hostContainerOptions[i].name;
+                
+                this.hostContainerPicker.appendChild(option);
+            }
+        }
+        */
+
+            /*
+    renderSelectedHostApp() {
+        this.renderWithStyleSheet();
+    }
+    */
+
 }
