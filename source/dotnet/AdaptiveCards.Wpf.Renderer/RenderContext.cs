@@ -2,19 +2,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using Adaptive;
+using System.IO;
 #if Xamarin
 using Xamarin.Forms;
 #elif WPF
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Markup;
+using Newtonsoft.Json.Linq;
 using Xceed.Wpf.Toolkit;
 #endif
-using Newtonsoft.Json.Linq;
 
 namespace Adaptive
 {
@@ -44,31 +41,32 @@ namespace Adaptive
 
     public class RenderOptions
     {
-        public bool ShowInput { get; set; } = true;
-        public bool ShowAction { get; set; } = true;
+        public bool SupportInteraction { get; set; } = true;
     }
 
 
     public class RenderContext
     {
-        public RenderContext(ResourceDictionary resources)
+        public RenderContext()
         {
-            this.Resources = resources;
         }
 
         public RenderContext NewActionContext()
         {
-            return new RenderContext(this.Resources)
+            return new RenderContext()
             {
                 Options = new RenderOptions()
                 {
-                    ShowAction = this.Options.ShowAction,
-                    ShowInput = this.Options.ShowInput
+                    SupportInteraction = this.Options.SupportInteraction
                 },
+                _stylePath = this.StylePath,
+                _resources = this.Resources,
                 OnAction = this.OnAction,
                 OnMissingInput = this.OnMissingInput
             };
         }
+
+        private HashSet<string> LoadingElements = new HashSet<string>();
 
         public delegate void ActionEventHandler(object sender, ActionEventArgs e);
         public delegate void MissingInputEventHandler(object sender, MissingInputEventArgs e);
@@ -76,15 +74,57 @@ namespace Adaptive
         public RenderOptions Options { get; set; } = new RenderOptions();
 
         /// <summary>
+        /// Path to Xaml resource dictionary
+        /// </summary>
+        private string _stylePath;
+        public string StylePath
+        {
+            get { return _stylePath; }
+            set
+            {
+                this._stylePath = value;
+                this._resources = null;
+            }
+        }
+
+        /// <summary>
         /// Input Controls in scope for actions array
         /// </summary>
         public List<FrameworkElement> InputControls = new List<FrameworkElement>();
 
+
+        /// <summary>
+        /// Event which fires when tree is ready to be snapshoted
+        /// </summary>
+        public event RoutedEventHandler OnLoaded;
+
+        /// <summary>
+        /// Is everything loaded
+        /// </summary>
+        public bool IsLoaded { get { return this.LoadingElements.Count == 0; } }
+
         /// <summary>
         /// Resource dictionary to use when rendering
         /// </summary>
-        public ResourceDictionary Resources;
+        private ResourceDictionary _resources;
+        public ResourceDictionary Resources
+        {
+            get
+            {
+                if (_resources != null)
+                    return _resources;
 
+                using (var styleStream = File.OpenRead(this.StylePath))
+                {
+                    _resources = (ResourceDictionary)XamlReader.Load(styleStream);
+                }
+                return _resources;
+            }
+            set
+            {
+                this._resources = value;
+            }
+        }
 
         /// <summary>
         /// Event fires when action is invoked
@@ -106,20 +146,22 @@ namespace Adaptive
             this.OnMissingInput?.Invoke(sender, args);
         }
 
+
         public virtual Style GetStyle(string styleName)
         {
-            if (!styleName.Contains(".Tap"))
-            {
-                if (styleName.Contains(".Input") && !this.Options.ShowInput)
-                {
-                    return this.Resources.TryGetValue<Style>("Hidden");
-                }
+            //if (!styleName.Contains(".Tap"))
+            //{
+            //    //if (styleName.Contains(".Input") && !this.Options.SupportInteration)
+            //    //{
+            //    //    return this.Resources["Hidden"] as Style;
+            //    //}
 
-                if (styleName.Contains(".Action") && !this.Options.ShowAction)
-                {
-                    return this.Resources.TryGetValue<Style>("Hidden");
-                }
-            }
+            //    //if (styleName.Contains(".Action") && !this.Options.ShowAction)
+            //    //{
+            //    //    return this.Resources["Hidden"] as Style;
+            //    //}
+            //}
+
 
             while (!String.IsNullOrEmpty(styleName))
             {
@@ -303,11 +345,6 @@ namespace Adaptive
                 InputText input = control.DataContext as InputText;
                 ((WatermarkTextBox)control).Text = input.Value;
             }
-            //else if (control is HorizontalToggleSwitch)
-            //{
-            //    InputToggle inputToggle = control.DataContext as InputToggle;
-            //    ((HorizontalToggleSwitch)control).IsChecked = inputToggle.Value == inputToggle.ValueOn;
-            //}
             else if (control is PasswordBox)
             {
                 InputText input = control.DataContext as InputText;
@@ -338,8 +375,27 @@ namespace Adaptive
                 InputChoiceSet choiceInput = comboBox.DataContext as InputChoiceSet;
                 comboBox.SelectedIndex = 0;
             }
+        }
 #endif
 
+        public void AddLoadingElement(string id)
+        {
+            this.LoadingElements.Add(id);
+        }
+
+        public void LoadingElementCompleted(string id)
+        {
+            lock (this.LoadingElements)
+            {
+                this.LoadingElements.Remove(id);
+            }
+            Debug.Print($"{id} finished");
+
+            if (this.LoadingElements.Count == 0)
+            {
+                Debug.Print($"Loaded");
+                this.OnLoaded?.Invoke(this, null);
+            }
         }
     }
 

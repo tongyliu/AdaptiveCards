@@ -273,9 +273,9 @@
     "Choice": {
       "additionalProperties": false,
       "properties": {
-        "display": {
+        "title": {
           "type": "string",
-          "description": "The display text for a choice"
+          "description": "The text for a choice"
         },
         "isSelected": {
           "type": "boolean",
@@ -710,7 +710,7 @@
           "description": "Do you want to allow multiple lines of input"
         },
         "maxLength": {
-          "type": "string",
+          "type": "number",
           "description": "hint of maximum length characters to collect (may be ignored by some clients)"
         },
         "placeholder": {
@@ -861,13 +861,20 @@
           "type": "boolean",
           "description": "Indicates whether the color of the text should be slightly toned down to appear less prominent"
         },
-        "isParagraphStart": {
-          "type": "boolean",
-          "description": "Indicates whether the text start a new paragraph, which typically results in increased spacing from the previous element"
-        },
         "maxLines": {
           "type": "number",
           "description": "When Wrap is true, you can specify the maximum number of lines to allow the textBlock to use."
+        },
+        "size": {
+          "type": "string",
+          "description": "controls size of the text.",
+          "enum": [
+            "small",
+            "normal",
+            "medium",
+            "large",
+            "extraLarge"
+          ]
         },
         "speak": {
           "$ref": "#/definitions/Speak"

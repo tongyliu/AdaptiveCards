@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Windows;
+using System.Threading.Tasks;
+
 #if WPF
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Markup;
-using System.Windows.Media;
-using MarkedNet;
 using UI = System.Windows.Controls;
 #elif Xamarin
 using Xamarin.Forms;
@@ -53,6 +51,13 @@ namespace Adaptive
             }
             return uiFactSet;
         }
+
+
+        public override Task PreRender()
+        {
+            return Task.Delay(0);
+        }
+
     }
 
     public partial class Fact

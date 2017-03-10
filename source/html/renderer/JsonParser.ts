@@ -48,13 +48,9 @@ export class JsonParser {
         action.data = json["data"];
     }
 
-    private parseActionShowCard(
-        json: any,
-        action: Adaptive.ActionShowCard,
-        parentContainer: Adaptive.Container) {
+    private parseActionShowCard(json: any, action: Adaptive.ActionShowCard) {
         this.parseBaseAction(json, action);
         
-        action.card = new Adaptive.Container(parentContainer, "body");
         action.card.actionButtonStyle = Enums.ActionButtonStyle.Push;
         
         var s: string[] =  [];
@@ -62,7 +58,7 @@ export class JsonParser {
         this.parseContainer(
             json["card"],
             action.card,
-            "items");
+            "body");
     }
 
     private createAction(json: any, container: Adaptive.Container): Adaptive.Action {
@@ -72,26 +68,23 @@ export class JsonParser {
 
         switch (actionType) {
             case Adaptive.ActionOpenUrl.TypeName:
-                result = new Adaptive.ActionOpenUrl();
+                result = new Adaptive.ActionOpenUrl(container);
                 this.parseActionOpenUrl(json, <Adaptive.ActionOpenUrl>result);
 
                 break;
             case Adaptive.ActionHttp.TypeName:
-                result = new Adaptive.ActionHttp();
+                result = new Adaptive.ActionHttp(container);
                 this.parseActionHttp(json, <Adaptive.ActionHttp>result);
 
                 break;
             case Adaptive.ActionSubmit.TypeName:
-                result = new Adaptive.ActionSubmit();
+                result = new Adaptive.ActionSubmit(container);
                 this.parseActionSubmit(json, <Adaptive.ActionSubmit>result);
 
                 break;
             case Adaptive.ActionShowCard.TypeName:
-                result = new Adaptive.ActionShowCard();
-                this.parseActionShowCard(
-                    json,
-                    <Adaptive.ActionShowCard>result,
-                    container);
+                result = new Adaptive.ActionShowCard(container);
+                this.parseActionShowCard(json, <Adaptive.ActionShowCard>result);
 
                 break;
             default:
@@ -113,7 +106,7 @@ export class JsonParser {
         textBlock.text = json["text"];
         textBlock.size = Enums.stringToTextSize(json["size"], Enums.TextSize.Normal);
         textBlock.weight = Enums.stringToTextWeight(json["weight"], Enums.TextWeight.Normal);
-        textBlock.color = Enums.stringToTextColor(json["color"], Enums.TextColor.Default);
+        textBlock.color = Enums.stringToTextColor(json["color"], null);
         textBlock.isSubtle = json["isSubtle"];
         textBlock.wrap = json["wrap"];
     }
@@ -169,18 +162,18 @@ export class JsonParser {
         }
     }
 
-    private parseActionCollection(json: any, actions: Adaptive.ActionCollection) {
+    private parseContainerActions(json: any, container: Adaptive.Container) {
         var jsonActions = json as Array<any>;
 
         for (var i = 0; i < jsonActions.length; i++) {
-            var action = this.createAction(jsonActions[i], actions.container);
+            var action = this.createAction(jsonActions[i], container);
 
             if (action != null) {
-                actions.items.push(action);
+                container.addAction(action);
             }
         }
     }
-
+    
     private parseContainer(
         json: any,
         container: Adaptive.Container,
@@ -190,7 +183,7 @@ export class JsonParser {
         container.backgroundImageUrl = json["backgroundImage"];
         container.backgroundColor = json["backgroundColor"];
 
-        container.textColor = Enums.stringToTextColor(json["textColor"], Enums.TextColor.Default);
+        container.textColor = Enums.stringToTextColor(json["textColor"], null);
 
         if (json[itemsCollectionPropertyName] != null) {
             var items = json[itemsCollectionPropertyName] as Array<any>;
@@ -207,9 +200,7 @@ export class JsonParser {
         }
 
         if (json["actions"] != undefined) {
-            container.actions = new Adaptive.ActionCollection(container);
-
-            this.parseActionCollection(json["actions"], container.actions);
+            this.parseContainerActions(json["actions"], container);
         }
 
         var selectActionJson = json["selectAction"];

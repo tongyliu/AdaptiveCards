@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 #if WPF
 using System.Windows.Controls;
@@ -87,5 +87,16 @@ namespace Adaptive
 
             return uiColumnSet;
         }
+
+
+        public override async Task PreRender()
+        {
+            List<Task> tasks = new List<Task>();
+            foreach (var item in this.Columns)
+                tasks.Add(item.PreRender());
+
+            await Task.WhenAll(tasks.ToArray());
+        }
+
     }
 }

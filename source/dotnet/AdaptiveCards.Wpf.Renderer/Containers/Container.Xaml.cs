@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Threading.Tasks;
 #if WPF
 using System.Windows.Controls;
 using WPF = System.Windows.Controls;
@@ -12,6 +13,7 @@ using System.Windows.Media.Imaging;
 using Xamarin.Forms;
 using Button = AdaptiveCards.XamarinForms.Renderer.ContentButton;
 #endif
+
 namespace Adaptive
 {
     public partial class Container
@@ -60,34 +62,34 @@ namespace Adaptive
             {
                 // each element has a row
                 FrameworkElement uiElement = cardElement.Render(context);
-                if (grid.RowDefinitions.Count > 0)
+                if (uiElement != null)
                 {
-                    switch (cardElement.Separation)
+                    if (grid.RowDefinitions.Count > 0)
                     {
-                        case SeparationStyle.None:
-                            break;
-                        case SeparationStyle.Default:
-#if WPF
-                        case SeparationStyle.Strong:
-                            {
-                                var sep = new Separator();
-                                if (cardElement.Separation == SeparationStyle.Default)
-                                    sep.Style = context.GetStyle($"Adaptive.Separator.{cardElement.Type}");
-                                else
-                                    sep.Style = context.GetStyle($"Adaptive.Separator.Strong");
-                                grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-                                Grid.SetRow(sep, grid.RowDefinitions.Count - 1);
-                                grid.Children.Add(sep);
-                            }
-#elif Xamarin
-                            // TODO: Separator
-#endif
-                            break;
+                        switch (cardElement.Separation)
+                        {
+                            case SeparationStyle.None:
+                                break;
+                            case SeparationStyle.Default:
+                            case SeparationStyle.Strong:
+                                {
+                                    var sep = new Separator();
+                                    if (cardElement.Separation == SeparationStyle.Default)
+                                        sep.Style = context.GetStyle($"Adaptive.Separator.{cardElement.Type}");
+                                    else
+                                        sep.Style = context.GetStyle($"Adaptive.Separator.Strong");
+                                    grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+                                    Grid.SetRow(sep, grid.RowDefinitions.Count - 1);
+                                    grid.Children.Add(sep);
+                                }
+                                break;
+                        }
+
                     }
+                    grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
+                    Grid.SetRow(uiElement, grid.RowDefinitions.Count - 1);
+                    grid.Children.Add(uiElement);
                 }
-                grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-                Grid.SetRow(uiElement, grid.RowDefinitions.Count - 1);
-                grid.Children.Add(uiElement);
             }
 
             if (hasActions)
@@ -103,8 +105,11 @@ namespace Adaptive
                 {
                     // add actions
                     var uiAction = action.Render(context);
-                    Grid.SetColumn(uiAction, iCol++);
-                    uiActionBar.Children.Add(uiAction);
+                    if (uiAction != null)
+                    {
+                        Grid.SetColumn(uiAction, iCol++);
+                        uiActionBar.Children.Add(uiAction);
+                    }
                 }
                 uiActionBar.Style = context.GetStyle("Adaptive.Actions");
                 grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
@@ -114,6 +119,15 @@ namespace Adaptive
                 // TODO: Action bar
 #endif
             }
+        }
+
+        public override async Task PreRender()
+        {
+            List<Task> tasks = new List<Task>();
+            foreach (var item in this.Items)
+                tasks.Add(item.PreRender());
+
+            await Task.WhenAll(tasks.ToArray());
         }
 
     }
