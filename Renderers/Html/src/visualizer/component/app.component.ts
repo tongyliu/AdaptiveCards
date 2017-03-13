@@ -30,20 +30,18 @@ export class AdaptiveCardComponent {
   
   @ViewChild(CardRendererComponent) cardRenderer:CardRendererComponent;
   @ViewChild(CardEditorComponent) cardEditor:CardEditorComponent;
-  @Output('save-json') saveJson = new EventEmitter<JSON>();
-  @Output('action-event') actionEvent = new EventEmitter<Array<any>>();
+  @Output() saveCardToFile = new EventEmitter<JSON>();
+  @Output() cardActionHandler = new EventEmitter<Array<any>>();
   
   constructor(private host:HostAppService, 
               private transferService:DataTransferService) {}
 
   actionHandler(actionEvent:Array<any>){
-      console.log("action handler triggered with", ...actionEvent);
-      this.actionEvent.emit(actionEvent);
+     this.cardActionHandler.emit(actionEvent);
   }
 
   saveHandler(clickEvent: MouseEvent)
   {
-    console.log("save handler", clickEvent);
-    this.saveJson.emit(this.transferService.SchemaSubject.getValue());
+    this.saveCardToFile.emit(this.transferService.SchemaSubject.getValue());
   }
 }

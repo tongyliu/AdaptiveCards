@@ -4,7 +4,6 @@
   "description": "adaptive card toolkit html rendering library",
   "main": "src/adaptiveCard.js",
   "types": "dist/adaptiveCard.d.ts",
-  "private": true,
   "scripts": {
     "build": "webpack",
     "watch": "tsc -p . -w",
