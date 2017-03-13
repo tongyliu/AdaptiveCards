@@ -72,6 +72,8 @@ namespace Adaptive
 
 
 #if WPF
+        // TODO: consider refactor image rendering to separate class only in WPF project
+
         /// <summary>
         /// Render the card as a PNG image in a STA compliant way suitable for running on servers 
         /// </summary>
@@ -124,13 +126,11 @@ namespace Adaptive
             bitmapImage.Render(uiCard);
             return bitmapImage;
         }
-#endif
 
         public override async Task PreRender()
         {
             List<Task> tasks = new List<Task>();
 
-#if WPF
             if (this.BackgroundImage != null && _backgroundImage == null)
             {
                 tasks.Add(Task.Run(async () =>
@@ -143,7 +143,6 @@ namespace Adaptive
                     }
                 }));
             }
-#endif
 
             foreach (var item in this.Body)
                 tasks.Add(item.PreRender());
@@ -153,7 +152,6 @@ namespace Adaptive
 
     }
 
-#if WPF
     public static class TaskFactoryExtensions
     {
         private static readonly TaskScheduler _staScheduler = new StaTaskScheduler(numberOfThreads: Environment.ProcessorCount);

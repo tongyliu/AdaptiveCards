@@ -1,9 +1,7 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
-using WPF = System.Windows.Controls;
 using Newtonsoft.Json.Linq;
 using System;
-using System.Linq;
 
 namespace Adaptive
 {

@@ -22,6 +22,9 @@ namespace Adaptive
     {
         public static T TryGetValue<T>(this IDictionary dictionary, string key)
         {
+            if (dictionary == null)
+                throw new ArgumentNullException(nameof(dictionary));
+
             if (dictionary.Contains(key))
             {
                 return (T)dictionary[key];
@@ -32,6 +35,9 @@ namespace Adaptive
 
         public static T TryGetValue<T>(this IDictionary<string, object> dictionary, string key)
         {
+            if (dictionary == null)
+                throw new ArgumentNullException(nameof(dictionary));
+
             if (dictionary.ContainsKey(key))
             {
                 return (T)dictionary[key];
@@ -51,11 +57,6 @@ namespace Adaptive
     {
         public RenderContext()
         {
-        }
-
-        public RenderContext(ResourceDictionary resources)
-        {
-            this.resources = resources;
         }
 
         public RenderContext NewActionContext()
@@ -173,7 +174,6 @@ namespace Adaptive
             //    //}
             //}
 
-
             while (!String.IsNullOrEmpty(styleName))
             {
                 Style style = this.Resources.TryGetValue<Style>(styleName);
@@ -185,7 +185,7 @@ namespace Adaptive
                 styleName = styleName.Substring(0, iPos);
             }
 
-
+            Debug.WriteLine($"Unable to find Style {styleName} from the supplied ResourceDictionary");
             return null;
         }
 

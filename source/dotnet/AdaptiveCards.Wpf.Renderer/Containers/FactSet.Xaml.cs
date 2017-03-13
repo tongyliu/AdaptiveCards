@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows;
 using System.Threading.Tasks;
-
 #if WPF
 using System.Windows.Controls;
 using UI = System.Windows.Controls;

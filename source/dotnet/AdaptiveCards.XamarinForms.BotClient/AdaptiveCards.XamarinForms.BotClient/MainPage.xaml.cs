@@ -8,6 +8,7 @@ using Adaptive;
 using Newtonsoft.Json;
 using Xamarin.Forms;
 using Microsoft.Bot.Connector.DirectLine;
+using Newtonsoft.Json.Linq;
 
 namespace AdaptiveCards.XamarinForms.BotClient
 {
@@ -16,6 +17,7 @@ namespace AdaptiveCards.XamarinForms.BotClient
         private DirectLineClient _client;
         private Conversation _conversation;
         private string _watermark;
+        private RenderContext _renderContext;
 
         public MainPage()
         {
@@ -27,14 +29,14 @@ namespace AdaptiveCards.XamarinForms.BotClient
         protected override async void OnAppearing()
         {
             base.OnAppearing();
-            var context = new RenderContext(Application.Current.Resources);
 
             var baseUri = new Uri("https://directline.scratch.botframework.com");
             var secret = "b9RlKakMKPk.cwA.HLc.m6lzEenENtMMk2TD_Lh4iGzK3VlP6x_NsRaA-KLhHkk";
             _client = new DirectLineClient(baseUri, new DirectLineClientCredentials(secret));
 
             _conversation = await _client.Conversations.StartConversationAsync().ConfigureAwait(false);
-
+            _renderContext = new RenderContext();
+            _renderContext.Resources = Application.Current.Resources;
 
 
             // AdaptiveTestBot
@@ -68,8 +70,8 @@ namespace AdaptiveCards.XamarinForms.BotClient
 
         private async void _itemsLayout_SizeChanged(object sender, EventArgs e)
         {
-            await Task.Delay(50);
-            await MessagesScrollView.ScrollToAsync(0, int.MaxValue, true);
+            //await Task.Delay(50);
+            //await MessagesScrollView.ScrollToAsync(0, int.MaxValue, true);
         }
 
         private void Button_Clicked(object sender, System.EventArgs e)
@@ -98,23 +100,44 @@ namespace AdaptiveCards.XamarinForms.BotClient
             try
             {
                 await _client.Conversations.PostActivityAsync(_conversation.ConversationId, activity);
-               
+                await Task.Delay(2000);
+                await GetMessages();
+
             }
             catch (Exception ex)
             {
                 Debug.WriteLine(ex.ToString());
+                Debugger.Break();
             }
 
             Message.Text = "";
         }
-
-
 
         public async Task<IList<Activity>> GetMessages()
         {
             var response = await _client.Conversations
                 .GetActivitiesAsync(_conversation.ConversationId, _watermark)
                 .ConfigureAwait(false);
+
+            var cardAttachments = response.Activities
+                .Where(m => m.Attachments != null)
+                .SelectMany(m => m.Attachments)
+                .Where(m => m.ContentType == "application/adaptive-card");
+
+            foreach (var attachment in cardAttachments)
+            {
+                var jObject = (JObject)attachment.Content;
+                var card = jObject.ToObject<AdaptiveCard>();
+
+                Device.BeginInvokeOnMainThread(() =>
+                {
+                    var xaml = (View)card.Render(_renderContext);
+                    xaml.WidthRequest = 350;
+                    xaml.BackgroundColor = Color.Teal;
+
+                    Items.Children.Add(xaml);
+                });
+            }
 
             _watermark = response.Watermark;
             return response.Activities;
@@ -137,13 +160,6 @@ namespace AdaptiveCards.XamarinForms.BotClient
         private void Current_VoiceInputStarted(object sender, EventArgs e)
         {
             Message.IsEnabled = false;
-        }
-
- 
-
-        private void Message_OnCompleted(object sender, EventArgs e)
-        {
-
         }
     }
 }
