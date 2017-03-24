@@ -1,5 +1,5 @@
-﻿import * as Adaptive from "../Adaptive";
-import { JsonParser } from "../JsonParser";
+﻿import * as Adaptive from "../renderer/Adaptive";
+import { JsonParser } from "../renderer/JsonParser";
 import * as Constants from "./Constants";
 
 import { BingContainer } from "./containers/BingContainer";

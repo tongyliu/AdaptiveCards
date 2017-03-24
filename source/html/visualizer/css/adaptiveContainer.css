@@ -1,0 +1,13 @@
+.adaptiveContainer {
+  display: flex; /* or inline-flex */
+  flex-direction: row;
+}
+
+.editorPane{
+    width: 50%;
+    height: 500px;
+}
+
+.rendererPane{
+    width: 50%;
+}

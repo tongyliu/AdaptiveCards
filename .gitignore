@@ -255,3 +255,6 @@ paket-files/
 **/dist/*.js
 **/dist/*.js.map
 **/dist/*.d.ts 
+**/*.js
+**/*.js.map
+**/*.tgz

@@ -1,6 +1,6 @@
 import { HostContainer} from "./HostContainer";
-import * as Adaptive from "../../Adaptive";
-import * as Utils from "../../Utils";
+import * as Adaptive from "../../renderer/Adaptive";
+import * as Utils from "../../renderer/Utils";
 
 export class ToastContainer extends HostContainer {
     static backgroundColor: string = "#1F1F1F";
