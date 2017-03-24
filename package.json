@@ -2,8 +2,6 @@
   "name": "adaptive-card",
   "version": "0.0.2",
   "description": "adaptive card toolkit html rendering library",
-  "main": "src/adaptiveCard.js",
-  "types": "dist/adaptiveCard.d.ts",
   "scripts": {
     "build": "webpack",
     "watch": "tsc -p . -w",

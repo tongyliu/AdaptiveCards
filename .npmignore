@@ -1,7 +1,6 @@
 source/android/*
 source/ios/*
 source/android/*
-source/reactjs/*
 source/xamarin.forms/*
 source/uwp/*
 source/wpf/*
@@ -9,4 +8,5 @@ source/shared/*
 node_modules/*
 source/angular/index.html
 **/*.js
+**/*.js.map
 **/*.tgz
