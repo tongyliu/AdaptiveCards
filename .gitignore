@@ -258,3 +258,4 @@ paket-files/
 **/*.js
 **/*.js.map
 **/*.tgz
+!systemjs.config.js
