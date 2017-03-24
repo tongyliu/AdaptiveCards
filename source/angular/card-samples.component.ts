@@ -13,7 +13,7 @@ import 'rxjs/add/operator/map';
         </select>
     </div>`,
 })
-export class CardSampleComponent implements OnInit{
+export class DemoCardSampleComponent implements OnInit{
     selectedSample: string;
     samples:Promise<Sample[]>;
 
