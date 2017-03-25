@@ -15,7 +15,7 @@ using Newtonsoft.Json.Linq;
 using Xceed.Wpf.Toolkit;
 #endif
 
-namespace Adaptive
+namespace Adaptive.Renderers
 {
 
     public static class DictionaryHelper
@@ -55,97 +55,34 @@ namespace Adaptive
 
     public class RenderContext
     {
-        public RenderContext()
+
+        public RenderContext(Action<object, ActionEventArgs> actionCallback, Action<object, MissingInputEventArgs> missingDataCallback)
         {
+            if (actionCallback != null)
+                this.OnAction += (obj, args) => actionCallback(obj, args);
+
+            if (missingDataCallback != null)
+                this.OnMissingInput += (obj, args) => missingDataCallback(obj, args);
         }
 
-        public RenderContext NewActionContext()
-        {
-            return new RenderContext()
-            {
-                Options = new RenderOptions()
-                {
-                    SupportInteraction = this.Options.SupportInteraction
-                },
-                _stylePath = this.StylePath,
-                _resources = this.Resources,
-                OnAction = this.OnAction,
-                OnMissingInput = this.OnMissingInput
-            };
-        }
+        public Dictionary<string, MemoryStream> Images { get; private set; } = new Dictionary<string, MemoryStream>();
 
-        private HashSet<string> LoadingElements = new HashSet<string>();
-
-        public delegate void ActionEventHandler(object sender, ActionEventArgs e);
-        public delegate void MissingInputEventHandler(object sender, MissingInputEventArgs e);
-
-        public RenderOptions Options { get; set; } = new RenderOptions();
-
-        /// <summary>
-        /// Path to Xaml resource dictionary
-        /// </summary>
-        private string _stylePath;
-        public string StylePath
-        {
-            get { return _stylePath; }
-            set
-            {
-                this._stylePath = value;
-                this._resources = null;
-            }
-        }
 
         /// <summary>
         /// Input Controls in scope for actions array
         /// </summary>
         public List<FrameworkElement> InputControls = new List<FrameworkElement>();
 
-
-        /// <summary>
-        /// Event which fires when tree is ready to be snapshoted
-        /// </summary>
-        public event EventHandler OnLoaded;
-
-        /// <summary>
-        /// Is everything loaded
-        /// </summary>
-        public bool IsLoaded { get { return this.LoadingElements.Count == 0; } }
-
-
-        private ResourceDictionary _resources;
-        private ResourceDictionary resources;
-
-        /// <summary>
-        /// Resource dictionary to use when rendering
-        /// </summary>
-        public ResourceDictionary Resources
-        {
-            get
-            {
-                if (_resources != null)
-                    return _resources;
-
-                //using (var styleStream = File.OpenRead(this.StylePath))
-                //{
-
-                //    _resources = (ResourceDictionary)XamlReader.Load(styleStream);
-                //}
-                return _resources;
-            }
-            set
-            {
-                this._resources = value;
-            }
-        }
-
         /// <summary>
         /// Event fires when action is invoked
         /// </summary>
+        public delegate void ActionEventHandler(object sender, ActionEventArgs e);
         public event ActionEventHandler OnAction;
 
         /// <summary>
         /// Event fires when missing input for submit/http actions
         /// </summary>
+        public delegate void MissingInputEventHandler(object sender, MissingInputEventArgs e);
         public event MissingInputEventHandler OnMissingInput;
 
         public void Action(FrameworkElement ui, ActionEventArgs args)
@@ -157,38 +94,6 @@ namespace Adaptive
         {
             this.OnMissingInput?.Invoke(sender, args);
         }
-
-
-        public virtual Style GetStyle(string styleName)
-        {
-            //if (!styleName.Contains(".Tap"))
-            //{
-            //    //if (styleName.Contains(".Input") && !this.Options.SupportInteration)
-            //    //{
-            //    //    return this.Resources["Hidden"] as Style;
-            //    //}
-
-            //    //if (styleName.Contains(".Action") && !this.Options.ShowAction)
-            //    //{
-            //    //    return this.Resources["Hidden"] as Style;
-            //    //}
-            //}
-
-            while (!String.IsNullOrEmpty(styleName))
-            {
-                Style style = this.Resources.TryGetValue<Style>(styleName);
-                if (style != null)
-                    return style;
-                var iPos = styleName.LastIndexOf('.');
-                if (iPos <= 0)
-                    break;
-                styleName = styleName.Substring(0, iPos);
-            }
-
-            Debug.WriteLine($"Unable to find Style {styleName} from the supplied ResourceDictionary");
-            return null;
-        }
-
 
         public virtual dynamic MergeInputData(dynamic data)
         {
@@ -390,25 +295,6 @@ namespace Adaptive
 
         }
 
-        public void AddLoadingElement(string id)
-        {
-            this.LoadingElements.Add(id);
-        }
-
-        public void LoadingElementCompleted(string id)
-        {
-            lock (this.LoadingElements)
-            {
-                this.LoadingElements.Remove(id);
-            }
-            Debug.WriteLine($"{id} finished");
-
-            if (this.LoadingElements.Count == 0)
-            {
-                Debug.WriteLine($"Loaded");
-                this.OnLoaded?.Invoke(this, null);
-            }
-        }
     }
 
 

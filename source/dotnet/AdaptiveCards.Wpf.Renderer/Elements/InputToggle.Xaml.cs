@@ -10,39 +10,33 @@ using System.Xml;
 using MarkedNet;
 using Xceed.Wpf.Toolkit;
 
-namespace Adaptive
+namespace Adaptive.Renderers
 {
-    public partial class InputToggle
+    public partial class XamlRenderer
+        : AdaptiveRenderer<FrameworkElement, RenderContext>
     {
-        /// <summary>
-        /// Override the renderer for this element
-        /// </summary>
-        public static Func<InputToggle, RenderContext, FrameworkElement> AlternateRenderer;
-
         /// <summary>
         /// TextInput
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public override FrameworkElement Render(RenderContext context)
+        protected override FrameworkElement RenderInputToggle(InputToggle input, RenderContext context)
         {
-            if (AlternateRenderer != null)
-                return AlternateRenderer(this, context);
 
-            if (context.Options.SupportInteraction)
+            if (this.Options.SupportInteraction)
             {
                 var uiToggle = new CheckBox();
-                uiToggle.Content = this.Title;
-                uiToggle.IsChecked = this.Value == (this.ValueOn ?? "true");
-                uiToggle.Style = context.GetStyle($"Adaptive.Input.Toggle");
-                uiToggle.DataContext = this;
+                uiToggle.Content = input.Title;
+                uiToggle.IsChecked = input.Value == (input.ValueOn ?? "true");
+                uiToggle.Style = this.GetStyle($"Adaptive.Input.Toggle");
+                uiToggle.DataContext = input;
                 context.InputControls.Add(uiToggle);
                 return uiToggle;
             }
             else
             {
-                var textBlock = new TextBlock() { Text = GetFallbackText() ?? this.Title };
-                return textBlock.Render(context);
+                var textBlock = new TextBlock() { Text = GetFallbackText(input) ?? input.Title };
+                return RenderTextBlock(textBlock, context);
             }
 
         }

@@ -9,47 +9,41 @@ using System.Windows.Media.Imaging;
 using System.Xml;
 using MarkedNet;
 
-namespace Adaptive
+namespace Adaptive.Renderers
 {
-    public partial class InputDate
+    public partial class XamlRenderer
+        : AdaptiveRenderer<FrameworkElement, RenderContext>
     {
-        /// <summary>
-        /// Override the renderer for this element
-        /// </summary>
-        public static Func<InputDate, RenderContext, FrameworkElement> AlternateRenderer;
-
         /// <summary>
         /// Input.Date
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public override FrameworkElement Render(RenderContext context)
+        protected override FrameworkElement RenderInputDate(InputDate input, RenderContext context)
         {
-            if (AlternateRenderer != null)
-                return AlternateRenderer(this, context);
 
-            if (context.Options.SupportInteraction)
+            if (this.Options.SupportInteraction)
             {
                 var datePicker = new DatePicker();
-                datePicker.ToolTip = this.Placeholder;
+                datePicker.ToolTip = input.Placeholder;
                 DateTime value;
-                if (DateTime.TryParse(this.Value, out value))
+                if (DateTime.TryParse(input.Value, out value))
                     datePicker.SelectedDate = value;
                 DateTime minValue;
-                if (DateTime.TryParse(this.Min, out minValue))
+                if (DateTime.TryParse(input.Min, out minValue))
                     datePicker.DisplayDateStart = minValue;
                 DateTime maxValue;
-                if (DateTime.TryParse(this.Max, out maxValue))
+                if (DateTime.TryParse(input.Max, out maxValue))
                     datePicker.DisplayDateEnd = maxValue;
-                datePicker.Style = context.GetStyle("Adaptive.Input.Date");
-                datePicker.DataContext = this;
+                datePicker.Style = this.GetStyle("Adaptive.Input.Date");
+                datePicker.DataContext = input;
                 context.InputControls.Add(datePicker);
                 return datePicker;
             }
             else
             {
-                var textBlock = new TextBlock() { Text = GetFallbackText() ?? this.Placeholder };
-                return textBlock.Render(context);
+                var textBlock = new TextBlock() { Text = GetFallbackText(input) ?? input.Placeholder };
+                return RenderTextBlock(textBlock, context);
             }
         }
     }

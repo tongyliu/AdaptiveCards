@@ -174,6 +174,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AdaptiveCards.Model\AdaptiveCards.Model.csproj">
+      <Project>{1b1d0934-2b03-42a5-8322-d480cdfdd55b}</Project>
+      <Name>AdaptiveCards.Model</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AdaptiveCards.Wpf.Renderer\AdaptiveCards.Wpf.Renderer.csproj">
       <Project>{60619d62-59fa-4864-ba5b-6f6f87997671}</Project>
       <Name>AdaptiveCards.Wpf.Renderer</Name>

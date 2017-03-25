@@ -9,7 +9,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AdaptiveCards</RootNamespace>
     <AssemblyName>AdaptiveCards</AssemblyName>
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -50,6 +50,7 @@
     <Compile Include="Actions\ActionOpenUrl.cs" />
     <Compile Include="Actions\ActionShowCard.cs" />
     <Compile Include="Actions\ActionSubmit.cs" />
+    <Compile Include="AdaptiveVisitor.cs" />
     <Compile Include="Containers\AdaptiveCard.cs" />
     <Compile Include="Containers\Column.cs" />
     <Compile Include="Containers\ColumnSet.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Elements\InputToggle.cs" />
     <Compile Include="Elements\TextBlock.cs" />
     <Compile Include="Enums.cs" />
+    <Compile Include="AdaptiveRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TypedElement.cs" />
     <Compile Include="TypedElementConverter.cs" />

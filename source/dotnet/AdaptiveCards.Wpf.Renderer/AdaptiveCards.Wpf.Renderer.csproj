@@ -7,8 +7,8 @@
     <ProjectGuid>{60619D62-59FA-4864-BA5B-6F6F87997671}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>AdaptiveCards</RootNamespace>
-    <AssemblyName>AdaptiveCards</AssemblyName>
+    <RootNamespace>AdaptiveCards.Renderers</RootNamespace>
+    <AssemblyName>AdaptiveCards.Renderers.Xaml</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -89,78 +89,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\AdaptiveCards.Model\Actions\ActionBase.cs">
-      <Link>Actions\ActionBase.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Actions\ActionHttp.cs">
-      <Link>Actions\ActionHttp.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Actions\ActionOpenUrl.cs">
-      <Link>Actions\ActionOpenUrl.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Actions\ActionShowCard.cs">
-      <Link>Actions\ActionShowCard.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Actions\ActionSubmit.cs">
-      <Link>Actions\ActionSubmit.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Containers\AdaptiveCard.cs">
-      <Link>Containers\AdaptiveCard.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Containers\Column.cs">
-      <Link>Containers\Column.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Containers\ColumnSet.cs">
-      <Link>Containers\ColumnSet.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Containers\Container.cs">
-      <Link>Containers\Container.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Containers\FactSet.cs">
-      <Link>Containers\FactSet.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Containers\ImageSet.cs">
-      <Link>Containers\ImageSet.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Elements\CardElement.cs">
-      <Link>Elements\CardElement.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Elements\Image.cs">
-      <Link>Elements\Image.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Elements\Input.cs">
-      <Link>Elements\Input.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Elements\InputChoiceSet.cs">
-      <Link>Elements\InputChoiceSet.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Elements\InputDate.cs">
-      <Link>Elements\InputDate.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Elements\InputNumber.cs">
-      <Link>Elements\InputNumber.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Elements\InputText.cs">
-      <Link>Elements\InputText.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Elements\InputTime.cs">
-      <Link>Elements\InputTime.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Elements\InputToggle.cs">
-      <Link>Elements\InputToggle.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Elements\TextBlock.cs">
-      <Link>Elements\TextBlock.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\Enums.cs">
-      <Link>Enums.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\TypedElement.cs">
-      <Link>TypedElement.cs</Link>
-    </Compile>
-    <Compile Include="..\AdaptiveCards.Model\TypedElementConverter.cs">
-      <Link>TypedElementConverter.cs</Link>
-    </Compile>
     <Compile Include="Actions\ActionHttp.Xaml.cs" />
     <Compile Include="Actions\ActionBase.Xaml.cs" />
     <Compile Include="Actions\ActionOpenUrl.Xaml.cs" />
@@ -172,7 +100,6 @@
     <Compile Include="Containers\ImageSet.Xaml.cs" />
     <Compile Include="Containers\FactSet.Xaml.cs" />
     <Compile Include="Elements\Image.Xaml.cs" />
-    <Compile Include="Elements\Input.Xaml.cs" />
     <Compile Include="Elements\InputChoiceSet.Xaml.cs" />
     <Compile Include="Elements\InputDate.Xaml.cs" />
     <Compile Include="Elements\InputNumber.Xaml.cs" />
@@ -181,14 +108,14 @@
     <Compile Include="Elements\InputToggle.Xaml.cs" />
     <Compile Include="Elements\CardElement.Xaml.cs" />
     <Compile Include="Elements\TextBlock.Xaml.cs" />
+    <Compile Include="ImageRenderer.cs" />
     <Compile Include="RenderContext.cs" />
-    <Compile Include="RenderHelper.Wpf.cs" />
     <Compile Include="StaTaskSchedule.cs" />
     <Compile Include="Utilities.cs" />
     <Compile Include="Actions\ActionSubmit.Xaml.cs" />
     <Compile Include="MarkedXamlRenderer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TypedElement.Xaml.cs" />
+    <Compile Include="XamlRenderer.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="AdaptiveCards.Wpf.Renderer.nuspec" />
@@ -197,6 +124,12 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="pushpackage.cmd" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AdaptiveCards.Model\AdaptiveCards.Model.csproj">
+      <Project>{1b1d0934-2b03-42a5-8322-d480cdfdd55b}</Project>
+      <Name>AdaptiveCards.Model</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 #endif
 
-namespace Adaptive
+namespace Adaptive.Renderers
 {
     /// <summary>
     /// Renderer of AdaptiveCard schema into ElementT types 

@@ -9,35 +9,29 @@ using Xamarin.Forms;
 using UI = Xamarin.Forms;
 #endif
 
-namespace Adaptive
+namespace Adaptive.Renderers
 {
-    public partial class FactSet
+    public partial class XamlRenderer
+        : AdaptiveRenderer<FrameworkElement, RenderContext>
     {
-        /// <summary>
-        /// Override the renderer for this element
-        /// </summary>
-        public static Func<FactSet, RenderContext, FrameworkElement> AlternateRenderer;
-
         /// <summary>
         /// FactSet
         /// </summary>
         /// <param name="factSet"></param>
         /// <returns></returns>
-        public override FrameworkElement Render(RenderContext context)
+        protected override FrameworkElement RenderFactSet(FactSet factSet, RenderContext context)
         {
-            if (AlternateRenderer != null)
-                return AlternateRenderer(this, context);
 
             var uiFactSet = new Grid();
             // grid.Margin = this.Theme.FactSetMargins;
-            uiFactSet.Style = context.GetStyle("Adaptive.FactSet");
+            uiFactSet.Style = this.GetStyle("Adaptive.FactSet");
 
             uiFactSet.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
             uiFactSet.ColumnDefinitions.Add(new ColumnDefinition() { Width = GridLength.Auto });
             int iRow = 0;
-            foreach (var fact in this.Facts)
+            foreach (var fact in factSet.Facts)
             {
-                Tuple<FrameworkElement, FrameworkElement> uiElements = fact.Render(context);
+                Tuple<FrameworkElement, FrameworkElement> uiElements = RenderFact(fact, context);
                 uiFactSet.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
 
                 Grid.SetColumn(uiElements.Item1, 0);
@@ -52,32 +46,28 @@ namespace Adaptive
         }
 
 
-        public override Task PreRender()
-        {
-            return Task.Delay(0);
-        }
+        //public override Task PreRender()
+        //{
+        //    return Task.Delay(0);
+        //}
 
-    }
-
-    public partial class Fact
-    {
         /// <summary>
         /// Fact
         /// </summary>
         /// <param name="fact"></param>
         /// <returns></returns>
-        public virtual Tuple<FrameworkElement, FrameworkElement> Render(RenderContext context)
+        protected override Tuple<FrameworkElement, FrameworkElement> RenderFact(Fact fact, RenderContext context)
         {
             return new Tuple<FrameworkElement, FrameworkElement>(
                 new UI.TextBlock()
                 {
-                    Text = this.Title,
-                    Style = context.GetStyle("Adaptive.Fact.Name")
+                    Text = fact.Title,
+                    Style = this.GetStyle("Adaptive.Fact.Name")
                 },
                 new UI.TextBlock()
                 {
-                    Text = this.Value,
-                    Style = context.GetStyle("Adaptive.Fact.Value")
+                    Text = fact.Value,
+                    Style = this.GetStyle("Adaptive.Fact.Value")
                 }
             );
         }

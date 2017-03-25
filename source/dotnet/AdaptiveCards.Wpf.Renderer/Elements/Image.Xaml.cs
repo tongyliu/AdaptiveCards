@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Controls;
 
 #if WPF
 using System.Windows;
@@ -10,46 +11,43 @@ using Xamarin.Forms;
 using UI = Xamarin.Forms;
 #endif
 
-namespace Adaptive
+namespace Adaptive.Renderers
 {
-    public partial class Image
+    public partial class XamlRenderer
+        : AdaptiveRenderer<FrameworkElement, RenderContext>
     {
-        /// <summary>
-        /// Override the renderer for this element
-        /// </summary>
-        public static Func<Image, RenderContext, FrameworkElement> AlternateRenderer;
-
         /// <summary>
         /// Image
         /// </summary>
         /// <param name="image"></param>
         /// <returns></returns>
-        public override FrameworkElement Render(RenderContext context)
+        protected override FrameworkElement RenderImage(Image image, RenderContext context)
         {
-            if (AlternateRenderer != null)
-                return AlternateRenderer(this, context);
-
             var uiImage = new UI.Image();
 
-            uiImage.SetSource(new Uri(Url));
-            uiImage.SetHorizontalAlignment(HorizontalAlignment);
+            uiImage.Source = new BitmapImage(new Uri(image.Url));
+            System.Windows.HorizontalAlignment alignement;
+            if (Enum.TryParse(image.HorizontalAlignment.ToString(), out alignement))
+                uiImage.HorizontalAlignment = alignement;
 
             string style = $"Adaptive.Image";
-            if (this.Size != ImageSize.Auto)
-                style += $".{this.Size}";
+            if (image.Size != ImageSize.Auto)
+                style += $".{image.Size}";
 
-            if (this.Style == ImageStyle.Person)
-                style += $".{this.Style}";
-            uiImage.Style = context.GetStyle(style);
+            if (image.Style == ImageStyle.Person)
+                style += $".{image.Style}";
+            uiImage.Style = this.GetStyle(style);
 
-            // TODO: selectAction
-            //if (this.SelectAction != null)
-            //{
-            //    var uiButton = (Button)this.SelectAction.Render(context.NewActionContext());
-            //    uiButton. = uiImage;
-            //    uiButton.Style = context.GetStyle("Adaptive.Action.Tap");
-            //    return uiButton;
-            //}
+            if (image.SelectAction != null)
+            {
+                var uiButton = (Button)RenderAction(image.SelectAction, context);
+                if (uiButton != null)
+                {
+                    uiButton.Content = uiImage;
+                    uiButton.Style = this.GetStyle("Adaptive.Action.Tap");
+                    return uiButton;
+                }
+            }
             return uiImage;
         }
     }

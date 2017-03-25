@@ -10,52 +10,47 @@ using System.Xml;
 using MarkedNet;
 using Xceed.Wpf.Toolkit;
 
-namespace Adaptive
+namespace Adaptive.Renderers
 {
-    public partial class InputNumber
+    public partial class XamlRenderer
+        : AdaptiveRenderer<FrameworkElement, RenderContext>
     {
-        /// <summary>
-        /// Override the renderer for this element
-        /// </summary>
-        public static Func<InputNumber, RenderContext, FrameworkElement> AlternateRenderer;
 
         /// <summary>
         /// Input.Number
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public override FrameworkElement Render(RenderContext context)
+        protected override FrameworkElement RenderInputNumber(InputNumber input, RenderContext context)
         {
-            if (AlternateRenderer != null)
-                return AlternateRenderer(this, context);
-            if (context.Options.SupportInteraction)
+            if (this.Options.SupportInteraction)
             {
 
                 IntegerUpDown numberPicker = new IntegerUpDown();
                 // numberPicker.ShowButtonSpinner = true;
 
                 float value;
-                if (float.TryParse(this.Value, out value))
+                if (float.TryParse(input.Value, out value))
                     numberPicker.Value = Convert.ToInt32(value);
 
                 float minValue;
-                if (float.TryParse(this.Min, out minValue))
+                if (float.TryParse(input.Min, out minValue))
                     numberPicker.Minimum = Convert.ToInt32(minValue);
 
                 float maxValue;
-                if (float.TryParse(this.Max, out maxValue))
+                if (float.TryParse(input.Max, out maxValue))
                     numberPicker.Maximum = Convert.ToInt32(maxValue);
 
-                numberPicker.Watermark = this.Placeholder;
-                numberPicker.Style = context.GetStyle("Adaptive.Input.Number");
-                numberPicker.DataContext = this;
+                numberPicker.Watermark = input.Placeholder;
+                numberPicker.Style = this.GetStyle("Adaptive.Input.Number");
+                numberPicker.DataContext = input;
                 context.InputControls.Add(numberPicker);
                 return numberPicker;
             }
             else
             {
-                var textBlock = new TextBlock() { Text = GetFallbackText() ?? this.Placeholder };
-                return textBlock.Render(context);
+                var textBlock = new TextBlock() { Text = GetFallbackText(input) ?? input.Placeholder };
+                return RenderTextBlock(textBlock, context);
             }
 
         }

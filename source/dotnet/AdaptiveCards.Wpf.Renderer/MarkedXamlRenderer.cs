@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using MarkedNet;
 
-namespace Adaptive
+namespace Adaptive.Renderers
 {
 
     /// <summary>

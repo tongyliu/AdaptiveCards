@@ -10,47 +10,42 @@ using System.Xml;
 using MarkedNet;
 using Xceed.Wpf.Toolkit;
 
-namespace Adaptive
+namespace Adaptive.Renderers
 {
-    public partial class InputTime
+    public partial class XamlRenderer
+        : AdaptiveRenderer<FrameworkElement, RenderContext>
     {
-        /// <summary>
-        /// Override the renderer for this element
-        /// </summary>
-        public static Func<InputTime, RenderContext, FrameworkElement> AlternateRenderer;
 
         /// <summary>
         /// Input.Time
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        public override FrameworkElement Render(RenderContext context)
+        protected override FrameworkElement RenderInputTime(InputTime input, RenderContext context)
         {
-            if (AlternateRenderer != null)
-                return AlternateRenderer(this, context);
 
-            if (context.Options.SupportInteraction)
+            if (this.Options.SupportInteraction)
             {
                 var timePicker = new TimePicker();
                 DateTime value;
-                if (DateTime.TryParse(this.Value, out value))
+                if (DateTime.TryParse(input.Value, out value))
                     timePicker.Value = value;
                 TimeSpan minValue;
-                if (TimeSpan.TryParse(this.Min, out minValue))
+                if (TimeSpan.TryParse(input.Min, out minValue))
                     timePicker.EndTime = minValue;
                 TimeSpan maxValue;
-                if (TimeSpan.TryParse(this.Max, out maxValue))
+                if (TimeSpan.TryParse(input.Max, out maxValue))
                     timePicker.EndTime = maxValue;
-                timePicker.Watermark = this.Placeholder;
-                timePicker.Style = context.GetStyle("Adaptive.Input.Time");
-                timePicker.DataContext = this;
+                timePicker.Watermark = input.Placeholder;
+                timePicker.Style = this.GetStyle("Adaptive.Input.Time");
+                timePicker.DataContext = input;
                 context.InputControls.Add(timePicker);
                 return timePicker;
             }
             else
             {
-                var textBlock = new TextBlock() { Text = GetFallbackText() ?? this.Placeholder };
-                return textBlock.Render(context);
+                var textBlock = new TextBlock() { Text = GetFallbackText(input) ?? input.Placeholder };
+                return RenderTextBlock(textBlock, context);
             }
 
         }

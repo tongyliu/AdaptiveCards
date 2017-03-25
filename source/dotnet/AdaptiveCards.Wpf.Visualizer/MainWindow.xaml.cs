@@ -23,6 +23,8 @@ using System.Speech.Synthesis;
 using ICSharpCode.AvalonEdit.Document;
 using System.Xml.Serialization;
 using System.Reflection;
+using Adaptive.Renderers;
+using AdaptiveCards.Renderers;
 
 namespace WpfVisualizer
 {
@@ -71,11 +73,8 @@ namespace WpfVisualizer
 
                         _card = JsonConvert.DeserializeObject<AC.AdaptiveCard>(this.textBox.Text);
                     }
-                    _renderContext = new RenderContext();
-                    _renderContext.Resources = this.Resources;
-                    _renderContext.OnAction += _renderer_OnAction;
-                    _renderContext.OnMissingInput += _renderer_OnMissingInput;
-                    var element = _card.Render(_renderContext);
+                    var renderer = new XamlRenderer(new AC.Renderers.RenderOptions(), this.Resources, _onAction, _OnMissingInput);
+                    var element = renderer.RenderAdaptiveCard(_card);
                     this.cardGrid.Children.Clear();
                     this.cardGrid.Children.Add(element);
                 }
@@ -86,7 +85,7 @@ namespace WpfVisualizer
             }
         }
 
-        private void _renderer_OnMissingInput(object sender, MissingInputEventArgs args)
+        private void _OnMissingInput(object sender, MissingInputEventArgs args)
         {
             MessageBox.Show($"Required input is missing.");
             args.FrameworkElement.Focus();
@@ -160,7 +159,7 @@ namespace WpfVisualizer
 
         }
 
-        private void _renderer_OnAction(object sender, ActionEventArgs e)
+        private void _onAction(object sender, ActionEventArgs e)
         {
             if (e.Action is AC.ActionOpenUrl)
             {
@@ -170,7 +169,7 @@ namespace WpfVisualizer
             else if (e.Action is AC.ActionShowCard)
             {
                 AC.ActionShowCard action = (AC.ActionShowCard)e.Action;
-                ShowCardWindow dialog = new ShowCardWindow(action.Title, action.Card, this.Resources);
+                ShowCardWindow dialog = new ShowCardWindow(action.Title, action, this.Resources);
                 dialog.Owner = this;
                 dialog.ShowDialog();
             }
@@ -207,14 +206,11 @@ namespace WpfVisualizer
 
         private async void viewImage_Click(object sender, RoutedEventArgs e)
         {
-            RenderContext renderContext = new RenderContext();
-            renderContext.Resources = this.Resources;
-            renderContext.Options.SupportInteraction = false;
+            var renderer = new ImageRenderer(new AC.Renderers.RenderOptions(), this.Resources);
 
-            var imageStream = this._card.RenderToImageStream(renderContext, 480);
+            var imageStream = renderer.RenderAdaptiveCard(this._card, 480);
 
             string path = System.IO.Path.GetRandomFileName() + ".png";
-
             using (FileStream fileStream = new FileStream(path, FileMode.Create))
             {
                 await imageStream.CopyToAsync(fileStream);
