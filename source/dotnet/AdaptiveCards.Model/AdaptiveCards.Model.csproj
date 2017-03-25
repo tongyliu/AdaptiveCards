@@ -72,7 +72,7 @@
     <Compile Include="TypedElementConverter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Adaptive.NET.nuspec" />
+    <None Include="AdaptiveCards.Model.nuspec" />
     <None Include="createpackage.cmd" />
     <None Include="packages.config" />
     <None Include="pushpackage.cmd" />

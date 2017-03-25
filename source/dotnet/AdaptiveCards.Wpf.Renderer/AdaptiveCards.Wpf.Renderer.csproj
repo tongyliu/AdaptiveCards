@@ -191,7 +191,7 @@
     <Compile Include="TypedElement.Xaml.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Adaptive.Renderers.Xaml.nuspec" />
+    <None Include="AdaptiveCards.Wpf.Renderer.nuspec" />
     <None Include="createpackage.cmd" />
     <None Include="packages.config">
       <SubType>Designer</SubType>
