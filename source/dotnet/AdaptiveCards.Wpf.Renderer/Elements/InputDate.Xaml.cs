@@ -8,7 +8,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml;
 using MarkedNet;
-using Xceed.Wpf.Toolkit;
 
 namespace Adaptive
 {

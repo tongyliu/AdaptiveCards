@@ -9,7 +9,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml;
 using MarkedNet;
-using Xceed.Wpf.Toolkit;
 using System.Text;
 using System.Windows.Documents;
 using System.Collections.Generic;
