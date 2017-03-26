@@ -20,6 +20,7 @@ namespace AdaptiveCards
         /// Elements of the container
         /// </summary>
         [JsonRequired]
+#if DESKTOP
         [XmlElement(typeof(TextBlock))]
         [XmlElement(typeof(Image))]
         [XmlElement(typeof(Container))]
@@ -32,6 +33,7 @@ namespace AdaptiveCards
         [XmlElement(typeof(InputNumber))]
         [XmlElement(typeof(InputToggle))]
         [XmlElement(typeof(InputChoiceSet))]
+#endif
         public List<CardElement> Items { get; set; } = new List<CardElement>();
 
         /// <summary>
@@ -44,11 +46,13 @@ namespace AdaptiveCards
         /// Actions for this container
         /// </summary>
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+#if DESKTOP
         [XmlArray("Actions")]
         [XmlArrayItem(ElementName="OpenUrl", Type=typeof(ActionOpenUrl))]
         [XmlArrayItem(ElementName = "ShowCard", Type = typeof(ActionShowCard))]
         [XmlArrayItem(ElementName = "Submit", Type = typeof(ActionSubmit))]
         [XmlArrayItem(ElementName = "Http", Type = typeof(ActionHttp))]
+#endif
         public List<ActionBase> Actions { get; set; } = new List<ActionBase>();
 
 

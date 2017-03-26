@@ -24,7 +24,9 @@ namespace AdaptiveCards
         /// Url to open using default operating system browser
         /// </summary>
         [JsonRequired]
+#if DESKTOP
         [XmlAttribute]
+#endif
         public string Url { get; set; }
     }
 }

@@ -20,28 +20,36 @@ namespace AdaptiveCards
         /// Size for the Image
         /// </summary>
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+#if DESKTOP
         [XmlAttribute]
+#endif
         public ImageSize Size { get; set; }
 
         /// <summary>
         /// The style in which the image is displayed.
         /// </summary>
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+#if DESKTOP
         [XmlAttribute]
+#endif
         public ImageStyle Style { get; set; }
 
         /// <summary>
         /// A url pointing to an image to display
         /// </summary>
         [JsonRequired]
+#if DESKTOP
         [XmlAttribute]
+#endif
         public string Url { get; set; }
 
         /// <summary>
         /// Horizontal alignment for element
         /// </summary>
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+#if DESKTOP
         [XmlAttribute]
+#endif
         public HorizontalAlignment HorizontalAlignment { get; set; }
 
         /// <summary>
@@ -54,7 +62,9 @@ namespace AdaptiveCards
         /// Alternate text to display for this image
         /// </summary>
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+#if DESKTOP
         [XmlAttribute]
+#endif
         public string AltText { get; set; }
 
         public bool ShouldSerializeSize() { return this.Size != ImageSize.Auto; }

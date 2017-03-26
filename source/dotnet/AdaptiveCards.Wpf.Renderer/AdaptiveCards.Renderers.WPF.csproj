@@ -8,8 +8,8 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AdaptiveCards.Renderers</RootNamespace>
-    <AssemblyName>AdaptiveCards.Renderers.Xaml</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <AssemblyName>AdaptiveCards.Renderers.WPF</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -127,7 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AdaptiveCards.Model\AdaptiveCards.Model.csproj">
-      <Project>{1b1d0934-2b03-42a5-8322-d480cdfdd55b}</Project>
+      <Project>{359961bf-84cd-4e33-a86d-9ed708729e07}</Project>
       <Name>AdaptiveCards.Model</Name>
     </ProjectReference>
   </ItemGroup>

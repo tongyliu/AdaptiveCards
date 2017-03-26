@@ -21,7 +21,9 @@ namespace AdaptiveCards
 
         [JsonProperty(Order = -2, NullValueHandling = NullValueHandling.Ignore)]
         [JsonRequired]
+#if DESKTOP
         [XmlIgnore]
+#endif
         public string Type { get; set; }
 
         protected EnumT? GetEnum<EnumT>(string value)
