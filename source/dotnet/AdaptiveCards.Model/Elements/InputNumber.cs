@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 
-namespace Adaptive
+namespace AdaptiveCards
 {
     /// <summary>
     /// Input which collects number from the user

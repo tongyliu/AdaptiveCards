@@ -13,7 +13,7 @@ using MarkedNet;
 using Xamarin.Forms;
 #endif
 
-namespace Adaptive.Renderers
+namespace AdaptiveCards.Renderers
 {
 
     public partial class XamlRenderer

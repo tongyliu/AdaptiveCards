@@ -11,11 +11,10 @@ using Xamarin.Forms.Xaml.Internals;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Markup;
-using Newtonsoft.Json.Linq;
 using Xceed.Wpf.Toolkit;
 #endif
 
-namespace Adaptive.Renderers
+namespace AdaptiveCards.Renderers
 {
 
     public static class DictionaryHelper

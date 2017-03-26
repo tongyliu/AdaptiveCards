@@ -1,10 +1,10 @@
 ﻿using System.Diagnostics;
 using System.Text;
 using System.Windows;
-using Adaptive;
+using AdaptiveCards;
 using Newtonsoft.Json;
-using AC = Adaptive;
-using Adaptive.Renderers;
+using AC = AdaptiveCards;
+using AdaptiveCards.Renderers;
 
 namespace WpfVisualizer
 {

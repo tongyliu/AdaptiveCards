@@ -14,7 +14,7 @@ using Xamarin.Forms;
 using Button = AdaptiveCards.XamarinForms.Renderer.ContentButton;
 #endif
 
-namespace Adaptive.Renderers
+namespace AdaptiveCards.Renderers
 {
     public partial class XamlRenderer
         : AdaptiveRenderer<FrameworkElement, RenderContext>

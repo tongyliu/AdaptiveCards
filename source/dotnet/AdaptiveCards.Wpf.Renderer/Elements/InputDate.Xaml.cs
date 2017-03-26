@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.Xml;
 using MarkedNet;
 
-namespace Adaptive.Renderers
+namespace AdaptiveCards.Renderers
 {
     public partial class XamlRenderer
         : AdaptiveRenderer<FrameworkElement, RenderContext>

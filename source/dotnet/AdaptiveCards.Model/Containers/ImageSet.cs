@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 
-namespace Adaptive
+namespace AdaptiveCards
 {
     /// <summary>
     /// The ImageSet allows for the inclusion of a collection images like a photogallery.

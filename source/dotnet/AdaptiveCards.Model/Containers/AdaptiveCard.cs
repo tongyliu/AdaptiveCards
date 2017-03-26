@@ -12,7 +12,7 @@ using Xamarin.Forms;
 using System.Windows.Markup;
 #endif
 
-namespace Adaptive
+namespace AdaptiveCards
 {
     /// <summary>
     /// Adaptive card which has flexible container

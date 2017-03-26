@@ -8,9 +8,9 @@ using Button = AdaptiveCards.XamarinForms.Renderer.ContentButton;
 #endif
 using Newtonsoft.Json.Linq;
 using System;
-using Adaptive;
+using AdaptiveCards;
 
-namespace Adaptive.Renderers
+namespace AdaptiveCards.Renderers
 {
 
     public partial class XamlRenderer 

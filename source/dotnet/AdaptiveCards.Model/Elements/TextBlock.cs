@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Xml.Serialization;
 using Newtonsoft.Json;
 
-namespace Adaptive
+namespace AdaptiveCards
 {
     /// <summary>
     /// The TextBlock element allows for the inclusion of text, with various font sizes, weight and color, in Adaptive Cards.

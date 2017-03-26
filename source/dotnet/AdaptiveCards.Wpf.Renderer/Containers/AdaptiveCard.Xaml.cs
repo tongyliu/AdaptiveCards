@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using Xamarin.Forms;
 #endif
 
-namespace Adaptive.Renderers
+namespace AdaptiveCards.Renderers
 {
     public partial class XamlRenderer
         : AdaptiveRenderer<FrameworkElement, RenderContext>

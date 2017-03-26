@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Adaptive.Renderers
+namespace AdaptiveCards.Renderers
 {
     public partial class XamlRenderer
         : AdaptiveRenderer<FrameworkElement, RenderContext>

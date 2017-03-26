@@ -9,7 +9,7 @@ using System.Windows.Shapes;
 using Xamarin.Forms;
 #endif
 
-namespace Adaptive.Renderers
+namespace AdaptiveCards.Renderers
 {
     public partial class XamlRenderer
         : AdaptiveRenderer<FrameworkElement, RenderContext>

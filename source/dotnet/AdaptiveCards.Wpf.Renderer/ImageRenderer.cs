@@ -1,6 +1,6 @@
-﻿using Adaptive;
-using Adaptive.Renderers;
-using Adaptive.Renderers.Threading.Tasks.Schedulers;
+﻿using AdaptiveCards;
+using AdaptiveCards.Renderers;
+using AdaptiveCards.Renderers.Threading.Tasks.Schedulers;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -15,21 +15,19 @@ using System.Windows.Media.Imaging;
 
 namespace AdaptiveCards.Renderers
 {
-#if WPF
     /// <summary>
     /// Renderer which renders adaptive card to an image
     /// </summary>
     public class ImageRenderer
     {
         private XamlRenderer _xamlRenderer;
-        private string _stylePath;
 
         /// <summary>
         /// You can use this from within a WPF app, passing in resource dictionary directly
         /// </summary>
         /// <param name="options"></param>
         /// <param name="resources"></param>
-        public ImageRenderer(Adaptive.Renderers.RenderOptions options, ResourceDictionary resources)
+        public ImageRenderer(AdaptiveCards.Renderers.RenderOptions options, ResourceDictionary resources)
         {
             options.SupportInteraction = false;
             _xamlRenderer = new XamlRenderer(options, resources);
@@ -40,7 +38,7 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="options"></param>
         /// <param name="stylePath"></param>
-        public ImageRenderer(Adaptive.Renderers.RenderOptions options, string stylePath)
+        public ImageRenderer(AdaptiveCards.Renderers.RenderOptions options, string stylePath)
         {
             options.SupportInteraction = false;
             _xamlRenderer = new XamlRenderer(options, stylePath);
@@ -161,5 +159,4 @@ namespace AdaptiveCards.Renderers
             return factory.StartNew(action, CancellationToken.None, TaskCreationOptions.None, _staScheduler);
         }
     }
-#endif
 }

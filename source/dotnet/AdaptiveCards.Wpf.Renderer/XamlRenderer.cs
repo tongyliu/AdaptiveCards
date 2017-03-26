@@ -1,5 +1,5 @@
-﻿using Adaptive;
-using Adaptive.Renderers;
+﻿using AdaptiveCards;
+using AdaptiveCards.Renderers;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -14,7 +14,7 @@ using System.Windows.Markup;
 using System.Windows.Media.Imaging;
 #endif
 
-namespace Adaptive.Renderers
+namespace AdaptiveCards.Renderers
 {
     public partial class XamlRenderer
         : AdaptiveRenderer<FrameworkElement, RenderContext>

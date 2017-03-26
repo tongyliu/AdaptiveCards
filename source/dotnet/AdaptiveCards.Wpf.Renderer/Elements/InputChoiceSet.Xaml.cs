@@ -13,7 +13,7 @@ using System.Text;
 using System.Windows.Documents;
 using System.Collections.Generic;
 
-namespace Adaptive.Renderers
+namespace AdaptiveCards.Renderers
 {
     public partial class XamlRenderer
         : AdaptiveRenderer<FrameworkElement, RenderContext>

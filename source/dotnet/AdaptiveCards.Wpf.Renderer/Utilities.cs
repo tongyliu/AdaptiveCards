@@ -1,4 +1,4 @@
-﻿using Adaptive;
+﻿using AdaptiveCards;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 #endif
 
-namespace Adaptive.Renderers
+namespace AdaptiveCards.Renderers
 {
     /// <summary>
     /// Renderer of AdaptiveCard schema into ElementT types 

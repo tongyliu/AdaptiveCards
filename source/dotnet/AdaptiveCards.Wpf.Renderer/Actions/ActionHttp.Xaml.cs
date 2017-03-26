@@ -11,7 +11,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Linq;
 
-namespace Adaptive.Renderers
+namespace AdaptiveCards.Renderers
 {
     public partial class XamlRenderer
         : AdaptiveRenderer<FrameworkElement, RenderContext>

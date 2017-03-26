@@ -4,7 +4,7 @@ using System.Reflection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Adaptive
+namespace AdaptiveCards
 {
     /// <summary>
     /// This handles using @type field to instantiate strongly typed object on deserialization

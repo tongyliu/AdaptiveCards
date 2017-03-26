@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Adaptive;
+using AdaptiveCards;
 
-namespace AdaptiveCards
+namespace AdaptiveCards.Renderers
 {
     /// <summary>
     /// Utility class which allows you to visit every node

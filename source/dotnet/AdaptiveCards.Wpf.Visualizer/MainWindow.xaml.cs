@@ -1,29 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using AC = Adaptive;
+using AC = AdaptiveCards;
 using Newtonsoft.Json;
 using Microsoft.Win32;
 using System.IO;
 using System.Diagnostics;
-using Adaptive;
+using AdaptiveCards;
 using System.Windows.Threading;
 using System.Speech.Synthesis;
 using ICSharpCode.AvalonEdit.Document;
 using System.Xml.Serialization;
 using System.Reflection;
-using Adaptive.Renderers;
 using AdaptiveCards.Renderers;
 
 namespace WpfVisualizer
@@ -33,7 +24,6 @@ namespace WpfVisualizer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private RenderContext _renderContext;
         private AC.AdaptiveCard _card;
         private SpeechSynthesizer _synth;
         private DispatcherTimer _timer;

@@ -11,7 +11,7 @@ using Xamarin.Forms;
 using UI = Xamarin.Forms;
 #endif
 
-namespace Adaptive.Renderers
+namespace AdaptiveCards.Renderers
 {
     public partial class XamlRenderer
         : AdaptiveRenderer<FrameworkElement, RenderContext>

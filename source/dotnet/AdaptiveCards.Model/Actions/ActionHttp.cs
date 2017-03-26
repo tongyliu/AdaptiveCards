@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
-namespace Adaptive
+namespace AdaptiveCards
 {
     /// <summary>
     /// Action.Http represents the properties needed to do an Http request. All input properties are available for use 

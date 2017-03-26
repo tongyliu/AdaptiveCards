@@ -7,7 +7,7 @@ using System.Xml.Serialization;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
-namespace Adaptive
+namespace AdaptiveCards
 {
     /// <summary>
     /// Base class for all elements in a container
