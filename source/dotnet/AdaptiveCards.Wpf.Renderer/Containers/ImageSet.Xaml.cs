@@ -40,16 +40,5 @@ namespace AdaptiveCards.Renderers
             }
             return uiImageSet;
         }
-
-
-        //public override async Task PreRender()
-        //{
-        //    List<Task> tasks = new List<Task>();
-        //    foreach (var item in this.Images)
-        //        tasks.Add(item.PreRender());
-
-        //    await Task.WhenAll(tasks.ToArray());
-        //}
-
     }
 }

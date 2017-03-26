@@ -44,7 +44,6 @@ namespace AdaptiveCards.Renderers
             this.missingDataCallback = missingDataCallback;
         }
 #endif
-
         public RenderOptions Options { get; set; }
         
         /// <summary>

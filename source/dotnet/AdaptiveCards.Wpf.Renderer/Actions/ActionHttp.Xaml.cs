@@ -43,9 +43,9 @@ namespace AdaptiveCards.Renderers
                             {
                                 Title = action.Title,
                                 Method = action.Method,
-                                Url = Utilities.BindData(data, action.Url, url: true),
+                                Url = RendererUtilities.BindData(data, action.Url, url: true),
                                 Headers = action.Headers,
-                                Body = Utilities.BindData(data, body),
+                                Body = RendererUtilities.BindData(data, body),
                             },
                             Data = data
                         });

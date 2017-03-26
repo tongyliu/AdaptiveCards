@@ -46,11 +46,6 @@ namespace AdaptiveCards.Renderers
         }
 
 
-        //public override Task PreRender()
-        //{
-        //    return Task.Delay(0);
-        //}
-
         /// <summary>
         /// Fact
         /// </summary>

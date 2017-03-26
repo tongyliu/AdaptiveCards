@@ -35,10 +35,10 @@ namespace AdaptiveCards.Renderers
 #if Xamarin
             var uiButton = new Button();
             var uiTitle = new Label { Text = this.Title };
-            uiTitle.Style = renderthis.GetStyle($"Adaptive.Action.Title");
+            uiTitle.Style = this.GetStyle($"Adaptive.Action.Title");
             uiButton.Content = uiTitle;
             string name = this.GetType().Name.Replace("Action", String.Empty);
-            uiButton.Style = renderthis.GetStyle($"Adaptive.Action.{name}");
+            uiButton.Style = this.GetStyle($"Adaptive.Action.{name}");
             return uiButton;
 #elif WPF
             var uiButton = new Button();

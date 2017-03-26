@@ -16,15 +16,5 @@ namespace AdaptiveCards.Renderers
         {
             return this.RenderContainer(column, context);
         }
-
-        //public override async Task PreRender()
-        //{
-        //    List<Task> tasks = new List<Task>();
-        //    foreach (var item in this.Items)
-        //        tasks.Add(item.PreRender());
-
-        //    await Task.WhenAll(tasks.ToArray());
-        //}
-
     }
 }

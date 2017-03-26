@@ -43,7 +43,7 @@ namespace AdaptiveCards
         /// Object which represents headers Example: { "content-type":"application/json" }
         /// </summary>
 #if DESKTOP
-        [XmlAttribute]
+        [XmlIgnore]
 #endif
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
         public object Headers { get; set; }

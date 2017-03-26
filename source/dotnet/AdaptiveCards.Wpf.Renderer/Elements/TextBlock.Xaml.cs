@@ -35,7 +35,7 @@ namespace AdaptiveCards.Renderers
             marked.Options.Mangle = false;
             marked.Options.Sanitize = true;
 
-            string text = Utilities.ApplyTextFunctions(textBlock.Text);
+            string text = RendererUtilities.ApplyTextFunctions(textBlock.Text);
             // uiTextBlock.Text = textBlock.Text;
             string xaml = $"<TextBlock  xmlns=\"http://schemas.microsoft.com/winfx/2006/xaml/presentation\">{marked.Parse(text)}</TextBlock>";
             StringReader stringReader = new StringReader(xaml);

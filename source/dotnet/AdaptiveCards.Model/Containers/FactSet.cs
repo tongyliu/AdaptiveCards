@@ -67,7 +67,7 @@ namespace AdaptiveCards
         /// </summary>
         [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
 #if DESKTOP
-        [XmlAttribute]
+        [XmlElement]
 #endif
         public string Speak { get; set; }
     }

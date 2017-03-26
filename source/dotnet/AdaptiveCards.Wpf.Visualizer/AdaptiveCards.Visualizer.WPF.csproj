@@ -181,6 +181,10 @@
       <Project>{359961bf-84cd-4e33-a86d-9ed708729e07}</Project>
       <Name>AdaptiveCards.Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AdaptiveCards.Renderers.WPF.Extended\AdaptiveCards.Renderers.WPF.Extended.csproj">
+      <Project>{e4bd01cf-4b8b-491c-a6fe-9a8bf6550111}</Project>
+      <Name>AdaptiveCards.Renderers.WPF.Extended</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AdaptiveCards.Wpf.Renderer\AdaptiveCards.Renderers.WPF.csproj">
       <Project>{60619d62-59fa-4864-ba5b-6f6f87997671}</Project>
       <Name>AdaptiveCards.Renderers.WPF</Name>

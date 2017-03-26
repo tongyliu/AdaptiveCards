@@ -1,18 +1,10 @@
-﻿using System;
-using System.IO;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Markup;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Xml;
-using MarkedNet;
+using Xceed.Wpf.Toolkit;
 
 namespace AdaptiveCards.Renderers
 {
-    public partial class XamlRenderer
-        : AdaptiveRenderer<FrameworkElement, RenderContext>
+    public partial class XamlRendererExtended : XamlRenderer
     {
 
         /// <summary>
@@ -24,7 +16,7 @@ namespace AdaptiveCards.Renderers
         {
             if (this.Options.SupportInteraction)
             {
-                var textBox = new TextBox() { Text = input.Value };
+                var textBox = new WatermarkTextBox() { Text = input.Value };
                 if (input.IsMultiline == true)
                 {
                     textBox.AcceptsReturn = true;
@@ -34,7 +26,7 @@ namespace AdaptiveCards.Renderers
                 if (input.MaxLength > 0)
                     textBox.MaxLength = input.MaxLength;
 
-                textBox.Text = input.Placeholder;
+                textBox.Watermark = input.Placeholder;
                 textBox.Style = this.GetStyle($"Adaptive.Input.Text.{input.Style}");
                 textBox.DataContext = input;
                 context.InputControls.Add(textBox);

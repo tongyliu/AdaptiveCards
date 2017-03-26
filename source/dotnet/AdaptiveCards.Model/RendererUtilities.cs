@@ -1,24 +1,13 @@
-﻿using AdaptiveCards;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
+﻿using System;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using System.Windows;
-#if WPF
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-#endif
 
 namespace AdaptiveCards.Renderers
 {
     /// <summary>
-    /// Renderer of AdaptiveCard schema into ElementT types 
+    /// Utility methods for dealing with body and binding
     /// </summary>
-    /// <typeparam name="ElementT">the base type of rendered elements</typeparam>
-    public static class Utilities
+    public static class RendererUtilities
     {
         private static Regex TextFunctionRegex = new Regex(@"\{\{(?<func>DATE|TIME){1}\((?<date>.+?){1}(?:,\s*(?<hint>Short|Long){1}\s*)??\)\}\}", RegexOptions.ExplicitCapture | RegexOptions.IgnoreCase);
         private static Regex _regexBinding = new Regex(@"(?<property>\{\{\w+?\}\})+?", RegexOptions.ExplicitCapture);
@@ -83,25 +72,5 @@ namespace AdaptiveCards.Renderers
             return text;
         }
 
-#if WPF
-        /// <summary>
-        /// Render card to desired width (height is variable)
-        /// </summary>
-        /// <param name="card">card to render</param>
-        /// <param name="width">desired width of image</param>
-        /// <returns>BitmapSource of the card</returns>
-        public static async Task<BitmapSource> XamlToImageAsync(UIElement uiElement, int width)
-        {
-            uiElement.Measure(new System.Windows.Size(width, 4000));
-            uiElement.Arrange(new Rect(new System.Windows.Size(width, uiElement.DesiredSize.Height)));
-            uiElement.UpdateLayout();
-
-            RenderTargetBitmap bitmapImage = new RenderTargetBitmap((int)width, (int)uiElement.DesiredSize.Height, 96, 96, PixelFormats.Default);
-            await Task.Delay(1000);
-            // Dispatcher.Invoke(new Action(() => { }), DispatcherPriority.ContextIdle, null);
-            bitmapImage.Render(uiElement);
-            return bitmapImage;
-        }
-#endif
     }
 }
