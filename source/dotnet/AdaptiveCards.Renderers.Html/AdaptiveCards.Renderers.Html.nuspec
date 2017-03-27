@@ -6,12 +6,12 @@
     <authors>Microsoft</authors>
     <iconUrl>https://bots.botframework.com/Client/Images/bot-framework-default-1.png</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
-    <summary>Adaptive Card renderer for WPF Xaml</summary>
-    <description>This library provides WPF compliant XAML rendering object model for adaptive cards</description>
+    <summary>Adaptive Card renderer for genering HTML markup</summary>
+    <description>This library generates HTML markup from adaptive card payloads, suitable for server side generation of html</description>
     <language>en-US</language>
     <dependencies>
-      <dependency id="Newtonsoft.Json" version="9.0.1" />
-      <dependency id="Extended.Wpf.Toolkit" version="3.0" />
+      <dependency id="AdaptiveCards.Model" version="0.9.0" />
+      <dependency id="HtmlTags" version="4.2.0" />
       <dependency id="MarkedNet" version="1.0.5.0" />
     </dependencies>
   </metadata>

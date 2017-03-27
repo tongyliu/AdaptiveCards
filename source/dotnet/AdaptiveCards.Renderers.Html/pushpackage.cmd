@@ -1,6 +1,6 @@
 @if "%1" == "" goto  :needpackage
 @if "%2" == "" goto :needfeed
-..\..\packages\NuGet.CommandLine.3.5.0\tools\NuGet.exe push -Source %2 -ApiKey VSTS %1
+NuGet.exe push -Source %2 -ApiKey VSTS %1
 
 @goto end
 
