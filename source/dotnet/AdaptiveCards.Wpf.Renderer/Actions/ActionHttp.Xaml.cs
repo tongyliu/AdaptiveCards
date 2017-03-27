@@ -22,7 +22,7 @@ namespace AdaptiveCards.Renderers
         /// <param name="httpAction"></param>
         /// <returns></returns>
 
-        protected override FrameworkElement RenderActionHttp(ActionHttp action, RenderContext context)
+        protected override FrameworkElement Render(ActionHttp action, RenderContext context)
         {
             if (this.Options.SupportInteraction)
             {

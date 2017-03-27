@@ -12,9 +12,9 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        protected override FrameworkElement RenderColumn(Column column, RenderContext context)
+        protected override FrameworkElement Render(Column column, RenderContext context)
         {
-            return this.RenderContainer(column, context);
+            return this.Render((Container)column, context);
         }
     }
 }

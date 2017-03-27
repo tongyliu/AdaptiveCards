@@ -23,7 +23,7 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        protected override FrameworkElement RenderInputChoiceSet(InputChoiceSet choiceSet, RenderContext context)
+        protected override FrameworkElement Render(InputChoiceSet choiceSet, RenderContext context)
         {
      
             if (this.Options.SupportInteraction)
@@ -123,7 +123,7 @@ namespace AdaptiveCards.Renderers
                     Text = choiceText,
                     Wrap = true
                 };
-                return RenderTextBlock(tb, context);
+                return Render(tb, context);
             }
         }
 

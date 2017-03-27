@@ -8,34 +8,95 @@ using System.Threading.Tasks;
 namespace AdaptiveCards.Renderers
 {
     public abstract class AdaptiveRenderer<TUIElement, TContext>
+        where TUIElement : class 
+        where TContext : class
     {
+        public AdaptiveRenderer(RenderOptions options)
+        {
+            this.Options = options;
+        }
+
+        public RenderOptions Options { get; set; }
+
         // containers
-        protected abstract TUIElement RenderCardElement(CardElement cardElement, TContext context);
-        protected abstract TUIElement RenderAdaptiveCard(AdaptiveCard card, TContext context);
-        protected abstract TUIElement RenderContainer(Container container, TContext context);
-        protected abstract TUIElement RenderColumnSet(ColumnSet columnSet, TContext context);
-        protected abstract TUIElement RenderColumn(Column column, TContext context);
-        protected abstract TUIElement RenderFactSet(FactSet factSet, TContext context);
-        protected abstract TUIElement RenderImageSet(ImageSet imageSet, TContext context);
+        protected virtual TUIElement Render(CardElement cardElement, TContext context)
+        {
+            if (cardElement is Image)
+                return Render((Image)cardElement, context);
+
+            if (cardElement is TextBlock)
+                return Render((TextBlock)cardElement, context);
+
+            if (cardElement is Container)
+                return Render((Container)cardElement, context);
+
+            if (cardElement is ColumnSet)
+                return Render((ColumnSet)cardElement, context);
+
+            if (cardElement is ImageSet)
+                return Render((ImageSet)cardElement, context);
+
+            if (cardElement is FactSet)
+                return Render((FactSet)cardElement, context);
+
+            if (cardElement is InputChoiceSet)
+                return Render((InputChoiceSet)cardElement, context);
+
+            if (cardElement is InputText)
+                return Render((InputText)cardElement, context);
+
+            if (cardElement is InputNumber)
+                return Render((InputNumber)cardElement, context);
+
+            if (cardElement is InputDate)
+                return Render((InputDate)cardElement, context);
+
+            if (cardElement is InputTime)
+                return Render((InputTime)cardElement, context);
+
+            if (cardElement is InputToggle)
+                return Render((InputToggle)cardElement, context);
+
+            return null;
+        }
+
+        protected abstract TUIElement Render(AdaptiveCard card, TContext context);
+        protected abstract TUIElement Render(Container container, TContext context);
+        protected abstract TUIElement Render(ColumnSet columnSet, TContext context);
+        protected abstract TUIElement Render(Column column, TContext context);
+        protected abstract TUIElement Render(FactSet factSet, TContext context);
+        protected abstract TUIElement Render(ImageSet imageSet, TContext context);
 
         // elements
-        protected abstract TUIElement RenderTextBlock(TextBlock textBlock, TContext context);
-        protected abstract TUIElement RenderImage(Image image, TContext context);
-        protected abstract Tuple<TUIElement, TUIElement> RenderFact(Fact fact, TContext context);
+        protected abstract TUIElement Render(TextBlock textBlock, TContext context);
+        protected abstract TUIElement Render(Image image, TContext context);
+        protected abstract Tuple<TUIElement, TUIElement> Render(Fact fact, TContext context);
 
         // input
-        protected abstract TUIElement RenderInputText(InputText inputText, TContext context);
-        protected abstract TUIElement RenderInputDate(InputDate inputDate, TContext context);
-        protected abstract TUIElement RenderInputNumber(InputNumber inputNumber, TContext context);
-        protected abstract TUIElement RenderInputTime(InputTime inputTime, TContext context);
-        protected abstract TUIElement RenderInputToggle(InputToggle inputToggle, TContext context);
-        protected abstract TUIElement RenderInputChoiceSet(InputChoiceSet choiceSet, TContext context);
+        protected abstract TUIElement Render(InputText inputText, TContext context);
+        protected abstract TUIElement Render(InputDate inputDate, TContext context);
+        protected abstract TUIElement Render(InputNumber inputNumber, TContext context);
+        protected abstract TUIElement Render(InputTime inputTime, TContext context);
+        protected abstract TUIElement Render(InputToggle inputToggle, TContext context);
+        protected abstract TUIElement Render(InputChoiceSet choiceSet, TContext context);
 
         // actions
-        protected abstract TUIElement RenderAction(ActionBase action, TContext context);
-        protected abstract TUIElement RenderActionHttp(ActionHttp action, TContext context);
-        protected abstract TUIElement RenderActionSubmit(ActionSubmit action, TContext context);
-        protected abstract TUIElement RenderActionOpenUrl(ActionOpenUrl action, TContext context);
-        protected abstract TUIElement RenderActionShowCard(ActionShowCard action, TContext context);
+        protected virtual TUIElement RenderAction(ActionBase action, TContext context)
+        {
+            if (action is ActionSubmit)
+                return this.Render((ActionSubmit)action, context);
+            if (action is ActionHttp)
+                return this.Render((ActionHttp)action, context);
+            if (action is ActionOpenUrl)
+                return this.Render((ActionOpenUrl)action, context);
+            if (action is ActionShowCard)
+                return this.Render((ActionShowCard)action, context);
+            return null;
+        }
+
+        protected abstract TUIElement Render(ActionHttp action, TContext context);
+        protected abstract TUIElement Render(ActionSubmit action, TContext context);
+        protected abstract TUIElement Render(ActionOpenUrl action, TContext context);
+        protected abstract TUIElement Render(ActionShowCard action, TContext context);
     }
 }

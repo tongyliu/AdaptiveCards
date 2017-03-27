@@ -46,11 +46,6 @@ namespace AdaptiveCards.Renderers
         }
     }
 
-    public class RenderOptions
-    {
-        public bool SupportInteraction { get; set; } = true;
-    }
-
 
     public class RenderContext
     {

@@ -45,14 +45,14 @@
 		},
 		{
 			"type": "Container",
-			"startGroup": true,
+			"separation":"strong",
 			"items": [
 				{
 					"type": "ColumnSet",
 					"columns": [
 						{
 							"type": "Column",
-							"size": "stretch",
+							"size": "80",
 							"items": [
 								{
 									"type": "TextBlock",
@@ -75,28 +75,29 @@
 						},
 						{
 							"type": "Column",
-							"size": "auto",
+							"size": "20",
+							"separation":"strong",
 							"items": [
 								{
 									"type": "TextBlock",
 									"text": "Seat",
-									"horizontalAlignment": "right",
+									"horizontalAlignment": "center",
 									"isSubtle": true
 								},
 								{
 									"type": "TextBlock",
 									"text": "14A",
-									"horizontalAlignment": "right"
+									"horizontalAlignment": "center"
 								},
 								{
 									"type": "TextBlock",
 									"text": "14B",
-									"horizontalAlignment": "right"
+									"horizontalAlignment": "center"
 								},
 								{
 									"type": "TextBlock",
 									"text": "14C",
-									"horizontalAlignment": "right"
+									"horizontalAlignment": "center"
 								}
 							]
 						}
@@ -106,7 +107,7 @@
 		},
 		{
 			"type": "Container",
-			"startGroup":true,
+			"separation":"strong",
 			"items": [
 				{
 					"type": "ColumnSet",
@@ -170,7 +171,7 @@
 		},
 		{
 			"type": "Container",
-			"startGroup":true,
+			"separation":"strong",
 			"items": [
 				{
 					"type": "ColumnSet",

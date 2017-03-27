@@ -25,7 +25,7 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="container"></param>
         /// <returns></returns>
-        protected override FrameworkElement RenderContainer(Container container, RenderContext context)
+        protected override FrameworkElement Render(Container container, RenderContext context)
         {
             var uiContainer = new Grid();
             uiContainer.Style = this.GetStyle("Adaptive.Container");
@@ -51,7 +51,7 @@ namespace AdaptiveCards.Renderers
             foreach (var cardElement in elements)
             {
                 // each element has a row
-                FrameworkElement uiElement = this.RenderCardElement(cardElement, context);
+                FrameworkElement uiElement = this.Render(cardElement, context);
                 if (uiElement != null)
                 {
                     if (grid.RowDefinitions.Count > 0)

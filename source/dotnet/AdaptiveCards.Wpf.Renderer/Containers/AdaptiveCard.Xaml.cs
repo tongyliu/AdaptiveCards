@@ -20,7 +20,7 @@ namespace AdaptiveCards.Renderers
         : AdaptiveRenderer<FrameworkElement, RenderContext>
     {
 
-        protected override FrameworkElement RenderAdaptiveCard(AdaptiveCard card, RenderContext context)
+        protected override FrameworkElement Render(AdaptiveCard card, RenderContext context)
         {
             var outerGrid = new Grid();
             outerGrid.Style = this.GetStyle("Adaptive.Card");

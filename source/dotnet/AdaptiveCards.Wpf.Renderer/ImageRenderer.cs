@@ -27,7 +27,7 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="options"></param>
         /// <param name="resources"></param>
-        public ImageRenderer(AdaptiveCards.Renderers.RenderOptions options, ResourceDictionary resources)
+        public ImageRenderer(RenderOptions options, ResourceDictionary resources)
         {
             options.SupportInteraction = false;
             _xamlRenderer = new XamlRenderer(options, resources);
@@ -38,11 +38,13 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="options"></param>
         /// <param name="stylePath"></param>
-        public ImageRenderer(AdaptiveCards.Renderers.RenderOptions options, string stylePath)
+        public ImageRenderer(RenderOptions options, string stylePath)
         {
             options.SupportInteraction = false;
             _xamlRenderer = new XamlRenderer(options, stylePath);
         }
+
+        public RenderOptions Options {  get { return _xamlRenderer.Options; } }
 
         /// <summary>
         /// Render the card as a PNG image in a STA compliant way suitable for running on servers 

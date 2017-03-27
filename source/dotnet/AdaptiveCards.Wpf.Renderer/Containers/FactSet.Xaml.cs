@@ -19,9 +19,8 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="factSet"></param>
         /// <returns></returns>
-        protected override FrameworkElement RenderFactSet(FactSet factSet, RenderContext context)
+        protected override FrameworkElement Render(FactSet factSet, RenderContext context)
         {
-
             var uiFactSet = new Grid();
             // grid.Margin = this.Theme.FactSetMargins;
             uiFactSet.Style = this.GetStyle("Adaptive.FactSet");
@@ -31,7 +30,7 @@ namespace AdaptiveCards.Renderers
             int iRow = 0;
             foreach (var fact in factSet.Facts)
             {
-                Tuple<FrameworkElement, FrameworkElement> uiElements = RenderFact(fact, context);
+                Tuple<FrameworkElement, FrameworkElement> uiElements = Render(fact, context);
                 uiFactSet.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
 
                 Grid.SetColumn(uiElements.Item1, 0);
@@ -51,7 +50,7 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="fact"></param>
         /// <returns></returns>
-        protected override Tuple<FrameworkElement, FrameworkElement> RenderFact(Fact fact, RenderContext context)
+        protected override Tuple<FrameworkElement, FrameworkElement> Render(Fact fact, RenderContext context)
         {
             return new Tuple<FrameworkElement, FrameworkElement>(
                 new UI.TextBlock()

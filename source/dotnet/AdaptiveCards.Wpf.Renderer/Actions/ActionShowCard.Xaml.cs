@@ -12,7 +12,7 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="showCardAction"></param>
         /// <returns></returns>
-        protected override FrameworkElement RenderActionShowCard(ActionShowCard action, RenderContext context)
+        protected override FrameworkElement Render(ActionShowCard action, RenderContext context)
         {
 
             if (this.Options.SupportInteraction)

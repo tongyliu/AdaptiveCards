@@ -13,7 +13,7 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="openUrlAction"></param>
         /// <returns></returns>
-        protected override FrameworkElement RenderActionOpenUrl(ActionOpenUrl action, RenderContext context)
+        protected override FrameworkElement Render(ActionOpenUrl action, RenderContext context)
         {
             if (this.Options.SupportInteraction)
             {

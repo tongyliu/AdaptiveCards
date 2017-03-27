@@ -20,7 +20,7 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        protected override FrameworkElement RenderInputToggle(InputToggle input, RenderContext context)
+        protected override FrameworkElement Render(InputToggle input, RenderContext context)
         {
 
             if (this.Options.SupportInteraction)
@@ -36,7 +36,7 @@ namespace AdaptiveCards.Renderers
             else
             {
                 var textBlock = new TextBlock() { Text = GetFallbackText(input) ?? input.Title };
-                return RenderTextBlock(textBlock, context);
+                return Render(textBlock, context);
             }
 
         }

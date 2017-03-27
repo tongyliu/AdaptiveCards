@@ -20,9 +20,8 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="columnSet"></param>
         /// <returns></returns>
-        protected override FrameworkElement RenderColumnSet(ColumnSet columnSet, RenderContext context)
+        protected override FrameworkElement Render(ColumnSet columnSet, RenderContext context)
         {
-
             var uiColumnSet = new Grid();
             uiColumnSet.Style = this.GetStyle("Adaptive.ColumnSet");
 
@@ -35,6 +34,7 @@ namespace AdaptiveCards.Renderers
                     {
                         case SeparationStyle.None:
                             break;
+
                         case SeparationStyle.Default:
                             {
                                 var sep = new Rectangle();
@@ -58,7 +58,7 @@ namespace AdaptiveCards.Renderers
                     }
                 }
 
-                FrameworkElement uiElement = this.RenderColumn(column, context);
+                FrameworkElement uiElement = this.Render(column, context);
 
                 // do some sizing magic using the magic GridUnitType.Star
                 var size = column.Size?.ToLower();

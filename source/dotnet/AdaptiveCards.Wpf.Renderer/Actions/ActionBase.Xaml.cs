@@ -17,19 +17,6 @@ namespace AdaptiveCards.Renderers
         : AdaptiveRenderer<FrameworkElement, RenderContext>
     {
 
-        protected override FrameworkElement RenderAction(ActionBase action, RenderContext context)
-        {
-            if (action is ActionSubmit)
-                return this.RenderActionSubmit((ActionSubmit)action, context);
-            if (action is ActionHttp)
-                return this.RenderActionHttp((ActionHttp)action, context);
-            if (action is ActionOpenUrl)
-                return this.RenderActionOpenUrl((ActionOpenUrl)action, context);
-            if (action is ActionShowCard)
-                return this.RenderActionShowCard((ActionShowCard)action, context);
-            return null;
-        }
-
         protected Button CreateActionButton(ActionBase action, RenderContext renderContext)
         {
 #if Xamarin

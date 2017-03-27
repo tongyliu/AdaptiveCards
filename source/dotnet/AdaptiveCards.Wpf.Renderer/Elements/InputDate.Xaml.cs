@@ -11,7 +11,7 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="input"></param>
         /// <returns></returns>
-        protected override FrameworkElement RenderInputDate(InputDate input, RenderContext context)
+        protected override FrameworkElement Render(InputDate input, RenderContext context)
         {
             if (this.Options.SupportInteraction)
             {
@@ -26,7 +26,7 @@ namespace AdaptiveCards.Renderers
             {
 
                 var textBlock = new TextBlock() { Text = GetFallbackText(input) ?? input.Placeholder };
-                return RenderTextBlock(textBlock, context);
+                return Render(textBlock, context);
             }
         }
     }

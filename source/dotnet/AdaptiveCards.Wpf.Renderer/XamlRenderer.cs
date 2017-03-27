@@ -26,8 +26,8 @@ namespace AdaptiveCards.Renderers
             ResourceDictionary resources,
             Action<object, ActionEventArgs> actionCallback = null,
             Action<object, MissingInputEventArgs> missingDataCallback = null)
+            : base(options)
         {
-            this.Options = options;
             this.Resources = resources;
             this.actionCallback = actionCallback;
             this.missingDataCallback = missingDataCallback;
@@ -37,15 +37,13 @@ namespace AdaptiveCards.Renderers
         public XamlRenderer(RenderOptions options, string stylePath,
             Action<object, ActionEventArgs> actionCallback = null,
             Action<object, MissingInputEventArgs> missingDataCallback = null)
+            : base(options)
         {
-            this.Options = options;
             this.StylePath = stylePath;
             this.actionCallback = actionCallback;
             this.missingDataCallback = missingDataCallback;
         }
 #endif
-        public RenderOptions Options { get; set; }
-        
         /// <summary>
         /// Resource dictionary to use when rendering
         /// </summary>
@@ -91,13 +89,13 @@ namespace AdaptiveCards.Renderers
         public FrameworkElement RenderAdaptiveCard(AdaptiveCard card)
         {
             RenderContext context = new RenderContext(this.actionCallback, this.missingDataCallback);
-            return RenderAdaptiveCard(card, context);
+            return Render(card, context);
         }
 
         public FrameworkElement RenderShowCard(ActionShowCard showCard)
         {
             RenderContext context = new RenderContext(this.actionCallback, this.missingDataCallback);
-            return RenderContainer(showCard.Card, context);
+            return Render(showCard.Card, context);
         }
 
 

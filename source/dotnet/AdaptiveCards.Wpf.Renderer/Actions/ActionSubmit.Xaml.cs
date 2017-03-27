@@ -13,7 +13,7 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="submitAction"></param>
         /// <returns></returns>
-        protected override FrameworkElement RenderActionSubmit(ActionSubmit action, RenderContext context)
+        protected override FrameworkElement Render(ActionSubmit action, RenderContext context)
         {
 
             if (this.Options.SupportInteraction)

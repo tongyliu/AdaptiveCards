@@ -19,7 +19,7 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="imageSet"></param>
         /// <returns></returns>
-        protected override FrameworkElement RenderImageSet(ImageSet imageSet, RenderContext context)
+        protected override FrameworkElement Render(ImageSet imageSet, RenderContext context)
         {
             var uiImageSet = new ListBox();
             uiImageSet.Style = this.GetStyle("Adaptive.ImageSet");
@@ -35,7 +35,7 @@ namespace AdaptiveCards.Renderers
             {
                 if (imageSet.ImageSize != ImageSize.Auto)
                     image.Size = imageSet.ImageSize;
-                var uiImage = this.RenderImage(image, context);
+                var uiImage = this.Render(image, context);
                 uiImageSet.Items.Add(uiImage);
             }
             return uiImageSet;

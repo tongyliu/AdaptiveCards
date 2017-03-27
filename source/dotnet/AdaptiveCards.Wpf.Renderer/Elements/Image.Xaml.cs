@@ -21,7 +21,7 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="image"></param>
         /// <returns></returns>
-        protected override FrameworkElement RenderImage(Image image, RenderContext context)
+        protected override FrameworkElement Render(Image image, RenderContext context)
         {
             var uiImage = new UI.Image();
 

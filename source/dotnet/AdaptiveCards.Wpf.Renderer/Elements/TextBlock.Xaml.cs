@@ -26,7 +26,7 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="textBlock"></param>
         /// <returns></returns>
-        protected override FrameworkElement RenderTextBlock(TextBlock textBlock, RenderContext context)
+        protected override FrameworkElement Render(TextBlock textBlock, RenderContext context)
         {
 
 #if WPF
