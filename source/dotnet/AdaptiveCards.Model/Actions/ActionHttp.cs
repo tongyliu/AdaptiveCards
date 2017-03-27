@@ -16,7 +16,9 @@ namespace AdaptiveCards
     /// </summary>
     public partial class ActionHttp : ActionBase
     {
-        public ActionHttp() : base() { }
+        public ActionHttp() : base() {
+            this.Type = "Action.Http";
+        }
 
 
         /// <summary>

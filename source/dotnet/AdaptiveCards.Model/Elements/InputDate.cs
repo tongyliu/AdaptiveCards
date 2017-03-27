@@ -15,6 +15,7 @@ namespace AdaptiveCards
     {
         public InputDate()
         {
+            this.Type = "Input.Date";
         }
 
         /// <summary>

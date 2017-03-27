@@ -17,7 +17,7 @@ namespace AdaptiveCards
     {
         public ActionOpenUrl()
         {
-
+            this.Type = "Action.OpenUrl";
         }
 
         /// <summary>

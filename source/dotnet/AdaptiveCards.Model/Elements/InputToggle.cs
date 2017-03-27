@@ -15,6 +15,7 @@ namespace AdaptiveCards
     {
         public InputToggle()
         {
+            this.Type = "Input.Toggle";
         }
 
         /// <summary>

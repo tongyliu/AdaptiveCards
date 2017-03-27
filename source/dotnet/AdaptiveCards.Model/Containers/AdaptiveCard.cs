@@ -17,7 +17,10 @@ namespace AdaptiveCards
 #endif
     public partial class AdaptiveCard : TypedElement
     {
-        public AdaptiveCard() { }
+        public AdaptiveCard()
+        {
+            this.Type = "AdaptiveCard";
+        }
 
 #if DESKTOP
         [XmlElement(typeof(TextBlock))]

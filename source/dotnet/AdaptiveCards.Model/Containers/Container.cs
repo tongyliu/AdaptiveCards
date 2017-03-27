@@ -14,7 +14,9 @@ namespace AdaptiveCards
     public partial class Container : CardElement
     {
         public Container()
-        { }
+        {
+            this.Type = "Container";
+        }
 
         /// <summary>
         /// Elements of the container

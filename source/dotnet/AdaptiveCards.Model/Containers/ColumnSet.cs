@@ -13,7 +13,10 @@ namespace AdaptiveCards
     /// </summary>
     public partial class ColumnSet : CardElement
     {
-        public ColumnSet() { }
+        public ColumnSet()
+        {
+            this.Type = "ColumnSet";
+        }
 
         /// <summary>
         /// Columns that are part of this group

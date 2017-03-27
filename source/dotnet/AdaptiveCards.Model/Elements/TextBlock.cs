@@ -15,7 +15,7 @@ namespace AdaptiveCards
     {
         public TextBlock() 
         {
-
+            this.Type = "TextBlock";
         }
 
         /// <summary>

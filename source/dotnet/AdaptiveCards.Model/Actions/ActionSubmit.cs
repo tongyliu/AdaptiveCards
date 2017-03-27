@@ -17,7 +17,7 @@ namespace AdaptiveCards
     {
         public ActionSubmit()
         {
-
+            this.Type = "Action.Submit";
         }
 
         /// <summary>

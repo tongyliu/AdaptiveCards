@@ -15,6 +15,7 @@ namespace AdaptiveCards
     {
         public InputTime()
         {
+            this.Type = "Input.Time";
         }
 
         /// <summary>

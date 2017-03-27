@@ -15,7 +15,7 @@ namespace AdaptiveCards
     {
         public ImageSet()
         {
-
+            this.Type = "ImageSet";
         }
 
         /// <summary>

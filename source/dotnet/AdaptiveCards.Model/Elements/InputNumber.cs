@@ -15,7 +15,9 @@ namespace AdaptiveCards
     {
         public InputNumber()
         {
+            this.Type = "Input.Number";
         }
+
 
         /// <summary>
         /// Placeholder text for the input desired

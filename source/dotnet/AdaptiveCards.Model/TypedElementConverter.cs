@@ -30,7 +30,7 @@ namespace AdaptiveCards
             {
                 typeName = typeName.Replace(".", string.Empty);
                 var type = typeof(TypedElement).GetTypeInfo().Assembly.ExportedTypes
-                    .Where(t => t.Namespace.Contains("Adaptive"))
+                    .Where(t => t.Namespace.Contains("AdaptiveCards"))
                     .FirstOrDefault(t => string.Equals(t.Name, typeName, StringComparison.CurrentCultureIgnoreCase));
                 if (type != null)
                 {

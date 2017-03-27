@@ -17,6 +17,7 @@ namespace AdaptiveCards
     {
         public InputChoiceSet()
         {
+            this.Type = "Input.ChoiceSet";
         }
 
         /// <summary>
