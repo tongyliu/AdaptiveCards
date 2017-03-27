@@ -117,30 +117,21 @@ namespace AdaptiveCards.Renderers
                         choiceText = $"* {JoinString(choices, "\n* ", "\n* ")}";
                     }
                 }
-                TextBlock tb;
-                tb = new TextBlock()
+                Container container = new Container() { Separation = choiceSet.Separation };
+                container.Items.Add(new TextBlock()
                 {
                     Text = choiceText,
                     Wrap = true
-                };
-                return Render(tb, context);
+                });
+                container.Items.Add(new TextBlock()
+                {
+                    Text = JoinString(choiceSet.Choices.Where(c => c.IsSelected).Select(c => c.Title).ToList(), ", ", " and "),
+                    Color = TextColor.Accent,
+                    Wrap = true
+                });
+                return Render(container, context);
             }
         }
 
-        private string JoinString(IList<string> choices, string sep, string last)
-        {
-            StringBuilder sb = new StringBuilder();
-            string s = string.Empty;
-            for (int i = 0; i < choices.Count - 1; i++)
-            {
-                sb.Append(s);
-                sb.Append(choices[i]);
-                s = sep;
-            }
-            if (choices.Count > 1)
-                sb.Append(last);
-            sb.Append(choices.Last());
-            return sb.ToString();
-        }
     }
 }

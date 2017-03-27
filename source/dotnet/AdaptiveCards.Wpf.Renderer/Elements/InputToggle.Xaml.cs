@@ -35,8 +35,18 @@ namespace AdaptiveCards.Renderers
             }
             else
             {
-                var textBlock = new TextBlock() { Text = GetFallbackText(input) ?? input.Title };
-                return Render(textBlock, context);
+                Container container = new Container() { Separation = input.Separation };
+                container.Items.Add(new TextBlock() { Text = GetFallbackText(input)});
+                if (input.Value != null)
+                {
+                    container.Items.Add(new TextBlock()
+                    {
+                        Text = (input.Value == (input.ValueOn ?? "true")) ? input.ValueOn ?? "selected" : input.ValueOff ?? "not selected",
+                        Color = TextColor.Accent,
+                        Wrap = true
+                    });
+                }
+                return Render(container, context);
             }
 
         }

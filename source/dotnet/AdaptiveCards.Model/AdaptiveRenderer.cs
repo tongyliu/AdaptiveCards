@@ -98,5 +98,22 @@ namespace AdaptiveCards.Renderers
         protected abstract TUIElement Render(ActionSubmit action, TContext context);
         protected abstract TUIElement Render(ActionOpenUrl action, TContext context);
         protected abstract TUIElement Render(ActionShowCard action, TContext context);
+
+        protected string JoinString(IList<string> choices, string sep, string last)
+        {
+            StringBuilder sb = new StringBuilder();
+            string s = string.Empty;
+            for (int i = 0; i < choices.Count - 1; i++)
+            {
+                sb.Append(s);
+                sb.Append(choices[i]);
+                s = sep;
+            }
+            if (choices.Count > 1)
+                sb.Append(last);
+            sb.Append(choices.Last());
+            return sb.ToString();
+        }
+
     }
 }

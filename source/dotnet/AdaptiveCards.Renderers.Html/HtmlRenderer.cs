@@ -30,21 +30,29 @@ namespace AdaptiveCards.Renderers
 
         protected override HtmlTag Render(ActionHttp action, object context)
         {
+            // not supported
             return null;
         }
 
         protected override HtmlTag Render(ActionOpenUrl action, object context)
         {
+            if (this.Options.SupportInteraction)
+            {
+                var uiButton = new LinkTag(action.Title, action.Url, action.Type.Replace(".", ""), "pushButton");
+                return uiButton;
+            }
             return null;
         }
 
         protected override HtmlTag Render(ActionShowCard action, object context)
         {
+            // not supported
             return null;
         }
 
         protected override HtmlTag Render(ActionSubmit action, object context)
         {
+            // not supported
             return null;
         }
 
@@ -106,26 +114,22 @@ namespace AdaptiveCards.Renderers
 
             if (this.Options.SupportInteraction && actions?.Any() == true)
             {
-                //var uiActionBar = new UniformGrid();
-                //uiActionBar.Rows = 1;
-                //uiActionBar.HorizontalAlignment = System.Windows.HorizontalAlignment.Right;
-                //uiActionBar.VerticalAlignment = System.Windows.VerticalAlignment.Bottom;
+                var uiActions = new DivTag()
+                    .AddClass("Container");
 
-                //int iCol = 0;
-                //foreach (var action in actions)
-                //{
-                //    // add actions
-                //    var uiAction = this.RenderAction(action, context);
-                //    if (uiAction != null)
-                //    {
-                //        Grid.SetColumn(uiAction, iCol++);
-                //        uiActionBar.Children.Add(uiAction);
-                //    }
-                //}
-                //uiActionBar.Style = this.GetStyle("Adaptive.Actions");
-                //grid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
-                //Grid.SetRow(uiActionBar, grid.RowDefinitions.Count - 1);
-                //grid.Children.Add(uiActionBar);
+                int iCol = 0;
+                foreach (var action in actions)
+                {
+                    // add actions
+                    var uiAction = this.RenderAction(action, context);
+                    if (uiAction != null)
+                    {
+                        uiActions.Children.Add(uiAction);
+                    }
+                }
+
+                if (uiActions.Children.Any())
+                    uiContainer.Children.Add(uiActions);
             }
         }
 
@@ -208,7 +212,7 @@ namespace AdaptiveCards.Renderers
                     double val;
                     if (double.TryParse(size, out val))
                     {
-                        var percent = Convert.ToInt32(100*(val / max));
+                        var percent = Convert.ToInt32(100 * (val / max));
                         uiColumn = uiColumn.Style("flex", $"1 1 {percent}%");
                     }
                     else
@@ -372,31 +376,138 @@ namespace AdaptiveCards.Renderers
 
         protected override HtmlTag Render(InputChoiceSet choiceSet, object context)
         {
-            return null;
+            string choiceText = this.GetFallbackText(choiceSet);
+            if (choiceText == null)
+            {
+                List<string> choices = choiceSet.Choices.Select(choice => choice.Title).ToList();
+                if (choiceSet.Style == ChoiceInputStyle.Compact)
+                {
+                    if (choiceSet.IsMultiSelect)
+                    {
+                        choiceText = $"Choices: {JoinString(choices, ", ", " and ")}";
+                    }
+                    else
+                    {
+                        choiceText = $"Choices: {JoinString(choices, ", ", " or ")}";
+                    }
+                }
+                else // if (this.Style == ChoiceInputStyle.Expanded)
+                {
+                    choiceText = $"* {JoinString(choices, "\n* ", "\n* ")}";
+                }
+            }
+            Container container = new Container() { Separation = choiceSet.Separation };
+            container.Items.Add(new TextBlock()
+            {
+                Text = choiceText,
+                Wrap = true
+            });
+            container.Items.Add(new TextBlock()
+            {
+                Text = JoinString(choiceSet.Choices.Where(c => c.IsSelected).Select(c => c.Title).ToList(), ", ", " and "),
+                Color = TextColor.Accent,
+                Wrap = true
+            });
+            return Render(container, context);
         }
 
-        protected override HtmlTag Render(InputDate inputDate, object context)
+        protected override HtmlTag Render(InputDate input, object context)
         {
-            return null;
+            Container container = new Container() { Separation = input.Separation };
+            container.Items.Add(new TextBlock() { Text = GetFallbackText(input) ?? input.Placeholder });
+            if (input.Value != null)
+            {
+
+                container.Items.Add(new TextBlock()
+                {
+                    Text = input.Value,
+                    Color = TextColor.Accent,
+                    Wrap = true
+                });
+            }
+            return Render(container, context);
         }
 
-        protected override HtmlTag Render(InputNumber inputNumber, object context)
+        protected override HtmlTag Render(InputNumber input, object context)
         {
-            return null;
+            Container container = new Container() { Separation = input.Separation };
+            container.Items.Add(new TextBlock() { Text = GetFallbackText(input) ?? input.Placeholder });
+            if (input.Value != null)
+            {
+                container.Items.Add(new TextBlock()
+                {
+                    Text = input.Value,
+                    Color = TextColor.Accent,
+                    Wrap = true
+                });
+            }
+            return Render(container, context);
         }
 
-        protected override HtmlTag Render(InputText inputText, object context)
+        protected override HtmlTag Render(InputText input, object context)
         {
-            return null;
+            Container container = new Container() { Separation = input.Separation };
+            container.Items.Add(new TextBlock() { Text = GetFallbackText(input) ?? input.Placeholder });
+            if (input.Value != null)
+            {
+
+                container.Items.Add(new TextBlock()
+                {
+                    Text = input.Value,
+                    Color = TextColor.Accent,
+                    Wrap = true
+                });
+            }
+            return Render(container, context);
         }
 
-        protected override HtmlTag Render(InputTime inputTime, object context)
+        protected override HtmlTag Render(InputTime input, object context)
         {
-            return null;
+            Container container = new Container() { Separation = input.Separation };
+            container.Items.Add(new TextBlock() { Text = GetFallbackText(input) ?? input.Placeholder });
+            if (input.Value != null)
+            {
+                container.Items.Add(new TextBlock()
+                {
+                    Text = input.Value,
+                    Color = TextColor.Accent,
+                    Wrap = true
+                });
+            }
+            return Render(container, context);
         }
 
-        protected override HtmlTag Render(InputToggle inputToggle, object context)
+        protected override HtmlTag Render(InputToggle input, object context)
         {
+            Container container = new Container() { Separation = input.Separation };
+            container.Items.Add(new TextBlock() { Text = GetFallbackText(input) });
+            if (input.Value != null)
+            {
+                container.Items.Add(new TextBlock()
+                {
+                    Text = (input.Value == (input.ValueOn ?? "true")) ? input.ValueOn ?? "selected" : input.ValueOff ?? "not selected",
+                    Color = TextColor.Accent,
+                    Wrap = true
+                });
+            }
+            return Render(container, context);
+        }
+
+        protected string GetFallbackText(CardElement cardElement)
+        {
+            if (!string.IsNullOrEmpty(cardElement.Speak))
+            {
+
+                // TODO: Fix xamarin fallback
+                var doc = new System.Xml.XmlDocument();
+                var xml = cardElement.Speak;
+                if (!xml.Trim().StartsWith("<"))
+                    xml = $"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Speak>{xml}</Speak>";
+                else if (!xml.StartsWith("<?xml "))
+                    xml = $"<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n{xml}";
+                doc.LoadXml(xml);
+                return doc.InnerText;
+            }
             return null;
         }
 

@@ -13,7 +13,7 @@ namespace AdaptiveCards.Renderers
         /// </summary>
         /// <param name="text"></param>
         /// <returns></returns>
-        public string GetFallbackText(CardElement cardElement)
+        protected string GetFallbackText(CardElement cardElement)
         {
 #if WPF
             if (!string.IsNullOrEmpty(cardElement.Speak))
