@@ -2300,191 +2300,137 @@ h3 {
     ]
 });</script>
 </div>
-<h2 onclick='toggleContent("ActionOpenUrlContent")'>ActionOpenUrl</h2>
-<div id='ActionOpenUrlContent' style='display:none'>
-<p>When Action.OpenUrl is invoked it will show the given url, either by launching it to an external web browser or showing in-situ 
-with embedded web browser</p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>type</strong></td>
-<td>string</td>
-<td>true</td>
-<td><strong>&quot;Action.OpenUrl&quot;</strong></td>
-</tr>
-<tr>
-<td><strong>title</strong></td>
-<td>string</td>
-<td>true</td>
-<td>Label for button or link that represents this action</td>
-</tr>
-<tr>
-<td><strong>speak</strong></td>
-<td><a href="/Microsoft/AdaptiveCards/blob/master/docs/SpeechAndAdvancedCustomization.md">Speak</a></td>
-<td>false</td>
-<td>Specifies what should be spoken for this entire element.  This is simple text or SSML fragment</td>
-</tr>
-<tr>
-<td><strong>url</strong></td>
-<td>string</td>
-<td>true</td>
-<td>Default (browser) url to use</td>
-</tr>
-</tbody>
-</table>
-
+<h2 onclick='toggleContent("Action.OpenUrlContent")'>Action.OpenUrl</h2>
+<div id='Action.OpenUrlContent' style='display:none'>
+<h3 onclick='toggleContent("Action.OpenUrlContent")'>Action.OpenUrl.OpenUrl</h3>
+<div id='Action.OpenUrlContent' style='display:block'>
+<div id='Action.OpenUrlCard' class='card' ></div>
+<a class='trymelink' target='_blank' href='/AdaptiveCards/?card=https://microsoft.github.io/AdaptiveCards/samples/Elements/Action.OpenUrl.json'>Try it Yourself »</a>
+</div><script>renderCard('Action.OpenUrlCard', {
+    "$schema": "https://microsoft.github.io/AdaptiveCards/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.0",
+    "body": [
+        {
+            "type": "Image",
+            "url": "http://images.clipartpanda.com/free-clip-art-animals-Hippo_Animal_Clipart.png"
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.OpenUrl",
+            "title": "Action.OpenUrl",
+            "url": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+        }
+    ]
+});</script>
 </div>
-<h2 onclick='toggleContent("ActionSubmitContent")'>ActionSubmit</h2>
-<div id='ActionSubmitContent' style='display:none'>
-<p>Action.Submit gathers up input fields, merges with optional data field and generates event to 
-client asking for data to be submitted.  It is up to the client to determine how that data is processed.
-For example: With BotFramework bots the client would send an activity through the messaging medium to the bot.</p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>type</strong></td>
-<td>string</td>
-<td>true</td>
-<td><strong>&quot;Action.Submit&quot;</strong></td>
-</tr>
-<tr>
-<td><strong>title</strong></td>
-<td>string</td>
-<td>true</td>
-<td>Label for button or link that represents this action</td>
-</tr>
-<tr>
-<td><strong>speak</strong></td>
-<td><a href="/Microsoft/AdaptiveCards/blob/master/docs/SpeechAndAdvancedCustomization.md">Speak</a></td>
-<td>false</td>
-<td>Specifies what should be spoken for this entire element.  This is simple text or SSML fragment</td>
-</tr>
-<tr>
-<td><strong>data</strong></td>
-<td>object</td>
-<td>false</td>
-<td>initial data that input fields will be combined with.  This is essentially &#39;hidden&#39; properties</td>
-</tr>
-</tbody>
-</table>
-
+<h2 onclick='toggleContent("Action.SubmitContent")'>Action.Submit</h2>
+<div id='Action.SubmitContent' style='display:none'>
+<h3 onclick='toggleContent("Action.SubmitContent")'>Action.Submit.Submit</h3>
+<div id='Action.SubmitContent' style='display:block'>
+<div id='Action.SubmitCard' class='card' ></div>
+<a class='trymelink' target='_blank' href='/AdaptiveCards/?card=https://microsoft.github.io/AdaptiveCards/samples/Elements/Action.Submit.json'>Try it Yourself »</a>
+</div><script>renderCard('Action.SubmitCard', {
+    "$schema": "https://microsoft.github.io/AdaptiveCards/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.0",
+    "body": [
+        {
+            "type": "Input.Text",
+            "id":"firstName",
+            "placeholder": "What is your first name?"
+        },
+        {
+            "type": "Input.Text",
+            "id":"lastName",
+            "placeholder": "What is your last name?"
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.Submit",
+            "title": "Action.Submit",
+            "data": {
+                "x" : 13
+            }            
+        }
+    ]
+});</script>
 </div>
-<h2 onclick='toggleContent("ActionHttpContent")'>ActionHttp</h2>
-<div id='ActionHttpContent' style='display:none'>
-<p>Action.Http represents the properties needed to do an Http request. All input properties are available for use via 
-data binding.  Properties can be data bound to the Uri and Body properties, allowing you to send a request
-to an arbitrary url.</p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>type</strong></td>
-<td>string</td>
-<td>true</td>
-<td><strong>&quot;HttpAction&quot;</strong></td>
-</tr>
-<tr>
-<td><strong>title</strong></td>
-<td>string</td>
-<td>true</td>
-<td>Label for button or link that represents this action</td>
-</tr>
-<tr>
-<td><strong>speak</strong></td>
-<td><a href="/Microsoft/AdaptiveCards/blob/master/docs/SpeechAndAdvancedCustomization.md">Speak</a></td>
-<td>false</td>
-<td>Specifies what should be spoken for this entire element.  This is simple text or SSML fragment</td>
-</tr>
-<tr>
-<td><strong>url</strong></td>
-<td>string</td>
-<td>true</td>
-<td>url to use (can have binding information)</td>
-</tr>
-<tr>
-<td><strong>method</strong></td>
-<td>string</td>
-<td>true</td>
-<td>Http method (Example: POST)</td>
-</tr>
-<tr>
-<td><strong>headers</strong></td>
-<td>object</td>
-<td>false</td>
-<td>Object which represents headers Example: { &quot;content-type&quot;:&quot;application/json&quot; }</td>
-</tr>
-<tr>
-<td><strong>body</strong></td>
-<td>string</td>
-<td>false</td>
-<td>content to post (can have binding information)</td>
-</tr>
-</tbody>
-</table>
-
+<h2 onclick='toggleContent("Action.HttpContent")'>Action.Http</h2>
+<div id='Action.HttpContent' style='display:none'>
+<h3 onclick='toggleContent("Action.HttpContent")'>Action.Http.Http</h3>
+<div id='Action.HttpContent' style='display:block'>
+<div id='Action.HttpCard' class='card' ></div>
+<a class='trymelink' target='_blank' href='/AdaptiveCards/?card=https://microsoft.github.io/AdaptiveCards/samples/Elements/Action.Http.json'>Try it Yourself »</a>
+</div><script>renderCard('Action.HttpCard', {
+    "$schema": "https://microsoft.github.io/AdaptiveCards/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.0",
+    "body": [
+        {
+            "type": "Input.Text",
+            "id": "firstName",
+            "placeholder": "What is your first name?"
+        },
+        {
+            "type": "Input.Text",
+            "id": "lastName",
+            "placeholder": "What is your last name?"
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.Http",
+            "method": "POST",
+            "url": "http://some.com/webhook",
+            "title": "Action.Submit",
+            "body": "x=13&fn={{firstName.Value}}&ln={{lastName.Value}}",
+            "headers": {
+                "content-type":"xyz"
+            }
+        }
+    ]
+});</script>
 </div>
-<h2 onclick='toggleContent("ActionShowCardContent")'>ActionShowCard</h2>
-<div id='ActionShowCardContent' style='display:none'>
-<p>Action.ShowCard defines an inline AdaptiveCard which is shown to the user when it is clicked.</p>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Type</th>
-<th>Required</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><strong>type</strong></td>
-<td>string</td>
-<td>true</td>
-<td><strong>Action.ShowCard&quot;</strong></td>
-</tr>
-<tr>
-<td><strong>title</strong></td>
-<td>string</td>
-<td>true</td>
-<td>Label for button or link that represents this action</td>
-</tr>
-<tr>
-<td><strong>speak</strong></td>
-<td><a href="/Microsoft/AdaptiveCards/blob/master/docs/SpeechAndAdvancedCustomization.md">Speak</a></td>
-<td>false</td>
-<td>Specifies what should be spoken for this entire element.  This is simple text or SSML fragment</td>
-</tr>
-<tr>
-<td><strong>card</strong></td>
-<td><a href="#container">Container</a></td>
-<td>true</td>
-<td>inline container  defining the card to be shown when this action is invoked. It is up to client to decide how to show this inline card.</td>
-</tr>
-</tbody>
-</table>
-
+<h2 onclick='toggleContent("Action.ShowCardContent")'>Action.ShowCard</h2>
+<div id='Action.ShowCardContent' style='display:none'>
+<h3 onclick='toggleContent("Action.ShowCardContent")'>Action.ShowCard.ShowCard</h3>
+<div id='Action.ShowCardContent' style='display:block'>
+<div id='Action.ShowCardCard' class='card' ></div>
+<a class='trymelink' target='_blank' href='/AdaptiveCards/?card=https://microsoft.github.io/AdaptiveCards/samples/Elements/Action.ShowCard.json'>Try it Yourself »</a>
+</div><script>renderCard('Action.ShowCardCard', {
+    "$schema": "https://microsoft.github.io/AdaptiveCards/schemas/adaptive-card.json",
+    "type": "AdaptiveCard",
+    "version": "1.0",
+    "body": [
+        {
+            "type": "TextBlock",
+            "text": "Hello world"
+        }
+    ],
+    "actions": [
+        {
+            "type": "Action.ShowCard",
+            "title": "Action.ShowCard",
+            "card": {
+                "type": "Container",
+                "items": [
+                    {
+                        "type": "TextBlock",
+                        "text":"What do you think?"
+                    }
+                ],
+                "actions": [
+                    {
+                        "type":"Action.Submit",
+                        "title":"OK"
+                    }
+                ]
+            }
+        }
+    ]
+});</script>
 </div>
 </body></html>
