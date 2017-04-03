@@ -2,9 +2,9 @@
 <head>
     <meta charset = "utf-8" />
     <title> Adaptive Cards - Basic Example </title>
-    <link rel = "stylesheet" type = "text/css" href = "/AdaptiveCards/css/outlookConnectorCard.css"> 
-    <script src = "adaptive-cards.js"></script>  
-	
+	<link rel="stylesheet" type="text/css" href="/AdaptiveCards/css/outlookConnectorCard.css">  
+    <script src = "adaptive-cards.js"></script> 
+
 <style type = "text/css">
 
 body {
@@ -1140,64 +1140,6 @@ h3 {
 </tbody>
 </table>
 
-<h3 onclick='toggleContent("Column.BackgroundColorContent")'>Column.BackgroundColor</h3>
-<div id='Column.BackgroundColorContent' style='display:block'>
-<div id='Column.BackgroundColorCard' class='card' ></div>
-<a class='trymelink' target='_blank' href='/AdaptiveCards/?card=https://microsoft.github.io/AdaptiveCards/samples/Elements/Column.BackgroundColor.json'>Try it Yourself »</a>
-</div><script>renderCard('Column.BackgroundColorCard', {
-    "$schema": "https://microsoft.github.io/AdaptiveCards/schemas/adaptive-card.json",
-    "type": "AdaptiveCard",
-    "version": "1.0",
-    "body": [
-        {
-            "type": "ColumnSet",
-            "columns": [
-                {
-                    "type": "Column",
-                    "backgroundColor": "pink",
-                    "items": [
-                        {
-                            "type": "TextBlock",
-                            "text": "Column 1"
-                        },
-                        {
-                            "type": "Image",
-                            "url": "http://images.clipartpanda.com/free-clip-art-animals-Hippo_Animal_Clipart.png"
-                        }
-                    ]
-                },
-                {
-                    "type": "Column",
-                    "backgroundColor": "lightblue",
-                    "items": [
-                        {
-                            "type": "TextBlock",
-                            "text": "Column 2"
-                        },
-                        {
-                            "type": "Image",
-                            "url": "http://images.clipartpanda.com/free-clip-art-animals-Hippo_Animal_Clipart.png"
-                        }
-                    ]
-                },
-                {
-                    "type": "Column",
-                    "backgroundColor": "lightgreen",
-                    "items": [
-                        {
-                            "type": "TextBlock",
-                            "text": "Column 3"
-                        },
-                        {
-                            "type": "Image",
-                            "url": "http://images.clipartpanda.com/free-clip-art-animals-Hippo_Animal_Clipart.png"
-                        }
-                    ]
-                }
-            ]
-        }
-    ]
-});</script>
 <h3 onclick='toggleContent("Column.SelectActionContent")'>Column.SelectAction</h3>
 <div id='Column.SelectActionContent' style='display:block'>
 <div id='Column.SelectActionCard' class='card' ></div>
