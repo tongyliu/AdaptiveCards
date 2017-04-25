@@ -6,10 +6,10 @@
 	"backgroundImage": "http://messagecardplayground.azurewebsites.net/assets/Mostly Cloudy-Background-Dark.jpg",
 	"body": [
 		{
-			"type": "ColumnSet",
-			"columns": [
+			"type": "ContainerSet",
+			"containers": [
 				{
-					"type": "Column",
+					"type": "Container",
 					"size": "35",
 					"items": [
 						{
@@ -20,7 +20,7 @@
 					]
 				},
 				{
-					"type": "Column",
+					"type": "Container",
 					"size": "65",
 					"items": [
 						{
@@ -51,10 +51,10 @@
 			]
 		},
 		{
-			"type": "ColumnSet",
-			"columns": [
+			"type": "ContainerSet",
+			"containers": [
 				{
-					"type": "Column",
+					"type": "Container",
 					"size": "20",
 					"items": [
 						{
@@ -85,7 +85,7 @@
 					}
 				},
 				{
-					"type": "Column",
+					"type": "Container",
 					"size": "20",
 					"items": [
 						{
@@ -116,7 +116,7 @@
 					}
 				},
 				{
-					"type": "Column",
+					"type": "Container",
 					"size": "20",
 					"items": [
 						{
@@ -147,7 +147,7 @@
 					}
 				},
 				{
-					"type": "Column",
+					"type": "Container",
 					"size": "20",
 					"items": [
 						{

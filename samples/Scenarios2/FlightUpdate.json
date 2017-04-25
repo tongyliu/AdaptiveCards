@@ -4,10 +4,10 @@
 	"speak": "<s>Flight KL0605 to San Fransisco has been delayed.</s><s>It will not leave until 10:10 AM.</s>",
 	"body": [
 		{
-			"type": "ColumnSet",
-			"columns": [
+			"type": "ContainerSet",
+			"containers": [
 				{
-					"type": "Column",
+					"type": "Container",
 					"size": "auto",
 					"items": [
 						{
@@ -18,7 +18,7 @@
 					]
 				},
 				{
-					"type": "Column",
+					"type": "Container",
 					"size": "stretch",
 					"items": [
 						{
@@ -39,11 +39,11 @@
 			]
 		},
 		{
-			"type": "ColumnSet",
+			"type": "ContainerSet",
 			"separation": "strong",
-			"columns": [
+			"containers": [
 				{
-					"type": "Column",
+					"type": "Container",
 					"size": "stretch",
 					"items": [
 						{
@@ -66,7 +66,7 @@
 					]
 				},
 				{
-					"type": "Column",
+					"type": "Container",
 					"size": "auto",
 					"items": [
 						{
@@ -95,11 +95,11 @@
 			]
 		},
 		{
-			"type": "ColumnSet",
+			"type": "ContainerSet",
 			"separation": "strong",
-			"columns": [
+			"containers": [
 				{
-					"type": "Column",
+					"type": "Container",
 					"size": 1,
 					"items": [
 						{
@@ -114,7 +114,7 @@
 					]
 				},
 				{
-					"type": "Column",
+					"type": "Container",
 					"size": "auto",
 					"items": [
 						{
@@ -133,7 +133,7 @@
 					]
 				},
 				{
-					"type": "Column",
+					"type": "Container",
 					"size": 1,
 					"items": [
 						{
@@ -154,11 +154,11 @@
 			]
 		},
 		{
-			"type": "ColumnSet",
+			"type": "ContainerSet",
 			"separation": "strong",
-			"columns": [
+			"containers": [
 				{
-					"type": "Column",
+					"type": "Container",
 					"size": 1,
 					"items": [
 						{
@@ -175,7 +175,7 @@
 					]
 				},
 				{
-					"type": "Column",
+					"type": "Container",
 					"size": "auto",
 					"items": [
 						{
@@ -190,7 +190,7 @@
 					]
 				},
 				{
-					"type": "Column",
+					"type": "Container",
 					"size": 1,
 					"items": [
 						{

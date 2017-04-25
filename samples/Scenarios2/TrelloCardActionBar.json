@@ -1,6 +1,7 @@
 {
 	"$schema": "https://microsoft.github.io/AdaptiveCards/schemas/adaptive-card.json",
 	"type": "AdaptiveCard",
+	"version": "1.0",
 	"body": [
 		{
 			"type": "Container",
@@ -13,10 +14,10 @@
 					"size": "medium"
 				},
 				{
-					"type": "ColumnSet",
-					"columns": [
+					"type": "ContainerSet",
+					"containers": [
 						{
-							"type": "Column",
+							"type": "Container",
 							"size": "auto",
 							"items": [
 								{
@@ -28,7 +29,7 @@
 							]
 						},
 						{
-							"type": "Column",
+							"type": "Container",
 							"size": "stretch",
 							"items": [
 								{
@@ -38,8 +39,7 @@
 								},
 								{
 									"type": "TextBlock",
-									"separation": "none",
-									"text": "Created {{DATE(2017-02-14T06:08:39Z,Long)}} {{TIME(2017-02-14T06:08:39Z)}}",
+									"text": "9/13/2016, 3:34pm",
 									"isSubtle": true,
 									"wrap": true
 								}
@@ -88,12 +88,18 @@
 			"type": "Action.ShowCard",
 			"title": "Set due date",
 			"card": {
-				"type": "AdaptiveCard",
-				"body": [
+				"type": "Container",
+				"items": [
 					{
 						"type": "Input.Date",
 						"id": "dueDate",
-						"title": "Select due date"
+						"placeholder": "Select a date"
+					}
+				],
+				"actions": [
+					{
+						"type": "Action.Submit",
+						"title": "OK"
 					}
 				]
 			}
@@ -102,25 +108,13 @@
 			"type": "Action.ShowCard",
 			"title": "Comment",
 			"card": {
-				"type": "AdaptiveCard",
-				"body": [
+				"type": "Container",
+				"items": [
 					{
 						"type": "Input.Text",
 						"id": "comment",
 						"isMultiline": true,
 						"placeholder": "Enter your comment"
-					}
-				],
-				"actions": [
-					{
-						"type": "Action.Http",
-						"method": "POST",
-						"title": "OK",
-						"url": "http://xyz.com",
-						"headers": {
-							"content-type": "application/json"
-						},
-						"body": "{ 'comment' : '{{comment.value}}' }"
 					}
 				]
 			}
@@ -128,7 +122,7 @@
 		{
 			"type": "Action.OpenUrl",
 			"title": "View",
-			"url": "http://foo.com"
+			"url": "http://microsoft.com"
 		}
 	]
 }

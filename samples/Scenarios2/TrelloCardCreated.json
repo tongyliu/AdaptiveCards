@@ -13,10 +13,10 @@
 					"size": "medium"
 				},
 				{
-					"type": "ColumnSet",
-					"columns": [
+					"type": "ContainerSet",
+					"containers": [
 						{
-							"type": "Column",
+							"type": "Container",
 							"size": "auto",
 							"items": [
 								{
@@ -28,7 +28,7 @@
 							]
 						},
 						{
-							"type": "Column",
+							"type": "Container",
 							"size": "stretch",
 							"items": [
 								{
@@ -88,12 +88,23 @@
 			"type": "Action.ShowCard",
 			"title": "Set due date",
 			"card": {
-				"type": "AdaptiveCard",
-				"body": [
+				"type": "Container",
+				"items": [
 					{
 						"type": "Input.Date",
 						"id": "dueDate",
 						"title": "Select due date"
+					},
+					{
+						"type": "ActionSet",
+						"actions": [
+							{
+								"type": "Action.Http",
+								"method": "POST",
+								"title": "OK",
+								"url": "http://xyz.com?dueDate={{dueDate.value}}"
+							}
+						]
 					}
 				]
 			}
@@ -102,8 +113,8 @@
 			"type": "Action.ShowCard",
 			"title": "Comment",
 			"card": {
-				"type": "AdaptiveCard",
-				"body": [
+				"type": "Container",
+				"items": [
 					{
 						"type": "Input.Text",
 						"id": "comment",

@@ -199,18 +199,18 @@
     {
       "type": "Action.ShowCard",
       "card": {
-        "type": "AdaptiveCard",
-        "body": [
+        "type": "Container",
+        "items": [
           {
             "type": "TextBlock",
             "isSubtle": true,
             "text": "Seattle vs Panthers"
           },
           {
-            "type": "ColumnSet",
-            "columns": [
+            "type": "ContainerSet",
+            "containers": [
               {
-                "type": "Column",
+                "type": "Container",
                 "size": "auto",
                 "items": [
                   {
@@ -228,7 +228,7 @@
                 ]
               },
               {
-                "type": "Column",
+                "type": "Container",
                 "size": "stretch",
                 "items": [
                   {
@@ -250,7 +250,7 @@
                 ]
               },
               {
-                "type": "Column",
+                "type": "Container",
                 "size": "auto",
                 "items": [
                   {
@@ -274,7 +274,7 @@
             "placeholder": "enter comment",
             "style": "text",
             "maxLength": 0,
-            "id": "CommentVal"
+            "id": "SimpleVal"
           }
         ],
         "actions": [
