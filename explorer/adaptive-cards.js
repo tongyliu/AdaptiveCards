@@ -151,7 +151,7 @@ var UNESCAPE_ALL_RE = new RegExp(UNESCAPE_MD_RE.source + '|' + ENTITY_RE.source,
 
 var DIGITAL_ENTITY_TEST_RE = /^#((?:x[a-f0-9]{1,8}|[0-9]{1,8}))/i;
 
-var entities = __webpack_require__(6);
+var entities = __webpack_require__(5);
 
 function replaceEntityPattern(match, name) {
   var code = 0;
@@ -257,7 +257,7 @@ function isWhiteSpace(code) {
 ////////////////////////////////////////////////////////////////////////////////
 
 /*eslint-disable max-len*/
-var UNICODE_PUNCT_RE = __webpack_require__(4);
+var UNICODE_PUNCT_RE = __webpack_require__(3);
 
 // Currently without astral characters support.
 function isPunctChar(ch) {
@@ -328,7 +328,7 @@ function normalizeReference(str) {
 // bundled size (e.g. a browser build).
 //
 exports.lib                 = {};
-exports.lib.mdurl           = __webpack_require__(10);
+exports.lib.mdurl           = __webpack_require__(9);
 exports.lib.ucmicro         = __webpack_require__(72);
 
 exports.assign              = assign;
@@ -351,186 +351,6 @@ exports.normalizeReference  = normalizeReference;
 
 /***/ }),
 /* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-Object.defineProperty(exports, "__esModule", { value: true });
-var ActionButtonStyle;
-(function (ActionButtonStyle) {
-    ActionButtonStyle[ActionButtonStyle["Link"] = 0] = "Link";
-    ActionButtonStyle[ActionButtonStyle["Push"] = 1] = "Push";
-})(ActionButtonStyle = exports.ActionButtonStyle || (exports.ActionButtonStyle = {}));
-var ActionButtonState;
-(function (ActionButtonState) {
-    ActionButtonState[ActionButtonState["Normal"] = 0] = "Normal";
-    ActionButtonState[ActionButtonState["Expanded"] = 1] = "Expanded";
-    ActionButtonState[ActionButtonState["Subdued"] = 2] = "Subdued";
-})(ActionButtonState = exports.ActionButtonState || (exports.ActionButtonState = {}));
-var Size;
-(function (Size) {
-    Size[Size["Auto"] = 0] = "Auto";
-    Size[Size["Stretch"] = 1] = "Stretch";
-    Size[Size["Small"] = 2] = "Small";
-    Size[Size["Medium"] = 3] = "Medium";
-    Size[Size["Large"] = 4] = "Large";
-})(Size = exports.Size || (exports.Size = {}));
-var TextSize;
-(function (TextSize) {
-    TextSize[TextSize["Small"] = 0] = "Small";
-    TextSize[TextSize["Normal"] = 1] = "Normal";
-    TextSize[TextSize["Medium"] = 2] = "Medium";
-    TextSize[TextSize["Large"] = 3] = "Large";
-    TextSize[TextSize["ExtraLarge"] = 4] = "ExtraLarge";
-})(TextSize = exports.TextSize || (exports.TextSize = {}));
-var TextWeight;
-(function (TextWeight) {
-    TextWeight[TextWeight["Lighter"] = 0] = "Lighter";
-    TextWeight[TextWeight["Normal"] = 1] = "Normal";
-    TextWeight[TextWeight["Bolder"] = 2] = "Bolder";
-})(TextWeight = exports.TextWeight || (exports.TextWeight = {}));
-var TextColor;
-(function (TextColor) {
-    TextColor[TextColor["Dark"] = 0] = "Dark";
-    TextColor[TextColor["Light"] = 1] = "Light";
-    TextColor[TextColor["Accent"] = 2] = "Accent";
-    TextColor[TextColor["Good"] = 3] = "Good";
-    TextColor[TextColor["Warning"] = 4] = "Warning";
-    TextColor[TextColor["Attention"] = 5] = "Attention";
-})(TextColor = exports.TextColor || (exports.TextColor = {}));
-var HorizontalAlignment;
-(function (HorizontalAlignment) {
-    HorizontalAlignment[HorizontalAlignment["Left"] = 0] = "Left";
-    HorizontalAlignment[HorizontalAlignment["Center"] = 1] = "Center";
-    HorizontalAlignment[HorizontalAlignment["Right"] = 2] = "Right";
-})(HorizontalAlignment = exports.HorizontalAlignment || (exports.HorizontalAlignment = {}));
-var ImageStyle;
-(function (ImageStyle) {
-    ImageStyle[ImageStyle["Normal"] = 0] = "Normal";
-    ImageStyle[ImageStyle["Person"] = 1] = "Person";
-})(ImageStyle = exports.ImageStyle || (exports.ImageStyle = {}));
-var Separation;
-(function (Separation) {
-    Separation[Separation["None"] = 0] = "None";
-    Separation[Separation["Default"] = 1] = "Default";
-    Separation[Separation["Strong"] = 2] = "Strong";
-})(Separation = exports.Separation || (exports.Separation = {}));
-var RenderError;
-(function (RenderError) {
-    RenderError[RenderError["MissingCardType"] = 0] = "MissingCardType";
-    RenderError[RenderError["UnsupportedVersion"] = 1] = "UnsupportedVersion";
-    RenderError[RenderError["ElementTypeNotAllowed"] = 2] = "ElementTypeNotAllowed";
-    RenderError[RenderError["ActionTypeNotAllowed"] = 3] = "ActionTypeNotAllowed";
-    RenderError[RenderError["NestedActionNotAllowed"] = 4] = "NestedActionNotAllowed";
-    RenderError[RenderError["TooManyActions"] = 5] = "TooManyActions";
-})(RenderError = exports.RenderError || (exports.RenderError = {}));
-function stringToSize(value, defaultValue) {
-    switch (value) {
-        case "auto":
-            return Size.Auto;
-        case "stretch":
-            return Size.Stretch;
-        case "small":
-            return Size.Small;
-        case "medium":
-            return Size.Medium;
-        case "large":
-            return Size.Large;
-        default:
-            return defaultValue;
-    }
-}
-exports.stringToSize = stringToSize;
-function stringToTextSize(value, defaultValue) {
-    switch (value) {
-        case "small":
-            return TextSize.Small;
-        case "normal":
-            return TextSize.Normal;
-        case "medium":
-            return TextSize.Medium;
-        case "large":
-            return TextSize.Large;
-        case "extraLarge":
-            return TextSize.ExtraLarge;
-        default:
-            return defaultValue;
-    }
-}
-exports.stringToTextSize = stringToTextSize;
-function stringToTextWeight(value, defaultValue) {
-    switch (value) {
-        case "lighter":
-            return TextWeight.Lighter;
-        case "normal":
-            return TextWeight.Normal;
-        case "bolder":
-            return TextWeight.Bolder;
-        default:
-            return defaultValue;
-    }
-}
-exports.stringToTextWeight = stringToTextWeight;
-function stringToTextColor(value, defaultValue) {
-    switch (value) {
-        case "dark":
-            return TextColor.Dark;
-        case "light":
-            return TextColor.Light;
-        case "accent":
-            return TextColor.Accent;
-        case "good":
-            return TextColor.Good;
-        case "warning":
-            return TextColor.Warning;
-        case "attention":
-            return TextColor.Attention;
-        default:
-            return defaultValue;
-    }
-}
-exports.stringToTextColor = stringToTextColor;
-function stringToHorizontalAlignment(value, defaultValue) {
-    switch (value) {
-        case "left":
-            return HorizontalAlignment.Left;
-        case "center":
-            return HorizontalAlignment.Center;
-        case "right":
-            return HorizontalAlignment.Right;
-        default:
-            return defaultValue;
-    }
-}
-exports.stringToHorizontalAlignment = stringToHorizontalAlignment;
-function stringToImageStyle(value, defaultValue) {
-    switch (value) {
-        case "person":
-            return ImageStyle.Person;
-        case "normal":
-            return ImageStyle.Normal;
-        default:
-            return defaultValue;
-    }
-}
-exports.stringToImageStyle = stringToImageStyle;
-function stringToSeparation(value, defaultValue) {
-    switch (value) {
-        case "none":
-            return Separation.None;
-        case "default":
-            return Separation.Default;
-        case "strong":
-            return Separation.Strong;
-        default:
-            return defaultValue;
-    }
-}
-exports.stringToSeparation = stringToSeparation;
-
-
-/***/ }),
-/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -889,7 +709,7 @@ module.exports = Ruler;
 
 
 /***/ }),
-/* 3 */
+/* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1093,1408 +913,35 @@ module.exports = Token;
 
 
 /***/ }),
-/* 4 */
+/* 3 */
 /***/ (function(module, exports) {
 
 module.exports=/[!-#%-\*,-/:;\?@\[-\]_\{\}\xA1\xA7\xAB\xB6\xB7\xBB\xBF\u037E\u0387\u055A-\u055F\u0589\u058A\u05BE\u05C0\u05C3\u05C6\u05F3\u05F4\u0609\u060A\u060C\u060D\u061B\u061E\u061F\u066A-\u066D\u06D4\u0700-\u070D\u07F7-\u07F9\u0830-\u083E\u085E\u0964\u0965\u0970\u0AF0\u0DF4\u0E4F\u0E5A\u0E5B\u0F04-\u0F12\u0F14\u0F3A-\u0F3D\u0F85\u0FD0-\u0FD4\u0FD9\u0FDA\u104A-\u104F\u10FB\u1360-\u1368\u1400\u166D\u166E\u169B\u169C\u16EB-\u16ED\u1735\u1736\u17D4-\u17D6\u17D8-\u17DA\u1800-\u180A\u1944\u1945\u1A1E\u1A1F\u1AA0-\u1AA6\u1AA8-\u1AAD\u1B5A-\u1B60\u1BFC-\u1BFF\u1C3B-\u1C3F\u1C7E\u1C7F\u1CC0-\u1CC7\u1CD3\u2010-\u2027\u2030-\u2043\u2045-\u2051\u2053-\u205E\u207D\u207E\u208D\u208E\u2308-\u230B\u2329\u232A\u2768-\u2775\u27C5\u27C6\u27E6-\u27EF\u2983-\u2998\u29D8-\u29DB\u29FC\u29FD\u2CF9-\u2CFC\u2CFE\u2CFF\u2D70\u2E00-\u2E2E\u2E30-\u2E44\u3001-\u3003\u3008-\u3011\u3014-\u301F\u3030\u303D\u30A0\u30FB\uA4FE\uA4FF\uA60D-\uA60F\uA673\uA67E\uA6F2-\uA6F7\uA874-\uA877\uA8CE\uA8CF\uA8F8-\uA8FA\uA8FC\uA92E\uA92F\uA95F\uA9C1-\uA9CD\uA9DE\uA9DF\uAA5C-\uAA5F\uAADE\uAADF\uAAF0\uAAF1\uABEB\uFD3E\uFD3F\uFE10-\uFE19\uFE30-\uFE52\uFE54-\uFE61\uFE63\uFE68\uFE6A\uFE6B\uFF01-\uFF03\uFF05-\uFF0A\uFF0C-\uFF0F\uFF1A\uFF1B\uFF1F\uFF20\uFF3B-\uFF3D\uFF3F\uFF5B\uFF5D\uFF5F-\uFF65]|\uD800[\uDD00-\uDD02\uDF9F\uDFD0]|\uD801\uDD6F|\uD802[\uDC57\uDD1F\uDD3F\uDE50-\uDE58\uDE7F\uDEF0-\uDEF6\uDF39-\uDF3F\uDF99-\uDF9C]|\uD804[\uDC47-\uDC4D\uDCBB\uDCBC\uDCBE-\uDCC1\uDD40-\uDD43\uDD74\uDD75\uDDC5-\uDDC9\uDDCD\uDDDB\uDDDD-\uDDDF\uDE38-\uDE3D\uDEA9]|\uD805[\uDC4B-\uDC4F\uDC5B\uDC5D\uDCC6\uDDC1-\uDDD7\uDE41-\uDE43\uDE60-\uDE6C\uDF3C-\uDF3E]|\uD807[\uDC41-\uDC45\uDC70\uDC71]|\uD809[\uDC70-\uDC74]|\uD81A[\uDE6E\uDE6F\uDEF5\uDF37-\uDF3B\uDF44]|\uD82F\uDC9F|\uD836[\uDE87-\uDE8B]|\uD83A[\uDD5E\uDD5F]/
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 Object.defineProperty(exports, "__esModule", { value: true });
-var Enums = __webpack_require__(1);
-var Utils = __webpack_require__(70);
-var TextFormatters = __webpack_require__(69);
-var CardElement = (function () {
-    function CardElement() {
-        this._container = null;
-        this.horizontalAlignment = Enums.HorizontalAlignment.Left;
-    }
-    CardElement.prototype.getRootElement = function () {
-        if (!this._container) {
-            return this;
-        }
-        return this._container.getRootElement();
-    };
-    Object.defineProperty(CardElement.prototype, "hideOverflow", {
-        get: function () {
-            return true;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(CardElement.prototype, "useDefaultSizing", {
-        get: function () {
-            return true;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    CardElement.prototype.removeTopSpacing = function (element) {
-        element.className += " removeTopSpacing";
-    };
-    CardElement.prototype.adjustAlignment = function (element) {
-        switch (this.horizontalAlignment) {
-            case Enums.HorizontalAlignment.Center:
-                element.style.textAlign = "center";
-                break;
-            case Enums.HorizontalAlignment.Right:
-                element.style.textAlign = "right";
-                break;
-        }
-    };
-    CardElement.prototype.adjustLayout = function (element) {
-        if (this.useDefaultSizing) {
-            element.className += " stretch";
-        }
-        this.adjustAlignment(element);
-        if (this.separation != Enums.Separation.Default) {
-            this.removeTopSpacing(element);
-        }
-        if (this.hideOverflow) {
-            element.style.overflow = "hidden";
-        }
-    };
-    CardElement.prototype.render = function (container) {
-        if (container === void 0) { container = null; }
-        this._container = container;
-        var renderedElement = this.internalRender();
-        if (renderedElement != null) {
-            this.adjustLayout(renderedElement);
-        }
-        return renderedElement;
-    };
-    CardElement.prototype.getRootContainer = function () {
-        var rootElement = this.getRootElement();
-        if (rootElement instanceof Container) {
-            return rootElement;
-        }
-        else {
-            return null;
-        }
-    };
-    Object.defineProperty(CardElement.prototype, "container", {
-        get: function () {
-            return this._container;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return CardElement;
-}());
-exports.CardElement = CardElement;
-var TextBlock = (function (_super) {
-    __extends(TextBlock, _super);
-    function TextBlock() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.size = Enums.TextSize.Normal;
-        _this.weight = Enums.TextWeight.Normal;
-        _this.isSubtle = false;
-        _this.wrap = true;
-        return _this;
-    }
-    TextBlock.prototype.internalRender = function () {
-        if (!Utils.isNullOrEmpty(this.text)) {
-            var element = document.createElement("div");
-            var cssStyle = "text ";
-            switch (this.size) {
-                case Enums.TextSize.Small:
-                    cssStyle += "small ";
-                    break;
-                case Enums.TextSize.Medium:
-                    cssStyle += "medium ";
-                    break;
-                case Enums.TextSize.Large:
-                    cssStyle += "large ";
-                    break;
-                case Enums.TextSize.ExtraLarge:
-                    cssStyle += "extraLarge ";
-                    break;
-                default:
-                    cssStyle += "defaultSize ";
-                    break;
-            }
-            /// let actualTextColor = this.color ? this.color : (container.textColor ? container.textColor : AdaptiveCard.renderOptions.defaultTextColor);
-            var actualTextColor = this.color ? this.color : this.container.textColor;
-            switch (actualTextColor) {
-                case Enums.TextColor.Dark:
-                    cssStyle += "darkColor ";
-                    break;
-                case Enums.TextColor.Light:
-                    cssStyle += "lightColor ";
-                    break;
-                case Enums.TextColor.Accent:
-                    cssStyle += "accentColor ";
-                    break;
-                case Enums.TextColor.Good:
-                    cssStyle += "goodColor ";
-                    break;
-                case Enums.TextColor.Warning:
-                    cssStyle += "warningColor ";
-                    break;
-                case Enums.TextColor.Attention:
-                    cssStyle += "attentionColor ";
-                    break;
-                default:
-                    cssStyle += "defaultColor ";
-                    break;
-            }
-            if (this.isSubtle) {
-                cssStyle += "subtle ";
-            }
-            switch (this.weight) {
-                case Enums.TextWeight.Lighter:
-                    cssStyle += "lighter ";
-                    break;
-                case Enums.TextWeight.Bolder:
-                    cssStyle += "bolder ";
-                    break;
-                default:
-                    cssStyle += "defaultWeight ";
-                    break;
-            }
-            var formattedText = TextFormatters.formatText(this.text);
-            element.innerHTML = Utils.processMarkdown(formattedText);
-            element.className = cssStyle;
-            if (element.firstElementChild instanceof (HTMLElement)) {
-                element.firstElementChild.style.marginTop = "0px";
-            }
-            if (element.lastElementChild instanceof (HTMLElement)) {
-                element.lastElementChild.style.marginBottom = "0px";
-            }
-            var anchors = element.getElementsByTagName("a");
-            for (var i = 0; i < anchors.length; i++) {
-                anchors[i].target = "_blank";
-            }
-            if (!this.wrap) {
-                element.style.whiteSpace = "nowrap";
-                element.style.textOverflow = "ellipsis";
-            }
-            return element;
-        }
-        else {
-            return null;
-        }
-    };
-    TextBlock.prototype.renderSpeech = function () {
-        if (this.speak != null)
-            return this.speak + '\n';
-        if (this.text)
-            return '<s>' + this.text + '</s>\n';
-        return null;
-    };
-    return TextBlock;
-}(CardElement));
-TextBlock.TypeName = "TextBlock";
-exports.TextBlock = TextBlock;
-var InternalTextBlock = (function (_super) {
-    __extends(InternalTextBlock, _super);
-    function InternalTextBlock() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Object.defineProperty(InternalTextBlock.prototype, "useDefaultSizing", {
-        get: function () {
-            return false;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return InternalTextBlock;
-}(TextBlock));
-var Fact = (function () {
-    function Fact() {
-    }
-    Fact.prototype.renderSpeech = function () {
-        if (this.speak != null) {
-            return this.speak + '\n';
-        }
-        return '<s>' + this.name + ' ' + this.value + '</s>\n';
-    };
-    return Fact;
-}());
-exports.Fact = Fact;
-var FactSet = (function (_super) {
-    __extends(FactSet, _super);
-    function FactSet() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.facts = [];
-        return _this;
-    }
-    Object.defineProperty(FactSet.prototype, "useDefaultSizing", {
-        get: function () {
-            return false;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    FactSet.prototype.internalRender = function () {
-        var element = null;
-        if (this.facts.length > 0) {
-            element = document.createElement("table");
-            element.className = "factGroup";
-            var html = '';
-            for (var i = 0; i < this.facts.length; i++) {
-                html += '<tr>';
-                html += '    <td class="factName">';
-                var textBlock = new InternalTextBlock();
-                textBlock.text = this.facts[i].name;
-                textBlock.weight = Enums.TextWeight.Bolder;
-                textBlock.separation = Enums.Separation.None;
-                var renderedText = textBlock.render(this.container);
-                if (renderedText != null) {
-                    html += renderedText.outerHTML;
-                }
-                html += '    </td>';
-                html += '    <td class="factValue">';
-                textBlock = new InternalTextBlock();
-                textBlock.text = this.facts[i].value;
-                textBlock.weight = Enums.TextWeight.Lighter;
-                textBlock.separation = Enums.Separation.None;
-                renderedText = textBlock.render(this.container);
-                if (renderedText != null) {
-                    html += renderedText.outerHTML;
-                }
-                html += '    </td>';
-                html += '</tr>';
-            }
-            element.innerHTML = html;
-        }
-        return element;
-    };
-    FactSet.prototype.renderSpeech = function () {
-        if (this.speak != null) {
-            return this.speak + '\n';
-        }
-        // render each fact 
-        var speak = null;
-        if (this.facts.length > 0) {
-            speak = '';
-            for (var i = 0; i < this.facts.length; i++) {
-                var speech = this.facts[i].renderSpeech();
-                if (speech) {
-                    speak += speech;
-                }
-            }
-        }
-        return '<p>' + speak + '\n</p>\n';
-    };
-    return FactSet;
-}(CardElement));
-FactSet.TypeName = "FactSet";
-exports.FactSet = FactSet;
-var Image = (function (_super) {
-    __extends(Image, _super);
-    function Image() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.style = Enums.ImageStyle.Normal;
-        _this.size = Enums.Size.Medium;
-        return _this;
-    }
-    Object.defineProperty(Image.prototype, "useDefaultSizing", {
-        get: function () {
-            return false;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Image.prototype.adjustAlignment = function (element) {
-        switch (this.horizontalAlignment) {
-            case Enums.HorizontalAlignment.Center:
-                element.style.marginLeft = "auto";
-                element.style.marginRight = "auto";
-                break;
-            case Enums.HorizontalAlignment.Right:
-                element.style.marginLeft = "auto";
-                break;
-        }
-    };
-    Image.prototype.internalRender = function () {
-        var _this = this;
-        var imageElement = null;
-        if (!Utils.isNullOrEmpty(this.url)) {
-            imageElement = document.createElement("img");
-            imageElement.style.display = "block";
-            imageElement.onclick = function (e) {
-                if (_this.selectAction != null) {
-                    raiseExecuteActionEvent(_this.container, _this.selectAction);
-                    e.cancelBubble = true;
-                }
-            };
-            var cssStyle = "image";
-            if (this.selectAction != null) {
-                cssStyle += " selectable";
-            }
-            switch (this.size) {
-                case Enums.Size.Auto:
-                    cssStyle += " autoSize";
-                    break;
-                case Enums.Size.Stretch:
-                    cssStyle += " stretch";
-                    break;
-                case Enums.Size.Small:
-                    cssStyle += " small";
-                    break;
-                case Enums.Size.Large:
-                    cssStyle += " large";
-                    break;
-                default:
-                    cssStyle += " medium";
-                    break;
-            }
-            if (this.style == Enums.ImageStyle.Person) {
-                cssStyle += " person";
-            }
-            imageElement.className = cssStyle;
-            imageElement.src = this.url;
-        }
-        return imageElement;
-    };
-    Image.prototype.renderSpeech = function () {
-        if (this.speak != null) {
-            return this.speak + '\n';
-        }
-        return null;
-    };
-    return Image;
-}(CardElement));
-Image.TypeName = "Image";
-exports.Image = Image;
-var ImageSet = (function (_super) {
-    __extends(ImageSet, _super);
-    function ImageSet() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.images = [];
-        _this.imageSize = Enums.Size.Medium;
-        return _this;
-    }
-    ImageSet.prototype.internalRender = function () {
-        var element = null;
-        if (this.images.length > 0) {
-            element = document.createElement("div");
-            element.className = "imageGallery";
-            for (var i = 0; i < this.images.length; i++) {
-                var renderedImage = this.images[i].render(this.container);
-                renderedImage.style.margin = "0px";
-                renderedImage.style.marginRight = "10px";
-                Utils.appendChild(element, renderedImage);
-            }
-        }
-        return element;
-    };
-    ImageSet.prototype.renderSpeech = function () {
-        if (this.speak != null) {
-            return this.speak;
-        }
-        var speak = null;
-        if (this.images.length > 0) {
-            speak = '';
-            for (var i = 0; i < this.images.length; i++) {
-                speak += this.images[i].renderSpeech();
-            }
-        }
-        return speak;
-    };
-    return ImageSet;
-}(CardElement));
-ImageSet.TypeName = "ImageSet";
-exports.ImageSet = ImageSet;
-var Input = (function (_super) {
-    __extends(Input, _super);
-    function Input() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    Input.prototype.renderSpeech = function () {
-        if (this.speak != null) {
-            return this.speak;
-        }
-        if (this.title) {
-            return '<s>' + this.title + '</s>\n';
-        }
-        return null;
-    };
-    return Input;
-}(CardElement));
-exports.Input = Input;
-var InputText = (function (_super) {
-    __extends(InputText, _super);
-    function InputText() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    InputText.prototype.internalRender = function () {
-        this._textareaElement = document.createElement("textarea");
-        this._textareaElement.className = "input textInput";
-        if (this.isMultiline) {
-            this._textareaElement.className += " multiline";
-        }
-        this._textareaElement.placeholder = this.placeholder;
-        if (!Utils.isNullOrEmpty(this.defaultValue)) {
-            this._textareaElement.textContent = this.defaultValue;
-        }
-        return this._textareaElement;
-    };
-    Object.defineProperty(InputText.prototype, "value", {
-        get: function () {
-            return this._textareaElement ? this._textareaElement.textContent : null;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return InputText;
-}(Input));
-InputText.TypeName = "Input.Text";
-exports.InputText = InputText;
-var InputToggle = (function (_super) {
-    __extends(InputToggle, _super);
-    function InputToggle() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    InputToggle.prototype.internalRender = function () {
-        var element = document.createElement("div");
-        element.className = "input";
-        this._checkboxInputElement = document.createElement("input");
-        this._checkboxInputElement.className = "toggleInput";
-        this._checkboxInputElement.type = "checkbox";
-        if (this.defaultValue == this.valueOn) {
-            this._checkboxInputElement.checked = true;
-        }
-        var label = new InternalTextBlock();
-        label.text = this.title;
-        var labelElement = label.render(this.container);
-        labelElement.className += " toggleLabel";
-        var compoundInput = document.createElement("div");
-        Utils.appendChild(element, this._checkboxInputElement);
-        Utils.appendChild(element, labelElement);
-        return element;
-    };
-    Object.defineProperty(InputToggle.prototype, "value", {
-        get: function () {
-            if (this._checkboxInputElement) {
-                return this._checkboxInputElement.checked ? this.valueOn : this.valueOff;
-            }
-            else {
-                return null;
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return InputToggle;
-}(Input));
-InputToggle.TypeName = "Input.Toggle";
-exports.InputToggle = InputToggle;
-var Choice = (function () {
-    function Choice() {
-    }
-    return Choice;
-}());
-exports.Choice = Choice;
-var InputChoiceSet = (function (_super) {
-    __extends(InputChoiceSet, _super);
-    function InputChoiceSet() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.choices = [];
-        return _this;
-    }
-    InputChoiceSet.prototype.internalRender = function () {
-        if (!this.isMultiSelect) {
-            if (this.isCompact) {
-                // Render as a combo box
-                this._selectElement = document.createElement("select");
-                this._selectElement.className = "input multichoiceInput";
-                var option = document.createElement("option");
-                option.selected = true;
-                option.disabled = true;
-                option.hidden = true;
-                option.text = this.placeholder;
-                Utils.appendChild(this._selectElement, option);
-                for (var i = 0; i < this.choices.length; i++) {
-                    var option = document.createElement("option");
-                    option.value = this.choices[i].value;
-                    option.text = this.choices[i].title;
-                    Utils.appendChild(this._selectElement, option);
-                }
-                return this._selectElement;
-            }
-            else {
-                // Render as a series of radio buttons
-                var element = document.createElement("div");
-                element.className = "input";
-                this._toggleInputs = [];
-                for (var i = 0; i < this.choices.length; i++) {
-                    var radioInput = document.createElement("input");
-                    radioInput.className = "toggleInput";
-                    radioInput.type = "radio";
-                    radioInput.name = this.id;
-                    radioInput.value = this.choices[i].value;
-                    this._toggleInputs.push(radioInput);
-                    var label = new InternalTextBlock();
-                    label.text = this.choices[i].title;
-                    var labelElement = label.render(this.container);
-                    labelElement.className += " toggleLabel";
-                    var compoundInput = document.createElement("div");
-                    Utils.appendChild(compoundInput, radioInput);
-                    Utils.appendChild(compoundInput, labelElement);
-                    Utils.appendChild(element, compoundInput);
-                }
-                return element;
-            }
-        }
-        else {
-            // Render as a list of toggle inputs
-            var element = document.createElement("div");
-            element.className = "input";
-            this._toggleInputs = [];
-            for (var i = 0; i < this.choices.length; i++) {
-                var checkboxInput = document.createElement("input");
-                checkboxInput.className = "toggleInput";
-                checkboxInput.type = "checkbox";
-                checkboxInput.value = this.choices[i].value;
-                this._toggleInputs.push(checkboxInput);
-                var label = new InternalTextBlock();
-                label.text = this.choices[i].title;
-                var labelElement = label.render(this.container);
-                labelElement.className += " toggleLabel";
-                var compoundInput = document.createElement("div");
-                Utils.appendChild(compoundInput, checkboxInput);
-                Utils.appendChild(compoundInput, labelElement);
-                Utils.appendChild(element, compoundInput);
-            }
-            return element;
-        }
-    };
-    Object.defineProperty(InputChoiceSet.prototype, "value", {
-        get: function () {
-            if (!this.isMultiSelect) {
-                if (this.isCompact) {
-                    return this._selectElement ? this._selectElement.value : null;
-                }
-                else {
-                    if (this._toggleInputs.length == 0) {
-                        return null;
-                    }
-                    for (var i = 0; i < this._toggleInputs.length; i++) {
-                        if (this._toggleInputs[i].checked) {
-                            return this._toggleInputs[i].value;
-                        }
-                    }
-                    return null;
-                }
-            }
-            else {
-                if (this._toggleInputs.length == 0) {
-                    return null;
-                }
-                var result = "";
-                for (var i = 0; i < this._toggleInputs.length; i++) {
-                    if (this._toggleInputs[i].checked) {
-                        if (result != "") {
-                            result += ";";
-                        }
-                        result += this._toggleInputs[i].value;
-                    }
-                }
-                return result == "" ? null : result;
-            }
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return InputChoiceSet;
-}(Input));
-InputChoiceSet.TypeName = "Input.ChoiceSet";
-exports.InputChoiceSet = InputChoiceSet;
-var InputNumber = (function (_super) {
-    __extends(InputNumber, _super);
-    function InputNumber() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    InputNumber.prototype.internalRender = function () {
-        this._numberInputElement = document.createElement("input");
-        this._numberInputElement.type = "number";
-        this._numberInputElement.className = "input number";
-        this._numberInputElement.min = this.min;
-        this._numberInputElement.max = this.max;
-        if (!Utils.isNullOrEmpty(this.defaultValue)) {
-            this._numberInputElement.value = this.defaultValue;
-        }
-        return this._numberInputElement;
-    };
-    Object.defineProperty(InputNumber.prototype, "value", {
-        get: function () {
-            return this._numberInputElement ? this._numberInputElement.value : null;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return InputNumber;
-}(Input));
-InputNumber.TypeName = "Input.Number";
-exports.InputNumber = InputNumber;
-var InputDate = (function (_super) {
-    __extends(InputDate, _super);
-    function InputDate() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    InputDate.prototype.internalRender = function () {
-        this._dateInputElement = document.createElement("input");
-        this._dateInputElement.type = "date";
-        this._dateInputElement.className = "input date";
-        return this._dateInputElement;
-    };
-    Object.defineProperty(InputDate.prototype, "value", {
-        get: function () {
-            return this._dateInputElement ? this._dateInputElement.value : null;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return InputDate;
-}(Input));
-InputDate.TypeName = "Input.Date";
-exports.InputDate = InputDate;
-var InputTime = (function (_super) {
-    __extends(InputTime, _super);
-    function InputTime() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    InputTime.prototype.internalRender = function () {
-        this._timeInputElement = document.createElement("input");
-        this._timeInputElement.type = "time";
-        this._timeInputElement.className = "input time";
-        return this._timeInputElement;
-    };
-    Object.defineProperty(InputTime.prototype, "value", {
-        get: function () {
-            return this._timeInputElement ? this._timeInputElement.value : null;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return InputTime;
-}(Input));
-InputTime.TypeName = "Input.Time";
-exports.InputTime = InputTime;
-var ActionButton = (function () {
-    function ActionButton(action, style) {
-        var _this = this;
-        this._element = null;
-        this._state = Enums.ActionButtonState.Normal;
-        this.onClick = null;
-        this._action = action;
-        this._style = style;
-        this._element = document.createElement("div");
-        this._element.onclick = function (e) { _this.click(); };
-        this.updateCssStyle();
-    }
-    ActionButton.prototype.click = function () {
-        if (this.onClick != null) {
-            this.onClick(this);
-        }
-    };
-    ActionButton.prototype.updateCssStyle = function () {
-        var cssStyle = this._style == Enums.ActionButtonStyle.Link ? "linkButton " : "pushButton ";
-        switch (this._state) {
-            case Enums.ActionButtonState.Expanded:
-                cssStyle += " expanded";
-                break;
-            case Enums.ActionButtonState.Subdued:
-                cssStyle += " subdued";
-                break;
-        }
-        this._element.className = cssStyle;
-    };
-    Object.defineProperty(ActionButton.prototype, "action", {
-        get: function () {
-            return this._action;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ActionButton.prototype, "text", {
-        get: function () {
-            return this._text;
-        },
-        set: function (value) {
-            this._text = value;
-            this._element.innerText = this._text;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ActionButton.prototype, "element", {
-        get: function () {
-            return this._element;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ActionButton.prototype, "state", {
-        get: function () {
-            return this._state;
-        },
-        set: function (value) {
-            this._state = value;
-            this.updateCssStyle();
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return ActionButton;
-}());
-var Action = (function () {
-    function Action() {
-    }
-    Action.prototype.prepare = function (inputs) {
-        // Do nothing in base implementation
-    };
-    ;
-    return Action;
-}());
-exports.Action = Action;
-var ActionExternal = (function (_super) {
-    __extends(ActionExternal, _super);
-    function ActionExternal() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return ActionExternal;
-}(Action));
-exports.ActionExternal = ActionExternal;
-var ActionSubmit = (function (_super) {
-    __extends(ActionSubmit, _super);
-    function ActionSubmit() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this._isPrepared = false;
-        return _this;
-    }
-    ActionSubmit.prototype.prepare = function (inputs) {
-        if (this._originalData) {
-            this._processedData = JSON.parse(JSON.stringify(this._originalData));
-        }
-        else {
-            this._processedData = {};
-        }
-        for (var i = 0; i < inputs.length; i++) {
-            var inputValue = inputs[i].value;
-            if (inputValue != null) {
-                this._processedData[inputs[i].id] = inputs[i].value;
-            }
-        }
-        this._isPrepared = true;
-    };
-    Object.defineProperty(ActionSubmit.prototype, "data", {
-        get: function () {
-            return this._isPrepared ? this._processedData : this._originalData;
-        },
-        set: function (value) {
-            this._originalData = value;
-            this._isPrepared = false;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return ActionSubmit;
-}(ActionExternal));
-ActionSubmit.TypeName = "Action.Submit";
-exports.ActionSubmit = ActionSubmit;
-var ActionOpenUrl = (function (_super) {
-    __extends(ActionOpenUrl, _super);
-    function ActionOpenUrl() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    return ActionOpenUrl;
-}(ActionExternal));
-ActionOpenUrl.TypeName = "Action.OpenUrl";
-exports.ActionOpenUrl = ActionOpenUrl;
-var HttpHeader = (function () {
-    function HttpHeader() {
-        this._value = new Utils.StringWithSubstitutions();
-    }
-    Object.defineProperty(HttpHeader.prototype, "value", {
-        get: function () {
-            return this._value.get();
-        },
-        set: function (newValue) {
-            this._value.set(newValue);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return HttpHeader;
-}());
-exports.HttpHeader = HttpHeader;
-var ActionHttp = (function (_super) {
-    __extends(ActionHttp, _super);
-    function ActionHttp() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this._url = new Utils.StringWithSubstitutions();
-        _this._headers = [];
-        _this._body = new Utils.StringWithSubstitutions();
-        return _this;
-    }
-    ActionHttp.prototype.prepare = function (inputs) {
-        Utils.substituteInputValues(this, inputs);
-    };
-    ;
-    Object.defineProperty(ActionHttp.prototype, "url", {
-        get: function () {
-            return this._url.get();
-        },
-        set: function (value) {
-            this._url.set(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ActionHttp.prototype, "body", {
-        get: function () {
-            return this._body.get();
-        },
-        set: function (value) {
-            this._body.set(value);
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(ActionHttp.prototype, "headers", {
-        get: function () {
-            return this._headers;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return ActionHttp;
-}(ActionExternal));
-ActionHttp.TypeName = "Action.Http";
-exports.ActionHttp = ActionHttp;
-var ActionShowCard = (function (_super) {
-    __extends(ActionShowCard, _super);
-    function ActionShowCard() {
-        var _this = _super.call(this) || this;
-        _this.card = new ActionShowCardContainer();
-        return _this;
-    }
-    return ActionShowCard;
-}(Action));
-ActionShowCard.TypeName = "Action.ShowCard";
-exports.ActionShowCard = ActionShowCard;
-var ActionCollection = (function () {
-    function ActionCollection(container, forbiddenActionTypes) {
-        this._actionButtons = [];
-        this._expandedAction = null;
-        this.items = [];
-        this.onHideActionCardPane = null;
-        this.onShowActionCardPane = null;
-        this._container = container;
-        this._forbiddenActionTypes = forbiddenActionTypes;
-    }
-    ActionCollection.prototype.hideActionCardPane = function () {
-        this._actionCardContainer.innerHTML = '';
-        this._actionCardContainer.style.padding = "0px";
-        this._actionCardContainer.style.marginTop = "0px";
-        if (this.onHideActionCardPane) {
-            this.onHideActionCardPane();
-        }
-    };
-    ActionCollection.prototype.showActionCardPane = function (action) {
-        if (this.onShowActionCardPane) {
-            this.onShowActionCardPane(action);
-        }
-        this._actionCardContainer.innerHTML = '';
-        var padding = Utils.getActualPadding(this._actionCardContainer);
-        this._actionCardContainer.style.padding = null;
-        this._actionCardContainer.style.paddingLeft = padding.left + "px";
-        this._actionCardContainer.style.paddingRight = padding.right + "px";
-        this._actionCardContainer.style.marginTop = this.items.length > 1 ? null : "0px";
-        this._actionCardContainer.style.marginLeft = "-" + padding.left + "px";
-        this._actionCardContainer.style.marginRight = "-" + padding.right + "px";
-        Utils.appendChild(this._actionCardContainer, action.card.render(this._container));
-    };
-    ActionCollection.prototype.actionClicked = function (actionButton) {
-        if (!(actionButton.action instanceof ActionShowCard)) {
-            for (var i = 0; i < this._actionButtons.length; i++) {
-                this._actionButtons[i].state = Enums.ActionButtonState.Normal;
-            }
-            this.hideActionCardPane();
-            raiseExecuteActionEvent(this._container, actionButton.action);
-        }
-        else {
-            if (AdaptiveCard.renderOptions.actionShowCardInPopup) {
-                var actionShowCard = actionButton.action;
-                raiseShowPopupCardEvent(this._container, actionShowCard, actionShowCard.card.render(this._container));
-            }
-            else if (actionButton.action === this._expandedAction) {
-                for (var i = 0; i < this._actionButtons.length; i++) {
-                    this._actionButtons[i].state = Enums.ActionButtonState.Normal;
-                }
-                this._expandedAction = null;
-                this.hideActionCardPane();
-            }
-            else {
-                for (var i = 0; i < this._actionButtons.length; i++) {
-                    if (this._actionButtons[i] !== actionButton) {
-                        this._actionButtons[i].state = Enums.ActionButtonState.Subdued;
-                    }
-                }
-                actionButton.state = Enums.ActionButtonState.Expanded;
-                this._expandedAction = actionButton.action;
-                this.showActionCardPane(actionButton.action);
-            }
-        }
-    };
-    ActionCollection.prototype.checkActionTypeIsAllowed = function (action) {
-        var className = Utils.getClassNameFromInstance(action);
-        var typeIsForbidden = false;
-        if (this._forbiddenActionTypes) {
-            for (var i = 0; i < this._forbiddenActionTypes.length; i++) {
-                if (className === Utils.getClassNameFromConstructor(this._forbiddenActionTypes[i])) {
-                    typeIsForbidden = true;
-                    break;
-                }
-            }
-        }
-        if (!typeIsForbidden) {
-            for (var i = 0; i < AdaptiveCard.renderOptions.supportedActionTypes.length; i++) {
-                if (className === Utils.getClassNameFromConstructor(AdaptiveCard.renderOptions.supportedActionTypes[i])) {
-                    return true;
-                }
-            }
-        }
-        raiseRenderErrorEvent(Enums.RenderError.ActionTypeNotAllowed, "Actions of type " + className + " are not allowed.");
-        return false;
-    };
-    ActionCollection.prototype.render = function () {
-        /*
-        if (this._container.container != null && !AdaptiveCard.renderOptions.supportsNestedActions) {
-            AdaptiveCard.raiseRenderError(
-                Enums.RenderError.NestedActionNotAllowed,
-                "Nested actions are not allowed.");
-
-            return null;
-        }
-        */
-        var _this = this;
-        if (AdaptiveCard.renderOptions.maxActions != null && AdaptiveCard.renderOptions.maxActions < this.items.length) {
-            raiseRenderErrorEvent(Enums.RenderError.TooManyActions, "There are " + this.items.length.toString() + " in the actions collection, but only " + AdaptiveCard.renderOptions.maxActions.toString() + " are allowed.");
-            return null;
-        }
-        var element = document.createElement("div");
-        element.className = "actionGroup";
-        var buttonStrip = document.createElement("div");
-        buttonStrip.className = "buttonStrip";
-        this._actionCardContainer = document.createElement("div");
-        this._actionCardContainer.className = "actionCardContainer";
-        this._actionCardContainer.style.padding = "0px";
-        this._actionCardContainer.style.marginTop = "0px";
-        var renderedActions = 0;
-        if (this.items.length == 1 && this.items[0] instanceof ActionShowCard) {
-            if (this.checkActionTypeIsAllowed(this.items[0])) {
-                this.showActionCardPane(this.items[0]);
-                renderedActions++;
-            }
-        }
-        else {
-            for (var i = 0; i < this.items.length; i++) {
-                if (this.checkActionTypeIsAllowed(this.items[i])) {
-                    var buttonStripItem = document.createElement("div");
-                    buttonStripItem.className = "buttonStripItem";
-                    var actionButton = new ActionButton(this.items[i], this._container.actionButtonStyle);
-                    actionButton.text = this.items[i].title;
-                    actionButton.onClick = function (ab) { _this.actionClicked(ab); };
-                    this._actionButtons.push(actionButton);
-                    if (i < this.items.length - 1) {
-                        buttonStripItem.className += " buttonStripItemSpacer";
-                    }
-                    Utils.appendChild(buttonStripItem, actionButton.element);
-                    Utils.appendChild(buttonStrip, buttonStripItem);
-                    renderedActions++;
-                }
-            }
-            Utils.appendChild(element, buttonStrip);
-        }
-        Utils.appendChild(element, this._actionCardContainer);
-        return renderedActions > 0 ? element : null;
-    };
-    return ActionCollection;
-}());
-exports.ActionCollection = ActionCollection;
-var Container = (function (_super) {
-    __extends(Container, _super);
-    function Container() {
-        var _this = _super.call(this) || this;
-        _this._items = [];
-        _this.actionButtonStyle = AdaptiveCard.renderOptions.defaultActionButtonStyle;
-        _this._actionCollection = new ActionCollection(_this, _this.getForbiddenActionTypes());
-        _this._actionCollection.onHideActionCardPane = function () { _this.showBottomSpacer(); };
-        _this._actionCollection.onShowActionCardPane = function (action) { _this.hideBottomSpacer(); };
-        return _this;
-    }
-    Container.checkElementTypeIsAllowed = function (element) {
-        var className = Utils.getClassNameFromInstance(element);
-        for (var i = 0; i < AdaptiveCard.renderOptions.supportedElementTypes.length; i++) {
-            if (className === Utils.getClassNameFromConstructor(AdaptiveCard.renderOptions.supportedElementTypes[i])) {
-                return true;
-            }
-        }
-        raiseRenderErrorEvent(Enums.RenderError.ElementTypeNotAllowed, "Elements of type " + className + " are not allowed.");
-        return false;
-    };
-    Container.prototype.showBottomSpacer = function (requestingElement) {
-        if (requestingElement === void 0) { requestingElement = null; }
-        if (requestingElement == null || this.isLastItem(requestingElement)) {
-            if (this.container) {
-                this.container.showBottomSpacer(this);
-            }
-            this._element.style.paddingBottom = null;
-        }
-    };
-    Container.prototype.hideBottomSpacer = function (requestingElement) {
-        if (requestingElement === void 0) { requestingElement = null; }
-        if (requestingElement == null || this.isLastItem(requestingElement)) {
-            if (this.container) {
-                this.container.hideBottomSpacer(this);
-            }
-            this._element.style.paddingBottom = "0px";
-        }
-    };
-    Container.prototype.isLastItem = function (element) {
-        return this._items.indexOf(element) == (this._items.length - 1);
-    };
-    Container.prototype.getForbiddenActionTypes = function () {
-        return null;
-    };
-    Container.prototype.internalRender = function () {
-        var _this = this;
-        this._element = document.createElement("div");
-        this._element.className = this.cssClassName;
-        this._element.onclick = function (e) {
-            if (_this.selectAction != null) {
-                raiseExecuteActionEvent(_this.container, _this.selectAction);
-                e.cancelBubble = true;
-            }
-        };
-        if (!Utils.isNullOrEmpty(this.backgroundColor)) {
-            this._element.style.backgroundColor = this.backgroundColor;
-        }
-        if (this._items.length > 0) {
-            var renderedElementCount = 0;
-            for (var i = 0; i < this._items.length; i++) {
-                if (Container.checkElementTypeIsAllowed(this._items[i])) {
-                    var renderedElement = this._items[i].render(this);
-                    if (renderedElement != null) {
-                        if (renderedElementCount == 0) {
-                            this.removeTopSpacing(renderedElement);
-                        }
-                        else {
-                            if (this._items[i].separation == Enums.Separation.Strong) {
-                                var separator = document.createElement("div");
-                                separator.className = "separator";
-                                Utils.appendChild(this._element, separator);
-                            }
-                        }
-                        Utils.appendChild(this._element, renderedElement);
-                        renderedElementCount++;
-                    }
-                }
-            }
-        }
-        var renderedActions = this._actionCollection.render();
-        Utils.appendChild(this._element, renderedActions);
-        if (renderedElementCount > 0 || renderedActions != null) {
-            if (!Utils.isNullOrEmpty(this.backgroundImageUrl)) {
-                this._element.style.backgroundImage = 'url("' + this.backgroundImageUrl + '")';
-                this._element.style.backgroundRepeat = "no-repeat";
-                this._element.style.backgroundSize = "cover";
-            }
-            return this._element;
-        }
-        else {
-            return null;
-        }
-    };
-    Object.defineProperty(Container.prototype, "hideOverflow", {
-        get: function () {
-            return false;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Container.prototype, "cssClassName", {
-        get: function () {
-            var className = "container";
-            if (this.selectAction != null) {
-                className += " selectable";
-            }
-            return className;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Object.defineProperty(Container.prototype, "textColor", {
-        get: function () {
-            if (!this._textColor) {
-                if (this.container) {
-                    return this.container.textColor;
-                }
-                else {
-                    return AdaptiveCard.renderOptions.defaultTextColor;
-                }
-            }
-            else {
-                return this._textColor;
-            }
-        },
-        set: function (value) {
-            this._textColor = value;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Container.prototype.addItem = function (item) {
-        this._items.push(item);
-    };
-    Container.prototype.addAction = function (action) {
-        this._actionCollection.items.push(action);
-    };
-    Container.prototype.getAllInputs = function () {
-        var result = [];
-        for (var i = 0; i < this._items.length; i++) {
-            var item = this._items[i];
-            if (item instanceof Input) {
-                result.push(item);
-            }
-            if (item instanceof Container) {
-                result = result.concat(item.getAllInputs());
-            }
-        }
-        for (var i = 0; i < this._actionCollection.items.length; i++) {
-            var action = this._actionCollection.items[i];
-            if (action instanceof ActionShowCard) {
-                var actionShowCard = action;
-                if (actionShowCard.card) {
-                    result = result.concat(actionShowCard.card.getAllInputs());
-                }
-            }
-        }
-        return result;
-    };
-    Container.prototype.renderSpeech = function () {
-        if (this.speak != null) {
-            return this.speak;
-        }
-        // render each item
-        var speak = null;
-        if (this._items.length > 0) {
-            speak = '';
-            for (var i = 0; i < this._items.length; i++) {
-                var result = this._items[i].renderSpeech();
-                if (result) {
-                    speak += result;
-                }
-            }
-        }
-        return speak;
-    };
-    return Container;
-}(CardElement));
-Container.TypeName = "Container";
-exports.Container = Container;
-var ActionShowCardContainer = (function (_super) {
-    __extends(ActionShowCardContainer, _super);
-    function ActionShowCardContainer() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
-    ActionShowCardContainer.prototype.getForbiddenActionTypes = function () {
-        return [ActionShowCard];
-    };
-    Object.defineProperty(ActionShowCardContainer.prototype, "cssClassName", {
-        get: function () {
-            return "";
-        },
-        enumerable: true,
-        configurable: true
-    });
-    return ActionShowCardContainer;
-}(Container));
-exports.ActionShowCardContainer = ActionShowCardContainer;
-var Column = (function (_super) {
-    __extends(Column, _super);
-    function Column() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this.weight = 100;
-        return _this;
-    }
-    Object.defineProperty(Column.prototype, "cssClassName", {
-        get: function () {
-            var className = "column";
-            if (this.selectAction != null) {
-                className += " selectable";
-            }
-            return className;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    Column.prototype.adjustLayout = function (element) {
-        if (this.weight > 0) {
-            element.style.flex = "1 1 " + this.weight + "%";
-        }
-        else if (this.weight == 0) {
-            element.style.flex = "0 0 auto";
-        }
-        else {
-            element.style.flex = "1 1 auto";
-        }
-    };
-    return Column;
-}(Container));
-exports.Column = Column;
-var ColumnSet = (function (_super) {
-    __extends(ColumnSet, _super);
-    function ColumnSet() {
-        var _this = _super !== null && _super.apply(this, arguments) || this;
-        _this._columns = [];
-        return _this;
-    }
-    ColumnSet.prototype.internalRender = function () {
-        if (this._columns.length > 0) {
-            var element = document.createElement("div");
-            element.className = "columnGroup";
-            element.style.display = "flex";
-            var renderedColumnCount = 0;
-            for (var i = 0; i < this._columns.length; i++) {
-                var renderedColumn = this._columns[i].render(this.container);
-                if (renderedColumn != null) {
-                    Utils.appendChild(element, renderedColumn);
-                    if (this._columns.length > 1 && i < this._columns.length - 1 && this._columns[i + 1].separation != Enums.Separation.None) {
-                        var separator = document.createElement("div");
-                        separator.style.flex = "0 0 auto";
-                        switch (this._columns[i + 1].separation) {
-                            case Enums.Separation.Default:
-                                separator.className = "defaultColumnSeparator";
-                                break;
-                            case Enums.Separation.Strong:
-                                separator.className = "strongColumnSeparator";
-                                break;
-                        }
-                        Utils.appendChild(element, separator);
-                    }
-                    renderedColumnCount++;
-                }
-            }
-            return renderedColumnCount > 0 ? element : null;
-        }
-        else {
-            return null;
-        }
-    };
-    Object.defineProperty(ColumnSet.prototype, "columns", {
-        get: function () {
-            return this._columns;
-        },
-        enumerable: true,
-        configurable: true
-    });
-    ColumnSet.prototype.renderSpeech = function () {
-        if (this.speak != null) {
-            return this.speak;
-        }
-        // render each item
-        var speak = '';
-        if (this._columns.length > 0) {
-            for (var i = 0; i < this._columns.length; i++) {
-                speak += this._columns[i].renderSpeech();
-            }
-        }
-        return speak;
-    };
-    return ColumnSet;
-}(CardElement));
-ColumnSet.TypeName = "ColumnSet";
-exports.ColumnSet = ColumnSet;
-function raiseExecuteActionEvent(container, action) {
-    if (AdaptiveCard.onExecuteAction != null) {
-        action.prepare(container.getRootContainer().getAllInputs());
-        AdaptiveCard.onExecuteAction(action);
-    }
-}
-function raiseShowPopupCardEvent(container, action, renderedCard) {
-    if (AdaptiveCard.onShowPopupCard != null) {
-        AdaptiveCard.onShowPopupCard(action, renderedCard);
-    }
-}
-function raiseRenderErrorEvent(error, data) {
-    if (AdaptiveCard.onRenderError != null) {
-        AdaptiveCard.onRenderError(error, data);
-    }
-}
-var AdaptiveCard = (function () {
-    function AdaptiveCard() {
-        this.root = new Container();
-        this.minVersion = { major: 1, minor: 0 };
-    }
-    AdaptiveCard.prototype.render = function () {
-        var unsupportedVersion = (AdaptiveCard.currentVersion.major < this.minVersion.major) ||
-            (AdaptiveCard.currentVersion.major == this.minVersion.major && AdaptiveCard.currentVersion.minor < this.minVersion.minor);
-        if (unsupportedVersion) {
-            raiseRenderErrorEvent(Enums.RenderError.UnsupportedVersion, "The requested version of the card format isn't supported.");
-        }
-        var renderedContainer = this.root.render();
-        renderedContainer.className = "rootContainer";
-        return renderedContainer;
-    };
-    AdaptiveCard.prototype.renderSpeech = function () {
-        return this.root.renderSpeech();
-    };
-    return AdaptiveCard;
-}());
-AdaptiveCard.currentVersion = { major: 1, minor: 0 };
-AdaptiveCard.onExecuteAction = null;
-AdaptiveCard.onShowPopupCard = null;
-AdaptiveCard.onRenderError = null;
-AdaptiveCard.renderOptions = {
-    actionShowCardInPopup: false,
-    defaultActionButtonStyle: Enums.ActionButtonStyle.Push,
-    defaultTextColor: Enums.TextColor.Dark,
-    defaultSeparation: Enums.Separation.Default,
-    supportedElementTypes: [
-        Container,
-        TextBlock,
-        Image,
-        ImageSet,
-        FactSet,
-        ColumnSet,
-        InputText,
-        InputDate,
-        InputNumber,
-        InputChoiceSet,
-        InputToggle
-    ],
-    supportedActionTypes: [
-        ActionHttp,
-        ActionOpenUrl,
-        ActionSubmit,
-        ActionShowCard
-    ],
-    supportsNestedActions: true
-};
-exports.AdaptiveCard = AdaptiveCard;
+var ValidationError;
+(function (ValidationError) {
+    ValidationError[ValidationError["ActionTypeNotAllowed"] = 0] = "ActionTypeNotAllowed";
+    ValidationError[ValidationError["CollectionCantBeEmpty"] = 1] = "CollectionCantBeEmpty";
+    ValidationError[ValidationError["ElementTypeNotAllowed"] = 2] = "ElementTypeNotAllowed";
+    ValidationError[ValidationError["InteractivityNotAllowed"] = 3] = "InteractivityNotAllowed";
+    ValidationError[ValidationError["MissingCardType"] = 4] = "MissingCardType";
+    ValidationError[ValidationError["PropertyCantBeNull"] = 5] = "PropertyCantBeNull";
+    ValidationError[ValidationError["TooManyActions"] = 6] = "TooManyActions";
+    ValidationError[ValidationError["UnknownActionType"] = 7] = "UnknownActionType";
+    ValidationError[ValidationError["UnknownElementType"] = 8] = "UnknownElementType";
+    ValidationError[ValidationError["UnsupportedCardVersion"] = 9] = "UnsupportedCardVersion";
+})(ValidationError = exports.ValidationError || (exports.ValidationError = {}));
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2507,7 +954,7 @@ module.exports = __webpack_require__(15);
 
 
 /***/ }),
-/* 7 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2542,7 +989,7 @@ module.exports.HTML_OPEN_CLOSE_TAG_RE = HTML_OPEN_CLOSE_TAG_RE;
 
 
 /***/ }),
-/* 8 */
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2676,7 +1123,7 @@ module.exports.postProcess = function emphasis(state) {
 
 
 /***/ }),
-/* 9 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2800,7 +1247,7 @@ module.exports.postProcess = function strikethrough(state) {
 
 
 /***/ }),
-/* 10 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2814,22 +1261,2336 @@ module.exports.parse  = __webpack_require__(66);
 
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports) {
 
 module.exports=/[\0-\x1F\x7F-\x9F]/
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports) {
 
 module.exports=/[ \xA0\u1680\u2000-\u200A\u202F\u205F\u3000]/
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports=/[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-\uDBFF](?![\uDC00-\uDFFF])|(?:[^\uD800-\uDBFF]|^)[\uDC00-\uDFFF]/
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+Object.defineProperty(exports, "__esModule", { value: true });
+var Enums = __webpack_require__(4);
+var Utils = __webpack_require__(70);
+var TextFormatters = __webpack_require__(69);
+function invokeSetParent(obj, parent) {
+    // This is not super pretty, but it the closest emulation of
+    // "internal" in TypeScript.
+    obj["setParent"](parent);
+}
+function isActionAllowed(action, forbiddenActionTypes) {
+    if (forbiddenActionTypes) {
+        for (var i = 0; i < forbiddenActionTypes.length; i++) {
+            if (action.getJsonTypeName() === forbiddenActionTypes[i]) {
+                return false;
+            }
+        }
+    }
+    if (!hostConfig.actions.supportedActionTypes) {
+        return true;
+    }
+    for (var i = 0; i < hostConfig.actions.supportedActionTypes.length; i++) {
+        if (action.getJsonTypeName() === hostConfig.actions.supportedActionTypes[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+function isElementAllowed(element, forbiddenElementTypes) {
+    if (!hostConfig.supportsInteractivity && element.isInteractive) {
+        return false;
+    }
+    if (forbiddenElementTypes) {
+        for (var i = 0; i < forbiddenElementTypes.length; i++) {
+            if (element.getJsonTypeName() === forbiddenElementTypes[i]) {
+                return false;
+            }
+        }
+    }
+    if (!hostConfig.supportedElementTypes) {
+        return true;
+    }
+    for (var i = 0; i < hostConfig.supportedElementTypes.length; i++) {
+        if (element.getJsonTypeName() === hostConfig.supportedElementTypes[i]) {
+            return true;
+        }
+    }
+    return false;
+}
+var CardElement = (function () {
+    function CardElement() {
+        this._parent = null;
+        this.horizontalAlignment = "left";
+    }
+    CardElement.prototype.internalGetNonZeroPadding = function (element, padding) {
+        if (padding.top == 0) {
+            padding.top = element.padding.top;
+        }
+        if (padding.right == 0) {
+            padding.right = element.padding.right;
+        }
+        if (padding.bottom == 0) {
+            padding.bottom = element.padding.bottom;
+        }
+        if (padding.left == 0) {
+            padding.left = element.padding.left;
+        }
+        if (element.parent) {
+            this.internalGetNonZeroPadding(element.parent, padding);
+        }
+    };
+    CardElement.prototype.showBottomSpacer = function (requestingElement) {
+        if (this.parent) {
+            this.parent.showBottomSpacer(this);
+        }
+    };
+    CardElement.prototype.hideBottomSpacer = function (requestingElement) {
+        if (this.parent) {
+            this.parent.hideBottomSpacer(this);
+        }
+    };
+    CardElement.prototype.setParent = function (value) {
+        this._parent = value;
+    };
+    Object.defineProperty(CardElement.prototype, "useDefaultSizing", {
+        get: function () {
+            return true;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    CardElement.prototype.adjustAlignment = function (element) {
+        if (this.horizontalAlignment != "left") {
+            element.style.textAlign = this.horizontalAlignment;
+        }
+    };
+    CardElement.prototype.adjustLayout = function (element) {
+        element.style.boxSizing = "border-box";
+        if (this.useDefaultSizing) {
+            element.style.width = "100%";
+        }
+        this.adjustAlignment(element);
+    };
+    Object.defineProperty(CardElement.prototype, "padding", {
+        get: function () {
+            return { top: 0, right: 0, bottom: 0, left: 0 };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    CardElement.prototype.getNonZeroPadding = function () {
+        var padding = { top: 0, right: 0, bottom: 0, left: 0 };
+        this.internalGetNonZeroPadding(this, padding);
+        return padding;
+    };
+    CardElement.prototype.getForbiddenElementTypes = function () {
+        return null;
+    };
+    CardElement.prototype.getForbiddenActionTypes = function () {
+        return null;
+    };
+    CardElement.prototype.parse = function (json) {
+        this.speak = json["speak"];
+        this.horizontalAlignment = json["horizontalAlignment"];
+        this.separation = Utils.getValueOrDefault(json["separation"], "default");
+    };
+    CardElement.prototype.validate = function () {
+        return [];
+    };
+    CardElement.prototype.render = function () {
+        var renderedElement = this.internalRender();
+        if (renderedElement != null) {
+            this.adjustLayout(renderedElement);
+        }
+        return renderedElement;
+    };
+    CardElement.prototype.isLastItem = function (item) {
+        return this.parent ? this.parent.isLastItem(item) : true;
+    };
+    CardElement.prototype.getRootElement = function () {
+        var rootElement = this;
+        while (rootElement.parent) {
+            rootElement = rootElement.parent;
+        }
+        return rootElement;
+    };
+    CardElement.prototype.getAllInputs = function () {
+        return [];
+    };
+    Object.defineProperty(CardElement.prototype, "isInteractive", {
+        get: function () {
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CardElement.prototype, "isStandalone", {
+        get: function () {
+            return true;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(CardElement.prototype, "parent", {
+        get: function () {
+            return this._parent;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return CardElement;
+}());
+exports.CardElement = CardElement;
+var TextBlock = (function (_super) {
+    __extends(TextBlock, _super);
+    function TextBlock() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.size = "normal";
+        _this.weight = "normal";
+        _this.isSubtle = false;
+        _this.wrap = true;
+        return _this;
+    }
+    TextBlock.prototype.internalRender = function () {
+        if (!Utils.isNullOrEmpty(this.text)) {
+            var element = document.createElement("div");
+            element.style.fontFamily = hostConfig.fontFamily;
+            var cssStyle = "text ";
+            var fontSize;
+            switch (this.size) {
+                case "small":
+                    fontSize = hostConfig.fontSizes.small;
+                    break;
+                case "medium":
+                    fontSize = hostConfig.fontSizes.medium;
+                    break;
+                case "large":
+                    fontSize = hostConfig.fontSizes.large;
+                    break;
+                case "extraLarge":
+                    fontSize = hostConfig.fontSizes.extraLarge;
+                    break;
+                default:
+                    fontSize = hostConfig.fontSizes.normal;
+                    break;
+            }
+            // Looks like 1.33 is the magic number to compute line-height
+            // from font size.
+            var computedLineHeight = fontSize * 1.33;
+            element.style.fontSize = fontSize + "px";
+            element.style.lineHeight = computedLineHeight + "px";
+            var actualTextColor = this.color ? this.color : hostConfig.textBlock.color;
+            var colorDefinition;
+            switch (actualTextColor) {
+                case "dark":
+                    colorDefinition = hostConfig.colors.dark;
+                    break;
+                case "light":
+                    colorDefinition = hostConfig.colors.light;
+                    break;
+                case "accent":
+                    colorDefinition = hostConfig.colors.accent;
+                    break;
+                case "good":
+                    colorDefinition = hostConfig.colors.good;
+                    break;
+                case "warning":
+                    colorDefinition = hostConfig.colors.warning;
+                    break;
+                case "attention":
+                    colorDefinition = hostConfig.colors.attention;
+                    break;
+                default:
+                    colorDefinition = hostConfig.colors.dark;
+                    break;
+            }
+            element.style.color = Utils.stringToCssColor(this.isSubtle ? colorDefinition.subtle : colorDefinition.normal);
+            var fontWeight;
+            switch (this.weight) {
+                case "lighter":
+                    fontWeight = hostConfig.fontWeights.lighter;
+                    break;
+                case "bolder":
+                    fontWeight = hostConfig.fontWeights.bolder;
+                    break;
+                default:
+                    fontWeight = hostConfig.fontWeights.normal;
+                    break;
+            }
+            element.style.fontWeight = fontWeight.toString();
+            var formattedText = TextFormatters.formatText(this.text);
+            element.innerHTML = Utils.processMarkdown(formattedText);
+            if (element.firstElementChild instanceof HTMLElement) {
+                var firstElementChild = element.firstElementChild;
+                firstElementChild.style.marginTop = "0px";
+                if (!this.wrap) {
+                    firstElementChild.style.overflow = "hidden";
+                    firstElementChild.style.textOverflow = "ellipsis";
+                }
+            }
+            if (element.lastElementChild instanceof HTMLElement) {
+                element.lastElementChild.style.marginBottom = "0px";
+            }
+            var anchors = element.getElementsByTagName("a");
+            for (var i = 0; i < anchors.length; i++) {
+                anchors[i].target = "_blank";
+            }
+            if (this.wrap) {
+                element.style.wordWrap = "break-word";
+                if (this.maxLines > 0) {
+                    element.style.maxHeight = (computedLineHeight * this.maxLines) + "px";
+                    element.style.overflow = "hidden";
+                }
+            }
+            else {
+                element.style.whiteSpace = "nowrap";
+            }
+            return element;
+        }
+        else {
+            return null;
+        }
+    };
+    TextBlock.prototype.parse = function (json) {
+        _super.prototype.parse.call(this, json);
+        this.text = json["text"];
+        this.size = Utils.getValueOrDefault(json["size"], "normal");
+        this.weight = Utils.getValueOrDefault(json["weight"], "normal");
+        this.color = Utils.getValueOrDefault(json["color"], hostConfig.textBlock.color);
+        this.isSubtle = json["isSubtle"];
+        this.wrap = json["wrap"] === undefined ? true : json["wrap"];
+        this.maxLines = json["maxLines"];
+    };
+    TextBlock.prototype.getJsonTypeName = function () {
+        return "TextBlock";
+    };
+    TextBlock.prototype.getDefaultSeparationDefinition = function () {
+        switch (this.size) {
+            case "small":
+                return hostConfig.textBlock.separations.small;
+            case "medium":
+                return hostConfig.textBlock.separations.medium;
+            case "large":
+                return hostConfig.textBlock.separations.large;
+            case "extraLarge":
+                return hostConfig.textBlock.separations.extraLarge;
+            default:
+                return hostConfig.textBlock.separations.normal;
+        }
+    };
+    TextBlock.prototype.renderSpeech = function () {
+        if (this.speak != null)
+            return this.speak + '\n';
+        if (this.text)
+            return '<s>' + this.text + '</s>\n';
+        return null;
+    };
+    return TextBlock;
+}(CardElement));
+exports.TextBlock = TextBlock;
+var InternalTextBlock = (function (_super) {
+    __extends(InternalTextBlock, _super);
+    function InternalTextBlock() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Object.defineProperty(InternalTextBlock.prototype, "useDefaultSizing", {
+        get: function () {
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return InternalTextBlock;
+}(TextBlock));
+var Fact = (function () {
+    function Fact() {
+    }
+    Fact.prototype.renderSpeech = function () {
+        if (this.speak != null) {
+            return this.speak + '\n';
+        }
+        return '<s>' + this.name + ' ' + this.value + '</s>\n';
+    };
+    return Fact;
+}());
+exports.Fact = Fact;
+var FactSet = (function (_super) {
+    __extends(FactSet, _super);
+    function FactSet() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.facts = [];
+        return _this;
+    }
+    Object.defineProperty(FactSet.prototype, "useDefaultSizing", {
+        get: function () {
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    FactSet.prototype.internalRender = function () {
+        var element = null;
+        if (this.facts.length > 0) {
+            element = document.createElement("table");
+            element.style.borderWidth = "0px";
+            element.style.borderSpacing = "0px";
+            element.style.borderStyle = "none";
+            element.style.borderCollapse = "collapse";
+            element.style.display = "block";
+            element.style.overflow = "hidden";
+            for (var i = 0; i < this.facts.length; i++) {
+                var trElement = document.createElement("tr");
+                if (i > 0) {
+                    trElement.style.marginTop = hostConfig.factSet.spacing + "px";
+                }
+                var tdElement = document.createElement("td");
+                tdElement.style.padding = "0";
+                if (hostConfig.factSet.title.maxWidth) {
+                    tdElement.style.maxWidth = hostConfig.factSet.title.maxWidth + "px";
+                }
+                tdElement.style.verticalAlign = "top";
+                var textBlock = new InternalTextBlock();
+                textBlock.text = this.facts[i].name;
+                textBlock.size = hostConfig.factSet.title.size;
+                textBlock.color = hostConfig.factSet.title.color;
+                textBlock.isSubtle = hostConfig.factSet.title.isSubtle;
+                textBlock.weight = hostConfig.factSet.title.weight;
+                textBlock.wrap = hostConfig.factSet.title.wrap;
+                textBlock.separation = "none";
+                Utils.appendChild(tdElement, textBlock.render());
+                Utils.appendChild(trElement, tdElement);
+                tdElement = document.createElement("td");
+                tdElement.style.padding = "0px 0px 0px 10px";
+                tdElement.style.verticalAlign = "top";
+                textBlock = new InternalTextBlock();
+                textBlock.text = this.facts[i].value;
+                textBlock.size = hostConfig.factSet.value.size;
+                textBlock.color = hostConfig.factSet.value.color;
+                textBlock.isSubtle = hostConfig.factSet.value.isSubtle;
+                textBlock.weight = hostConfig.factSet.value.weight;
+                textBlock.wrap = hostConfig.factSet.value.wrap;
+                textBlock.separation = "none";
+                Utils.appendChild(tdElement, textBlock.render());
+                Utils.appendChild(trElement, tdElement);
+                Utils.appendChild(element, trElement);
+            }
+        }
+        return element;
+    };
+    FactSet.prototype.getJsonTypeName = function () {
+        return "FactSet";
+    };
+    FactSet.prototype.getDefaultSeparationDefinition = function () {
+        return hostConfig.factSet.separation;
+    };
+    FactSet.prototype.parse = function (json) {
+        _super.prototype.parse.call(this, json);
+        if (json["facts"] != null) {
+            var jsonFacts = json["facts"];
+            for (var i = 0; i < jsonFacts.length; i++) {
+                var fact = new Fact();
+                fact.name = jsonFacts[i]["title"];
+                fact.value = jsonFacts[i]["value"];
+                fact.speak = jsonFacts[i]["speak"];
+                this.facts.push(fact);
+            }
+        }
+    };
+    FactSet.prototype.renderSpeech = function () {
+        if (this.speak != null) {
+            return this.speak + '\n';
+        }
+        // render each fact 
+        var speak = null;
+        if (this.facts.length > 0) {
+            speak = '';
+            for (var i = 0; i < this.facts.length; i++) {
+                var speech = this.facts[i].renderSpeech();
+                if (speech) {
+                    speak += speech;
+                }
+            }
+        }
+        return '<p>' + speak + '\n</p>\n';
+    };
+    return FactSet;
+}(CardElement));
+exports.FactSet = FactSet;
+var Image = (function (_super) {
+    __extends(Image, _super);
+    function Image() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.style = "normal";
+        _this.size = "medium";
+        return _this;
+    }
+    Object.defineProperty(Image.prototype, "useDefaultSizing", {
+        get: function () {
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Image.prototype.adjustAlignment = function (element) {
+        switch (this.horizontalAlignment) {
+            case "center":
+                element.style.marginLeft = "auto";
+                element.style.marginRight = "auto";
+                break;
+            case "right":
+                element.style.marginLeft = "auto";
+                break;
+        }
+    };
+    Image.prototype.internalRender = function () {
+        var _this = this;
+        var element = null;
+        if (!Utils.isNullOrEmpty(this.url)) {
+            element = document.createElement("div");
+            element.style.display = "block";
+            element.onclick = function (e) {
+                if (_this.selectAction != null) {
+                    raiseExecuteActionEvent(_this.selectAction);
+                    e.cancelBubble = true;
+                }
+            };
+            element.classList.add("ac-image");
+            if (this.selectAction != null) {
+                element.classList.add("ac-selectable");
+            }
+            switch (this.size) {
+                case "auto":
+                    element.style.maxWidth = "100%";
+                    break;
+                case "stretch":
+                    element.style.width = "100%";
+                    break;
+                case "small":
+                    element.style.maxWidth = hostConfig.imageSizes.small + "px";
+                    break;
+                case "large":
+                    element.style.maxWidth = hostConfig.imageSizes.large + "px";
+                    break;
+                default:
+                    element.style.maxWidth = hostConfig.imageSizes.medium + "px";
+                    break;
+            }
+            var imageElement = document.createElement("img");
+            imageElement.style.width = "100%";
+            if (this.style == "person") {
+                imageElement.style.borderRadius = "50%";
+                imageElement.style.backgroundPosition = "50% 50%";
+                imageElement.style.backgroundRepeat = "no-repeat";
+            }
+            imageElement.src = this.url;
+            element.appendChild(imageElement);
+        }
+        return element;
+    };
+    Image.prototype.getJsonTypeName = function () {
+        return "Image";
+    };
+    Image.prototype.getDefaultSeparationDefinition = function () {
+        return hostConfig.image.separation;
+    };
+    Image.prototype.parse = function (json) {
+        _super.prototype.parse.call(this, json);
+        this.url = json["url"];
+        this.style = Utils.getValueOrDefault(json["style"], "normal");
+        this.size = Utils.getValueOrDefault(json["size"], "medium");
+        var selectActionJson = json["selectAction"];
+        if (selectActionJson != undefined) {
+            this.selectAction = Action.createAction(selectActionJson);
+            invokeSetParent(this.selectAction, this);
+        }
+    };
+    Image.prototype.renderSpeech = function () {
+        if (this.speak != null) {
+            return this.speak + '\n';
+        }
+        return null;
+    };
+    return Image;
+}(CardElement));
+exports.Image = Image;
+var ImageSet = (function (_super) {
+    __extends(ImageSet, _super);
+    function ImageSet() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this._images = [];
+        _this.imageSize = "medium";
+        return _this;
+    }
+    ImageSet.prototype.internalRender = function () {
+        var element = null;
+        if (this._images.length > 0) {
+            element = document.createElement("div");
+            for (var i = 0; i < this._images.length; i++) {
+                var renderedImage = this._images[i].render();
+                // Default display for Image is "block" but that forces them to stack vertically
+                // in a div. So we need to override display and set it to "inline-block". The
+                // drawback is that it adds a small spacing at the bottom of each image, which
+                // simply can't be removed cleanly in a cross-browser compatible way.
+                renderedImage.style.display = "inline-block";
+                renderedImage.style.margin = "0px";
+                renderedImage.style.marginRight = "10px";
+                Utils.appendChild(element, renderedImage);
+            }
+        }
+        return element;
+    };
+    ImageSet.prototype.getJsonTypeName = function () {
+        return "ImageSet";
+    };
+    ImageSet.prototype.getDefaultSeparationDefinition = function () {
+        return hostConfig.imageSet.separation;
+    };
+    ImageSet.prototype.parse = function (json) {
+        _super.prototype.parse.call(this, json);
+        this.imageSize = Utils.getValueOrDefault(json["imageSize"], "medium");
+        if (json["images"] != null) {
+            var jsonImages = json["images"];
+            for (var i = 0; i < jsonImages.length; i++) {
+                var image = new Image();
+                image.size = this.imageSize;
+                image.url = jsonImages[i]["url"];
+                this.addImage(image);
+            }
+        }
+    };
+    ImageSet.prototype.addImage = function (image) {
+        if (!image.parent) {
+            this._images.push(image);
+            invokeSetParent(image, this);
+        }
+        else {
+            throw new Error("This image already belongs to another ImageSet");
+        }
+    };
+    ImageSet.prototype.renderSpeech = function () {
+        if (this.speak != null) {
+            return this.speak;
+        }
+        var speak = null;
+        if (this._images.length > 0) {
+            speak = '';
+            for (var i = 0; i < this._images.length; i++) {
+                speak += this._images[i].renderSpeech();
+            }
+        }
+        return speak;
+    };
+    return ImageSet;
+}(CardElement));
+exports.ImageSet = ImageSet;
+var Input = (function (_super) {
+    __extends(Input, _super);
+    function Input() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Input.prototype.getDefaultSeparationDefinition = function () {
+        return hostConfig.input.separation;
+    };
+    Input.prototype.validate = function () {
+        if (!this.id) {
+            return [{ error: Enums.ValidationError.PropertyCantBeNull, message: "All inputs must have a unique Id" }];
+        }
+        else {
+            return [];
+        }
+    };
+    Input.prototype.parse = function (json) {
+        _super.prototype.parse.call(this, json);
+        this.id = json["id"];
+        this.defaultValue = json["value"];
+    };
+    Input.prototype.renderSpeech = function () {
+        if (this.speak != null) {
+            return this.speak;
+        }
+        if (this.title) {
+            return '<s>' + this.title + '</s>\n';
+        }
+        return null;
+    };
+    Input.prototype.getAllInputs = function () {
+        return [this];
+    };
+    Object.defineProperty(Input.prototype, "isInteractive", {
+        get: function () {
+            return true;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Input;
+}(CardElement));
+exports.Input = Input;
+var TextInput = (function (_super) {
+    __extends(TextInput, _super);
+    function TextInput() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    TextInput.prototype.internalRender = function () {
+        this._textareaElement = document.createElement("textarea");
+        this._textareaElement.className = "ac-input ac-textInput";
+        if (this.isMultiline) {
+            this._textareaElement.classList.add("ac-multiline");
+        }
+        if (!Utils.isNullOrEmpty(this.placeholder)) {
+            this._textareaElement.placeholder = this.placeholder;
+        }
+        if (!Utils.isNullOrEmpty(this.defaultValue)) {
+            this._textareaElement.textContent = this.defaultValue;
+        }
+        if (this.maxLength > 0) {
+            this._textareaElement.maxLength = this.maxLength;
+        }
+        return this._textareaElement;
+    };
+    TextInput.prototype.getJsonTypeName = function () {
+        return "Input.Text";
+    };
+    TextInput.prototype.parse = function (json) {
+        _super.prototype.parse.call(this, json);
+        this.maxLength = json["maxLength"];
+        this.isMultiline = json["isMultiline"];
+        this.placeholder = json["placeholder"];
+    };
+    Object.defineProperty(TextInput.prototype, "value", {
+        get: function () {
+            return this._textareaElement ? this._textareaElement.textContent : null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return TextInput;
+}(Input));
+exports.TextInput = TextInput;
+var ToggleInput = (function (_super) {
+    __extends(ToggleInput, _super);
+    function ToggleInput() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    ToggleInput.prototype.internalRender = function () {
+        var element = document.createElement("div");
+        element.className = "ac-input";
+        this._checkboxInputElement = document.createElement("input");
+        this._checkboxInputElement.type = "checkbox";
+        this._checkboxInputElement.style.display = "inline-block";
+        this._checkboxInputElement.style.verticalAlign = "middle";
+        this._checkboxInputElement.style.margin = "0";
+        if (this.defaultValue == this.valueOn) {
+            this._checkboxInputElement.checked = true;
+        }
+        var label = new InternalTextBlock();
+        label.text = this.title;
+        var labelElement = label.render();
+        labelElement.style.display = "inline-block";
+        labelElement.style.marginLeft = "6px";
+        labelElement.style.verticalAlign = "middle";
+        var compoundInput = document.createElement("div");
+        Utils.appendChild(element, this._checkboxInputElement);
+        Utils.appendChild(element, labelElement);
+        return element;
+    };
+    ToggleInput.prototype.getJsonTypeName = function () {
+        return "Input.Toggle";
+    };
+    ToggleInput.prototype.parse = function (json) {
+        _super.prototype.parse.call(this, json);
+        this.title = json["title"];
+        this.valueOn = json["valueOn"];
+        this.valueOff = json["valueOff"];
+    };
+    Object.defineProperty(ToggleInput.prototype, "value", {
+        get: function () {
+            if (this._checkboxInputElement) {
+                return this._checkboxInputElement.checked ? this.valueOn : this.valueOff;
+            }
+            else {
+                return null;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return ToggleInput;
+}(Input));
+exports.ToggleInput = ToggleInput;
+var Choice = (function () {
+    function Choice() {
+    }
+    return Choice;
+}());
+exports.Choice = Choice;
+var ChoiceSetInput = (function (_super) {
+    __extends(ChoiceSetInput, _super);
+    function ChoiceSetInput() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.choices = [];
+        return _this;
+    }
+    ChoiceSetInput.prototype.internalRender = function () {
+        if (!this.isMultiSelect) {
+            if (this.isCompact) {
+                // Render as a combo box
+                this._selectElement = document.createElement("select");
+                this._selectElement.className = "ac-input ac-multichoiceInput";
+                var option = document.createElement("option");
+                option.selected = true;
+                option.disabled = true;
+                option.hidden = true;
+                option.text = this.placeholder;
+                Utils.appendChild(this._selectElement, option);
+                for (var i = 0; i < this.choices.length; i++) {
+                    var option = document.createElement("option");
+                    option.value = this.choices[i].value;
+                    option.text = this.choices[i].title;
+                    Utils.appendChild(this._selectElement, option);
+                }
+                return this._selectElement;
+            }
+            else {
+                // Render as a series of radio buttons
+                var element = document.createElement("div");
+                element.className = "ac-input";
+                this._toggleInputs = [];
+                for (var i = 0; i < this.choices.length; i++) {
+                    var radioInput = document.createElement("input");
+                    radioInput.type = "radio";
+                    radioInput.style.margin = "0";
+                    radioInput.style.display = "inline-block";
+                    radioInput.style.verticalAlign = "middle";
+                    radioInput.name = this.id;
+                    radioInput.value = this.choices[i].value;
+                    this._toggleInputs.push(radioInput);
+                    var label = new InternalTextBlock();
+                    label.text = this.choices[i].title;
+                    var labelElement = label.render();
+                    labelElement.style.display = "inline-block";
+                    labelElement.style.marginLeft = "6px";
+                    labelElement.style.verticalAlign = "middle";
+                    var compoundInput = document.createElement("div");
+                    Utils.appendChild(compoundInput, radioInput);
+                    Utils.appendChild(compoundInput, labelElement);
+                    Utils.appendChild(element, compoundInput);
+                }
+                return element;
+            }
+        }
+        else {
+            // Render as a list of toggle inputs
+            var element = document.createElement("div");
+            element.className = "input";
+            this._toggleInputs = [];
+            for (var i = 0; i < this.choices.length; i++) {
+                var checkboxInput = document.createElement("input");
+                checkboxInput.type = "checkbox";
+                checkboxInput.style.margin = "0";
+                checkboxInput.style.display = "inline-block";
+                checkboxInput.style.verticalAlign = "middle";
+                checkboxInput.value = this.choices[i].value;
+                this._toggleInputs.push(checkboxInput);
+                var label = new InternalTextBlock();
+                label.text = this.choices[i].title;
+                var labelElement = label.render();
+                labelElement.style.display = "inline-block";
+                labelElement.style.marginLeft = "6px";
+                labelElement.style.verticalAlign = "middle";
+                var compoundInput = document.createElement("div");
+                Utils.appendChild(compoundInput, checkboxInput);
+                Utils.appendChild(compoundInput, labelElement);
+                Utils.appendChild(element, compoundInput);
+            }
+            return element;
+        }
+    };
+    ChoiceSetInput.prototype.getJsonTypeName = function () {
+        return "Input.ChoiceSet";
+    };
+    ChoiceSetInput.prototype.validate = function () {
+        var result = [];
+        if (this.choices.length == 0) {
+            result = [{ error: Enums.ValidationError.CollectionCantBeEmpty, message: "An Input.ChoiceSet must have at least one choice defined." }];
+        }
+        for (var i = 0; i < this.choices.length; i++) {
+            if (!this.choices[i].title || !this.choices[i].value) {
+                result = result.concat([{ error: Enums.ValidationError.PropertyCantBeNull, message: "All choices in an Input.ChoiceSet must have their title and value properties set." }]);
+                break;
+            }
+        }
+        return result;
+    };
+    ChoiceSetInput.prototype.parse = function (json) {
+        _super.prototype.parse.call(this, json);
+        this.isCompact = !(json["style"] === "expanded");
+        this.isMultiSelect = json["isMultiSelect"];
+        this.placeholder = json["placeholder"];
+        if (json["choices"] != undefined) {
+            var choiceArray = json["choices"];
+            for (var i = 0; i < choiceArray.length; i++) {
+                var choice = new Choice();
+                choice.title = choiceArray[i]["title"];
+                choice.value = choiceArray[i]["value"];
+                this.choices.push(choice);
+            }
+        }
+    };
+    Object.defineProperty(ChoiceSetInput.prototype, "value", {
+        get: function () {
+            if (!this.isMultiSelect) {
+                if (this.isCompact) {
+                    return this._selectElement ? this._selectElement.value : null;
+                }
+                else {
+                    if (this._toggleInputs.length == 0) {
+                        return null;
+                    }
+                    for (var i = 0; i < this._toggleInputs.length; i++) {
+                        if (this._toggleInputs[i].checked) {
+                            return this._toggleInputs[i].value;
+                        }
+                    }
+                    return null;
+                }
+            }
+            else {
+                if (this._toggleInputs.length == 0) {
+                    return null;
+                }
+                var result = "";
+                for (var i = 0; i < this._toggleInputs.length; i++) {
+                    if (this._toggleInputs[i].checked) {
+                        if (result != "") {
+                            result += ";";
+                        }
+                        result += this._toggleInputs[i].value;
+                    }
+                }
+                return result == "" ? null : result;
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return ChoiceSetInput;
+}(Input));
+exports.ChoiceSetInput = ChoiceSetInput;
+var NumberInput = (function (_super) {
+    __extends(NumberInput, _super);
+    function NumberInput() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    NumberInput.prototype.internalRender = function () {
+        this._numberInputElement = document.createElement("input");
+        this._numberInputElement.type = "number";
+        this._numberInputElement.className = "ac-input ac-numberInput";
+        this._numberInputElement.min = this.min;
+        this._numberInputElement.max = this.max;
+        if (!Utils.isNullOrEmpty(this.defaultValue)) {
+            this._numberInputElement.value = this.defaultValue;
+        }
+        return this._numberInputElement;
+    };
+    NumberInput.prototype.getJsonTypeName = function () {
+        return "Input.Number";
+    };
+    NumberInput.prototype.parse = function (json) {
+        _super.prototype.parse.call(this, json);
+        this.min = json["min"];
+        this.max = json["max"];
+    };
+    Object.defineProperty(NumberInput.prototype, "value", {
+        get: function () {
+            return this._numberInputElement ? this._numberInputElement.value : null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return NumberInput;
+}(Input));
+exports.NumberInput = NumberInput;
+var DateInput = (function (_super) {
+    __extends(DateInput, _super);
+    function DateInput() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    DateInput.prototype.internalRender = function () {
+        this._dateInputElement = document.createElement("input");
+        this._dateInputElement.type = "date";
+        this._dateInputElement.className = "ac-input ac-dateInput";
+        return this._dateInputElement;
+    };
+    DateInput.prototype.getJsonTypeName = function () {
+        return "Input.Date";
+    };
+    Object.defineProperty(DateInput.prototype, "value", {
+        get: function () {
+            return this._dateInputElement ? this._dateInputElement.value : null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return DateInput;
+}(Input));
+exports.DateInput = DateInput;
+var TimeInput = (function (_super) {
+    __extends(TimeInput, _super);
+    function TimeInput() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    TimeInput.prototype.internalRender = function () {
+        this._timeInputElement = document.createElement("input");
+        this._timeInputElement.type = "time";
+        this._timeInputElement.className = "ac-input ac-timeInput";
+        return this._timeInputElement;
+    };
+    TimeInput.prototype.getJsonTypeName = function () {
+        return "Input.Time";
+    };
+    Object.defineProperty(TimeInput.prototype, "value", {
+        get: function () {
+            return this._timeInputElement ? this._timeInputElement.value : null;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return TimeInput;
+}(Input));
+exports.TimeInput = TimeInput;
+var ActionButtonStyle;
+(function (ActionButtonStyle) {
+    ActionButtonStyle[ActionButtonStyle["Link"] = 0] = "Link";
+    ActionButtonStyle[ActionButtonStyle["Push"] = 1] = "Push";
+})(ActionButtonStyle || (ActionButtonStyle = {}));
+var ActionButtonState;
+(function (ActionButtonState) {
+    ActionButtonState[ActionButtonState["Normal"] = 0] = "Normal";
+    ActionButtonState[ActionButtonState["Expanded"] = 1] = "Expanded";
+    ActionButtonState[ActionButtonState["Subdued"] = 2] = "Subdued";
+})(ActionButtonState || (ActionButtonState = {}));
+var ActionButton = (function () {
+    function ActionButton(action, style) {
+        var _this = this;
+        this._element = null;
+        this._state = ActionButtonState.Normal;
+        this.onClick = null;
+        this._action = action;
+        this._style = style;
+        this._element = document.createElement("div");
+        this._element.onclick = function (e) { _this.click(); };
+        this.updateCssStyle();
+    }
+    ActionButton.prototype.click = function () {
+        if (this.onClick != null) {
+            this.onClick(this);
+        }
+    };
+    ActionButton.prototype.updateCssStyle = function () {
+        this._element.className = this._style == ActionButtonStyle.Link ? "ac-linkButton " : "ac-pushButton ";
+        switch (this._state) {
+            case ActionButtonState.Expanded:
+                this._element.classList.add("ac-expanded");
+                break;
+            case ActionButtonState.Subdued:
+                this._element.classList.add("ac-subdued");
+                break;
+        }
+    };
+    Object.defineProperty(ActionButton.prototype, "action", {
+        get: function () {
+            return this._action;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ActionButton.prototype, "text", {
+        get: function () {
+            return this._text;
+        },
+        set: function (value) {
+            this._text = value;
+            this._element.innerText = this._text;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ActionButton.prototype, "element", {
+        get: function () {
+            return this._element;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(ActionButton.prototype, "state", {
+        get: function () {
+            return this._state;
+        },
+        set: function (value) {
+            this._state = value;
+            this.updateCssStyle();
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return ActionButton;
+}());
+var Action = (function () {
+    function Action() {
+        this._parent = null;
+    }
+    Action.createAction = function (json) {
+        var actionType = json["type"];
+        var result = AdaptiveCard.actionTypeRegistry.createInstance(actionType);
+        if (result) {
+            result.parse(json);
+        }
+        else {
+            raiseParseError({
+                error: Enums.ValidationError.UnknownActionType,
+                message: "Unknown action type: " + actionType
+            });
+        }
+        return result;
+    };
+    Action.prototype.setParent = function (value) {
+        this._parent = value;
+    };
+    Action.prototype.validate = function () {
+        return [];
+    };
+    Action.prototype.prepare = function (inputs) {
+        // Do nothing in base implementation
+    };
+    ;
+    Action.prototype.parse = function (json) {
+        this.title = json["title"];
+    };
+    Action.prototype.getAllInputs = function () {
+        return [];
+    };
+    Object.defineProperty(Action.prototype, "parent", {
+        get: function () {
+            return this._parent;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Action;
+}());
+exports.Action = Action;
+var ExternalAction = (function (_super) {
+    __extends(ExternalAction, _super);
+    function ExternalAction() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    return ExternalAction;
+}(Action));
+exports.ExternalAction = ExternalAction;
+var SubmitAction = (function (_super) {
+    __extends(SubmitAction, _super);
+    function SubmitAction() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this._isPrepared = false;
+        return _this;
+    }
+    SubmitAction.prototype.getJsonTypeName = function () {
+        return "Action.Submit";
+    };
+    SubmitAction.prototype.prepare = function (inputs) {
+        if (this._originalData) {
+            this._processedData = JSON.parse(JSON.stringify(this._originalData));
+        }
+        else {
+            this._processedData = {};
+        }
+        for (var i = 0; i < inputs.length; i++) {
+            var inputValue = inputs[i].value;
+            if (inputValue != null) {
+                this._processedData[inputs[i].id] = inputs[i].value;
+            }
+        }
+        this._isPrepared = true;
+    };
+    SubmitAction.prototype.parse = function (json) {
+        _super.prototype.parse.call(this, json);
+        this.data = json["data"];
+    };
+    Object.defineProperty(SubmitAction.prototype, "data", {
+        get: function () {
+            return this._isPrepared ? this._processedData : this._originalData;
+        },
+        set: function (value) {
+            this._originalData = value;
+            this._isPrepared = false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return SubmitAction;
+}(ExternalAction));
+exports.SubmitAction = SubmitAction;
+var OpenUrlAction = (function (_super) {
+    __extends(OpenUrlAction, _super);
+    function OpenUrlAction() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    OpenUrlAction.prototype.getJsonTypeName = function () {
+        return "Action.OpenUrl";
+    };
+    OpenUrlAction.prototype.validate = function () {
+        if (!this.url) {
+            return [{ error: Enums.ValidationError.PropertyCantBeNull, message: "An Action.OpenUrl must have its url property set." }];
+        }
+        else {
+            return [];
+        }
+    };
+    OpenUrlAction.prototype.parse = function (json) {
+        _super.prototype.parse.call(this, json);
+        this.url = json["url"];
+    };
+    return OpenUrlAction;
+}(ExternalAction));
+exports.OpenUrlAction = OpenUrlAction;
+var HttpHeader = (function () {
+    function HttpHeader() {
+        this._value = new Utils.StringWithSubstitutions();
+    }
+    HttpHeader.prototype.prepare = function (inputs) {
+        this._value.substituteInputValues(inputs);
+    };
+    Object.defineProperty(HttpHeader.prototype, "value", {
+        get: function () {
+            return this._value.get();
+        },
+        set: function (newValue) {
+            this._value.set(newValue);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return HttpHeader;
+}());
+exports.HttpHeader = HttpHeader;
+var HttpAction = (function (_super) {
+    __extends(HttpAction, _super);
+    function HttpAction() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this._url = new Utils.StringWithSubstitutions();
+        _this._body = new Utils.StringWithSubstitutions();
+        _this._headers = [];
+        return _this;
+    }
+    HttpAction.prototype.getJsonTypeName = function () {
+        return "Action.Http";
+    };
+    HttpAction.prototype.validate = function () {
+        var result = [];
+        if (!this.url) {
+            result = [{ error: Enums.ValidationError.PropertyCantBeNull, message: "An Action.Http must have its url property set." }];
+        }
+        if (this.headers.length > 0) {
+            for (var i = 0; i < this.headers.length; i++) {
+                if (!this.headers[i].name || !this.headers[i].value) {
+                    result = result.concat([{ error: Enums.ValidationError.PropertyCantBeNull, message: "All headers of an Action.Http must have their name and value properties set." }]);
+                    break;
+                }
+            }
+        }
+        return result;
+    };
+    HttpAction.prototype.prepare = function (inputs) {
+        this._url.substituteInputValues(inputs);
+        this._body.substituteInputValues(inputs);
+        for (var i = 0; i < this._headers.length; i++) {
+            this._headers[i].prepare(inputs);
+        }
+    };
+    ;
+    HttpAction.prototype.parse = function (json) {
+        _super.prototype.parse.call(this, json);
+        this.url = json["url"];
+        this.method = json["method"];
+        this.body = json["body"];
+        if (json["headers"] != null) {
+            var jsonHeaders = json["headers"];
+            for (var i = 0; i < jsonHeaders.length; i++) {
+                var httpHeader = new HttpHeader();
+                httpHeader.name = jsonHeaders[i]["name"];
+                httpHeader.value = jsonHeaders[i]["value"];
+                this.headers.push(httpHeader);
+            }
+        }
+    };
+    Object.defineProperty(HttpAction.prototype, "url", {
+        get: function () {
+            return this._url.get();
+        },
+        set: function (value) {
+            this._url.set(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(HttpAction.prototype, "body", {
+        get: function () {
+            return this._body.get();
+        },
+        set: function (value) {
+            this._body.set(value);
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Object.defineProperty(HttpAction.prototype, "headers", {
+        get: function () {
+            return this._headers;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return HttpAction;
+}(ExternalAction));
+exports.HttpAction = HttpAction;
+var ShowCardAction = (function (_super) {
+    __extends(ShowCardAction, _super);
+    function ShowCardAction() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.card = new InlineAdaptiveCard();
+        return _this;
+    }
+    ShowCardAction.prototype.setParent = function (value) {
+        _super.prototype.setParent.call(this, value);
+        invokeSetParent(this.card, value);
+    };
+    ShowCardAction.prototype.getJsonTypeName = function () {
+        return "Action.ShowCard";
+    };
+    ShowCardAction.prototype.validate = function () {
+        return this.card.validate();
+    };
+    ShowCardAction.prototype.parse = function (json) {
+        _super.prototype.parse.call(this, json);
+        this.card.parse(json["card"]);
+    };
+    ShowCardAction.prototype.getAllInputs = function () {
+        return this.card.getAllInputs();
+    };
+    return ShowCardAction;
+}(Action));
+exports.ShowCardAction = ShowCardAction;
+var ActionCollection = (function () {
+    function ActionCollection(owner) {
+        this._actionButtons = [];
+        this._expandedAction = null;
+        this.items = [];
+        this.onHideActionCardPane = null;
+        this.onShowActionCardPane = null;
+        this._owner = owner;
+    }
+    ActionCollection.prototype.hideActionCardPane = function () {
+        this._actionCardContainer.innerHTML = '';
+        this._actionCardContainer.style.padding = "0px";
+        this._actionCardContainer.style.marginTop = "0px";
+        if (this.onHideActionCardPane) {
+            this.onHideActionCardPane();
+        }
+    };
+    ActionCollection.prototype.showActionCardPane = function (action) {
+        if (this.onShowActionCardPane) {
+            this.onShowActionCardPane(action);
+        }
+        var renderedCard = action.card.render();
+        this._actionCardContainer.innerHTML = '';
+        this._actionCardContainer.style.marginTop = this.items.length > 1 ? hostConfig.actions.showCard.inlineTopMargin + "px" : "0px";
+        if (hostConfig.actions.showCard.actionMode == "inlineEdgeToEdge") {
+            var padding = this._owner.getNonZeroPadding();
+            this._actionCardContainer.style.paddingLeft = padding.left + "px";
+            this._actionCardContainer.style.paddingRight = padding.right + "px";
+            this._actionCardContainer.style.marginLeft = "-" + padding.left + "px";
+            this._actionCardContainer.style.marginRight = "-" + padding.right + "px";
+            renderedCard.style.paddingLeft = "0px";
+            renderedCard.style.paddingRight = "0px";
+        }
+        Utils.appendChild(this._actionCardContainer, renderedCard);
+    };
+    ActionCollection.prototype.actionClicked = function (actionButton) {
+        if (!(actionButton.action instanceof ShowCardAction)) {
+            for (var i = 0; i < this._actionButtons.length; i++) {
+                this._actionButtons[i].state = ActionButtonState.Normal;
+            }
+            this.hideActionCardPane();
+            raiseExecuteActionEvent(actionButton.action);
+        }
+        else {
+            if (hostConfig.actions.showCard.actionMode == "popup") {
+                var actionShowCard = actionButton.action;
+                raiseShowPopupCardEvent(actionShowCard);
+            }
+            else if (actionButton.action === this._expandedAction) {
+                for (var i = 0; i < this._actionButtons.length; i++) {
+                    this._actionButtons[i].state = ActionButtonState.Normal;
+                }
+                this._expandedAction = null;
+                this.hideActionCardPane();
+            }
+            else {
+                for (var i = 0; i < this._actionButtons.length; i++) {
+                    if (this._actionButtons[i] !== actionButton) {
+                        this._actionButtons[i].state = ActionButtonState.Subdued;
+                    }
+                }
+                actionButton.state = ActionButtonState.Expanded;
+                this._expandedAction = actionButton.action;
+                this.showActionCardPane(actionButton.action);
+            }
+        }
+    };
+    ActionCollection.prototype.validate = function () {
+        var result = [];
+        if (hostConfig.actions.maxActions && this.items.length > hostConfig.actions.maxActions) {
+            result.push({
+                error: Enums.ValidationError.TooManyActions,
+                message: "A maximum of " + hostConfig.actions.maxActions + " actions are allowed."
+            });
+        }
+        if (this.items.length > 0 && !hostConfig.supportsInteractivity) {
+            result.push({
+                error: Enums.ValidationError.InteractivityNotAllowed,
+                message: "Interactivity is not allowed."
+            });
+        }
+        for (var i = 0; i < this.items.length; i++) {
+            if (!isActionAllowed(this.items[i], this._owner.getForbiddenActionTypes())) {
+                result.push({
+                    error: Enums.ValidationError.ActionTypeNotAllowed,
+                    message: "Actions of type " + this.items[i].getJsonTypeName() + " are not allowe."
+                });
+            }
+        }
+        for (var i = 0; i < this.items.length; i++) {
+            result = result.concat(this.items[i].validate());
+        }
+        return result;
+    };
+    ActionCollection.prototype.render = function () {
+        var _this = this;
+        if (!hostConfig.supportsInteractivity) {
+            return null;
+        }
+        var element = document.createElement("div");
+        var buttonStrip = document.createElement("div");
+        switch (hostConfig.actions.actionAlignment) {
+            case "center":
+                element.style.textAlign = "center";
+                buttonStrip.style.textAlign = "center";
+                break;
+            case "right":
+                element.style.textAlign = "right";
+                buttonStrip.style.textAlign = "right";
+                break;
+        }
+        if (hostConfig.actions.actionsOrientation == "horizontal") {
+            if (hostConfig.actions.stretch) {
+                buttonStrip.style.display = "flex";
+            }
+            else {
+                buttonStrip.style.display = "inline-flex";
+                buttonStrip.style.width = "100%";
+            }
+        }
+        else {
+            buttonStrip.style.display = "inline-table";
+        }
+        this._actionCardContainer = document.createElement("div");
+        this._actionCardContainer.style.backgroundColor = Utils.stringToCssColor(hostConfig.actions.showCard.backgroundColor);
+        var renderedActions = 0;
+        if (this.items.length == 1 && this.items[0] instanceof ShowCardAction) {
+            this.showActionCardPane(this.items[0]);
+            renderedActions++;
+        }
+        else {
+            var actionButtonStyle = ActionButtonStyle.Push;
+            var maxActions = hostConfig.actions.maxActions ? Math.min(hostConfig.actions.maxActions, this.items.length) : this.items.length;
+            for (var i = 0; i < maxActions; i++) {
+                if (this.items[i] instanceof ShowCardAction) {
+                    actionButtonStyle = ActionButtonStyle.Link;
+                    break;
+                }
+            }
+            var forbiddenActionTypes = this._owner.getForbiddenActionTypes();
+            for (var i = 0; i < maxActions; i++) {
+                if (isActionAllowed(this.items[i], forbiddenActionTypes)) {
+                    var buttonStripItem = document.createElement("div");
+                    buttonStripItem.style.whiteSpace = "nowrap";
+                    buttonStripItem.style.overflow = "hidden";
+                    buttonStripItem.style.overflow = "table-cell";
+                    buttonStripItem.style.flex = hostConfig.actions.stretch ? "0 1 100%" : "0 1 auto";
+                    var actionButton = new ActionButton(this.items[i], actionButtonStyle);
+                    actionButton.text = this.items[i].title;
+                    actionButton.onClick = function (ab) { _this.actionClicked(ab); };
+                    this._actionButtons.push(actionButton);
+                    Utils.appendChild(buttonStripItem, actionButton.element);
+                    Utils.appendChild(buttonStrip, buttonStripItem);
+                    if (i < this.items.length - 1 && hostConfig.actions.buttonSpacing > 0) {
+                        var spacer = document.createElement("div");
+                        if (hostConfig.actions.actionsOrientation == "horizontal") {
+                            spacer.style.flex = "0 0 " + hostConfig.actions.buttonSpacing + "px";
+                        }
+                        else {
+                            spacer.style.height = hostConfig.actions.buttonSpacing + "px";
+                        }
+                        Utils.appendChild(buttonStrip, spacer);
+                    }
+                    renderedActions++;
+                }
+            }
+            Utils.appendChild(element, buttonStrip);
+        }
+        Utils.appendChild(element, this._actionCardContainer);
+        return renderedActions > 0 ? element : null;
+    };
+    ActionCollection.prototype.addAction = function (action) {
+        if (!action.parent) {
+            this.items.push(action);
+            invokeSetParent(action, this._owner);
+        }
+        else {
+            throw new Error("The action already belongs to another element.");
+        }
+    };
+    ActionCollection.prototype.clear = function () {
+        this.items = [];
+    };
+    ActionCollection.prototype.getAllInputs = function () {
+        var result = [];
+        for (var i = 0; i < this.items.length; i++) {
+            var action = this.items[i];
+            result = result.concat(action.getAllInputs());
+        }
+        return result;
+    };
+    return ActionCollection;
+}());
+var ActionSet = (function (_super) {
+    __extends(ActionSet, _super);
+    function ActionSet() {
+        var _this = _super.call(this) || this;
+        _this._actionCollection = new ActionCollection(_this);
+        _this._actionCollection.onHideActionCardPane = function () { _this.showBottomSpacer(_this); };
+        _this._actionCollection.onShowActionCardPane = function (action) { _this.hideBottomSpacer(_this); };
+        return _this;
+    }
+    ActionSet.prototype.internalRender = function () {
+        return this._actionCollection.render();
+    };
+    ActionSet.prototype.getJsonTypeName = function () {
+        return "ActionSet";
+    };
+    ActionSet.prototype.getDefaultSeparationDefinition = function () {
+        return hostConfig.actions.separation;
+    };
+    ActionSet.prototype.validate = function () {
+        return this._actionCollection.validate();
+    };
+    ActionSet.prototype.parse = function (json, itemsCollectionPropertyName) {
+        if (itemsCollectionPropertyName === void 0) { itemsCollectionPropertyName = "items"; }
+        _super.prototype.parse.call(this, json);
+        if (json["actions"] != undefined) {
+            var jsonActions = json["actions"];
+            for (var i = 0; i < jsonActions.length; i++) {
+                this.addAction(Action.createAction(jsonActions[i]));
+            }
+        }
+    };
+    ActionSet.prototype.addAction = function (action) {
+        if (action != null) {
+            this._actionCollection.addAction(action);
+        }
+    };
+    ActionSet.prototype.getAllInputs = function () {
+        return this._actionCollection.getAllInputs();
+    };
+    ActionSet.prototype.renderSpeech = function () {
+        // TODO: What's the right thing to do here?
+        return "";
+    };
+    Object.defineProperty(ActionSet.prototype, "isInteractive", {
+        get: function () {
+            return true;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return ActionSet;
+}(CardElement));
+exports.ActionSet = ActionSet;
+var ContainerBase = (function (_super) {
+    __extends(ContainerBase, _super);
+    function ContainerBase() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this._items = [];
+        return _this;
+    }
+    ContainerBase.prototype.showBottomSpacer = function (requestingElement) {
+        if ((!requestingElement || this.isLastItem(requestingElement)) && hostConfig.actions.showCard.actionMode == "inlineEdgeToEdge") {
+            this._element.style.paddingBottom = this.padding.bottom + "px";
+            _super.prototype.showBottomSpacer.call(this, this);
+        }
+    };
+    ContainerBase.prototype.hideBottomSpacer = function (requestingElement) {
+        if ((!requestingElement || this.isLastItem(requestingElement)) && hostConfig.actions.showCard.actionMode == "inlineEdgeToEdge") {
+            this._element.style.paddingBottom = "0px";
+            _super.prototype.hideBottomSpacer.call(this, this);
+        }
+    };
+    ContainerBase.prototype.internalRender = function () {
+        var _this = this;
+        this._element = document.createElement("div");
+        this._element.className = "ac-container";
+        var backgroundColor = this.getBackgroundColor();
+        if (backgroundColor) {
+            this._element.style.backgroundColor = Utils.stringToCssColor(backgroundColor);
+        }
+        if (this.selectAction) {
+            this._element.classList.add("ac-selectable");
+        }
+        this._element.style.paddingTop = this.padding.top + "px";
+        this._element.style.paddingRight = this.padding.right + "px";
+        this._element.style.paddingBottom = this.padding.bottom + "px";
+        this._element.style.paddingLeft = this.padding.left + "px";
+        this._element.onclick = function (e) {
+            if (_this.selectAction != null) {
+                raiseExecuteActionEvent(_this.selectAction);
+                e.cancelBubble = true;
+            }
+        };
+        if (this._items.length > 0) {
+            var renderedElementCount = 0;
+            for (var i = 0; i < this._items.length; i++) {
+                var renderedElement = isElementAllowed(this._items[i], this.getForbiddenElementTypes()) ? this._items[i].render() : null;
+                if (renderedElement != null) {
+                    if (renderedElementCount > 0 && this._items[i].separation != "none") {
+                        var separationDefinition = this._items[i].separation == "default" ? this._items[i].getDefaultSeparationDefinition() : hostConfig.strongSeparation;
+                        Utils.appendChild(this._element, Utils.renderSeparation(separationDefinition, "vertical"));
+                    }
+                    Utils.appendChild(this._element, renderedElement);
+                    renderedElementCount++;
+                }
+            }
+        }
+        return renderedElementCount > 0 ? this._element : null;
+    };
+    ContainerBase.prototype.getBackgroundColor = function () {
+        return null;
+    };
+    Object.defineProperty(ContainerBase.prototype, "padding", {
+        get: function () {
+            return { left: 0, top: 0, right: 0, bottom: 0 };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    ContainerBase.prototype.isLastItem = function (item) {
+        return this._items.indexOf(item) == (this._items.length - 1);
+    };
+    ContainerBase.prototype.getDefaultSeparationDefinition = function () {
+        return hostConfig.container.separation;
+    };
+    ContainerBase.prototype.validate = function () {
+        var result = [];
+        for (var i = 0; i < this._items.length; i++) {
+            if (!hostConfig.supportsInteractivity && this._items[i].isInteractive) {
+                result.push({
+                    error: Enums.ValidationError.InteractivityNotAllowed,
+                    message: "Interactivity is not allowed."
+                });
+            }
+            if (!isElementAllowed(this._items[i], this.getForbiddenElementTypes())) {
+                result.push({
+                    error: Enums.ValidationError.InteractivityNotAllowed,
+                    message: "Elements of type " + this._items[i].getJsonTypeName() + " are not allowed in this container."
+                });
+            }
+            result = result.concat(this._items[i].validate());
+        }
+        return result;
+    };
+    ContainerBase.prototype.parse = function (json, itemsCollectionPropertyName) {
+        if (itemsCollectionPropertyName === void 0) { itemsCollectionPropertyName = "items"; }
+        _super.prototype.parse.call(this, json);
+        if (json[itemsCollectionPropertyName] != null) {
+            var items = json[itemsCollectionPropertyName];
+            for (var i = 0; i < items.length; i++) {
+                var elementType = items[i]["type"];
+                var element = AdaptiveCard.elementTypeRegistry.createInstance(elementType);
+                if (!element) {
+                    raiseParseError({
+                        error: Enums.ValidationError.UnknownElementType,
+                        message: "Unknown element type: " + elementType
+                    });
+                }
+                else {
+                    this.addItem(element);
+                    element.parse(items[i]);
+                }
+            }
+        }
+        var selectActionJson = json["selectAction"];
+        if (selectActionJson != undefined) {
+            this.selectAction = Action.createAction(selectActionJson);
+            invokeSetParent(this.selectAction, this);
+        }
+    };
+    ContainerBase.prototype.addItem = function (item) {
+        if (!item.parent) {
+            if (item.isStandalone) {
+                this._items.push(item);
+                invokeSetParent(item, this);
+            }
+            else {
+                throw new Error("Elements of type " + item.getJsonTypeName() + " cannot be used as standalone elements.");
+            }
+        }
+        else {
+            throw new Error("The element already belongs to another container.");
+        }
+    };
+    ContainerBase.prototype.clear = function () {
+        this._items = [];
+    };
+    ContainerBase.prototype.getAllInputs = function () {
+        var result = [];
+        for (var i = 0; i < this._items.length; i++) {
+            var item = this._items[i];
+            result = result.concat(item.getAllInputs());
+        }
+        return result;
+    };
+    ContainerBase.prototype.renderSpeech = function () {
+        if (this.speak != null) {
+            return this.speak;
+        }
+        // render each item
+        var speak = null;
+        if (this._items.length > 0) {
+            speak = '';
+            for (var i = 0; i < this._items.length; i++) {
+                var result = this._items[i].renderSpeech();
+                if (result) {
+                    speak += result;
+                }
+            }
+        }
+        return speak;
+    };
+    return ContainerBase;
+}(CardElement));
+exports.ContainerBase = ContainerBase;
+var Container = (function (_super) {
+    __extends(Container, _super);
+    function Container() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.style = "normal";
+        return _this;
+    }
+    Container.prototype.getBackgroundColor = function () {
+        return this.style == "normal" ? hostConfig.container.normal.backgroundColor : hostConfig.container.emphasis.backgroundColor;
+    };
+    Container.prototype.internalRender = function () {
+        var renderedContainer = _super.prototype.internalRender.call(this);
+        var styleDefinition = this.style == "normal" ? hostConfig.container.normal : hostConfig.container.emphasis;
+        if (styleDefinition.borderColor) {
+            renderedContainer.style.borderColor = Utils.stringToCssColor(styleDefinition.borderColor);
+        }
+        if (styleDefinition.borderThickness) {
+            renderedContainer.style.borderTop = styleDefinition.borderThickness.top + "px solid";
+            renderedContainer.style.borderRight = styleDefinition.borderThickness.right + "px solid";
+            renderedContainer.style.borderBottom = styleDefinition.borderThickness.bottom + "px solid";
+            renderedContainer.style.borderLeft = styleDefinition.borderThickness.left + "px solid";
+        }
+        return renderedContainer;
+    };
+    Object.defineProperty(Container.prototype, "padding", {
+        get: function () {
+            var styleDefinition = this.style == "normal" ? hostConfig.container.normal : hostConfig.container.emphasis;
+            return styleDefinition.padding ? styleDefinition.padding : { top: 0, right: 0, bottom: 0, left: 0 };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Container.prototype.getJsonTypeName = function () {
+        return "Container";
+    };
+    Container.prototype.parse = function (json) {
+        _super.prototype.parse.call(this, json);
+        this.style = Utils.getValueOrDefault(json["style"], "normal");
+    };
+    return Container;
+}(ContainerBase));
+exports.Container = Container;
+var Column = (function (_super) {
+    __extends(Column, _super);
+    function Column() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.size = "auto";
+        return _this;
+    }
+    Object.defineProperty(Column.prototype, "padding", {
+        get: function () {
+            return { left: 0, top: 0, right: 0, bottom: 0 };
+        },
+        enumerable: true,
+        configurable: true
+    });
+    Column.prototype.adjustLayout = function (element) {
+        element.style.minWidth = "0";
+        if (typeof this.size === "number") {
+            element.style.flex = "1 1 " + this.size + "%";
+        }
+        else if (this.size === "auto") {
+            element.style.flex = "0 1 auto";
+        }
+        else {
+            element.style.flex = "1 1 auto";
+        }
+    };
+    Column.prototype.getJsonTypeName = function () {
+        return "Column";
+    };
+    Column.prototype.getDefaultSeparationDefinition = function () {
+        return hostConfig.column.separation;
+    };
+    Column.prototype.parse = function (json) {
+        _super.prototype.parse.call(this, json);
+        var sizeValue = json["size"];
+        if (sizeValue) {
+            this.size = sizeValue;
+        }
+    };
+    Object.defineProperty(Column.prototype, "isStandalone", {
+        get: function () {
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return Column;
+}(Container));
+exports.Column = Column;
+var ColumnSet = (function (_super) {
+    __extends(ColumnSet, _super);
+    function ColumnSet() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this._columns = [];
+        return _this;
+    }
+    ColumnSet.prototype.internalRender = function () {
+        if (this._columns.length > 0) {
+            var element = document.createElement("div");
+            element.style.display = "flex";
+            var renderedColumnCount = 0;
+            for (var i = 0; i < this._columns.length; i++) {
+                var renderedColumn = this._columns[i].render();
+                if (renderedColumn != null) {
+                    Utils.appendChild(element, renderedColumn);
+                    if (this._columns.length > 1 && i < this._columns.length - 1 && this._columns[i + 1].separation != "none") {
+                        var separationDefinition = this._columns[i + 1].separation == "default" ? this._columns[i + 1].getDefaultSeparationDefinition() : hostConfig.strongSeparation;
+                        if (separationDefinition) {
+                            var separator = Utils.renderSeparation(separationDefinition, "horizontal");
+                            separator.style.flex = "0 0 auto";
+                            Utils.appendChild(element, separator);
+                        }
+                    }
+                    renderedColumnCount++;
+                }
+            }
+            return renderedColumnCount > 0 ? element : null;
+        }
+        else {
+            return null;
+        }
+    };
+    ColumnSet.prototype.getJsonTypeName = function () {
+        return "ColumnSet";
+    };
+    ColumnSet.prototype.getDefaultSeparationDefinition = function () {
+        return hostConfig.columnSet.separation;
+    };
+    ColumnSet.prototype.parse = function (json) {
+        _super.prototype.parse.call(this, json);
+        if (json["columns"] != null) {
+            var jsonColumns = json["columns"];
+            for (var i = 0; i < jsonColumns.length; i++) {
+                var column = new Column();
+                column.parse(jsonColumns[i]);
+                this.addColumn(column);
+            }
+        }
+    };
+    ColumnSet.prototype.addColumn = function (column) {
+        if (!column.parent) {
+            this._columns.push(column);
+            invokeSetParent(column, this);
+        }
+        else {
+            throw new Error("This column already belongs to another ColumnSet.");
+        }
+    };
+    ColumnSet.prototype.renderSpeech = function () {
+        if (this.speak != null) {
+            return this.speak;
+        }
+        // render each item
+        var speak = '';
+        if (this._columns.length > 0) {
+            for (var i = 0; i < this._columns.length; i++) {
+                speak += this._columns[i].renderSpeech();
+            }
+        }
+        return speak;
+    };
+    return ColumnSet;
+}(CardElement));
+exports.ColumnSet = ColumnSet;
+function raiseExecuteActionEvent(action) {
+    if (AdaptiveCard.onExecuteAction != null) {
+        action.prepare(action.parent.getRootElement().getAllInputs());
+        AdaptiveCard.onExecuteAction(action);
+    }
+}
+function raiseShowPopupCardEvent(action) {
+    if (AdaptiveCard.onShowPopupCard != null) {
+        AdaptiveCard.onShowPopupCard(action);
+    }
+}
+function raiseParseError(error) {
+    if (AdaptiveCard.onParseError != null) {
+        AdaptiveCard.onParseError(error);
+    }
+}
+var TypeRegistry = (function () {
+    function TypeRegistry() {
+        this._items = [];
+    }
+    TypeRegistry.prototype.findTypeRegistration = function (typeName) {
+        for (var i = 0; i < this._items.length; i++) {
+            if (this._items[i].typeName === typeName) {
+                return this._items[i];
+            }
+        }
+        return null;
+    };
+    TypeRegistry.prototype.clear = function () {
+        this._items = [];
+    };
+    TypeRegistry.prototype.registerType = function (typeName, createInstance) {
+        var registrationInfo = this.findTypeRegistration(typeName);
+        if (registrationInfo != null) {
+            registrationInfo.createInstance = createInstance;
+        }
+        else {
+            registrationInfo = {
+                typeName: typeName,
+                createInstance: createInstance
+            };
+            this._items.push(registrationInfo);
+        }
+    };
+    TypeRegistry.prototype.unregisterType = function (typeName) {
+        for (var i = 0; i < this._items.length; i++) {
+            if (this._items[i].typeName === typeName) {
+                this._items = this._items.splice(i, 1);
+                return;
+            }
+        }
+    };
+    TypeRegistry.prototype.createInstance = function (typeName) {
+        var registrationInfo = this.findTypeRegistration(typeName);
+        return registrationInfo ? registrationInfo.createInstance() : null;
+    };
+    return TypeRegistry;
+}());
+exports.TypeRegistry = TypeRegistry;
+var ContainerWithActions = (function (_super) {
+    __extends(ContainerWithActions, _super);
+    function ContainerWithActions() {
+        var _this = _super.call(this) || this;
+        _this._actionCollection = new ActionCollection(_this);
+        _this._actionCollection.onHideActionCardPane = function () { _this.showBottomSpacer(null); };
+        _this._actionCollection.onShowActionCardPane = function (action) { _this.hideBottomSpacer(null); };
+        return _this;
+    }
+    ContainerWithActions.prototype.internalRender = function () {
+        _super.prototype.internalRender.call(this);
+        var renderedActions = this._actionCollection.render();
+        if (renderedActions) {
+            Utils.appendChild(this._element, Utils.renderSeparation(hostConfig.actions.separation, "vertical"));
+            Utils.appendChild(this._element, renderedActions);
+        }
+        return this._element.children.length > 0 ? this._element : null;
+    };
+    ContainerWithActions.prototype.parse = function (json, itemsCollectionPropertyName) {
+        if (itemsCollectionPropertyName === void 0) { itemsCollectionPropertyName = "items"; }
+        _super.prototype.parse.call(this, json, itemsCollectionPropertyName);
+        if (json["actions"] != undefined) {
+            var jsonActions = json["actions"];
+            for (var i = 0; i < jsonActions.length; i++) {
+                var action = Action.createAction(jsonActions[i]);
+                if (action != null) {
+                    this.addAction(action);
+                }
+            }
+        }
+    };
+    ContainerWithActions.prototype.isLastItem = function (item) {
+        return _super.prototype.isLastItem.call(this, item) && this._actionCollection.items.length == 0;
+    };
+    ContainerWithActions.prototype.addAction = function (action) {
+        this._actionCollection.addAction(action);
+    };
+    ContainerWithActions.prototype.clear = function () {
+        _super.prototype.clear.call(this);
+        this._actionCollection.clear();
+    };
+    ContainerWithActions.prototype.getAllInputs = function () {
+        return _super.prototype.getAllInputs.call(this).concat(this._actionCollection.getAllInputs());
+    };
+    Object.defineProperty(ContainerWithActions.prototype, "isStandalone", {
+        get: function () {
+            return false;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    return ContainerWithActions;
+}(ContainerBase));
+exports.ContainerWithActions = ContainerWithActions;
+var AdaptiveCard = (function (_super) {
+    __extends(AdaptiveCard, _super);
+    function AdaptiveCard() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        _this.minVersion = { major: 1, minor: 0 };
+        return _this;
+    }
+    AdaptiveCard.initialize = function () {
+        AdaptiveCard.elementTypeRegistry.clear();
+        AdaptiveCard.elementTypeRegistry.registerType("Container", function () { return new Container(); });
+        AdaptiveCard.elementTypeRegistry.registerType("TextBlock", function () { return new TextBlock(); });
+        AdaptiveCard.elementTypeRegistry.registerType("Image", function () { return new Image(); });
+        AdaptiveCard.elementTypeRegistry.registerType("ImageSet", function () { return new ImageSet(); });
+        AdaptiveCard.elementTypeRegistry.registerType("FactSet", function () { return new FactSet(); });
+        AdaptiveCard.elementTypeRegistry.registerType("ColumnSet", function () { return new ColumnSet(); });
+        AdaptiveCard.elementTypeRegistry.registerType("ActionSet", function () { return new ActionSet(); });
+        AdaptiveCard.elementTypeRegistry.registerType("Input.Text", function () { return new TextInput(); });
+        AdaptiveCard.elementTypeRegistry.registerType("Input.Date", function () { return new DateInput(); });
+        AdaptiveCard.elementTypeRegistry.registerType("Input.Time", function () { return new TimeInput(); });
+        AdaptiveCard.elementTypeRegistry.registerType("Input.Number", function () { return new NumberInput(); });
+        AdaptiveCard.elementTypeRegistry.registerType("Input.ChoiceSet", function () { return new ChoiceSetInput(); });
+        AdaptiveCard.elementTypeRegistry.registerType("Input.Toggle", function () { return new ToggleInput(); });
+        AdaptiveCard.actionTypeRegistry.clear();
+        AdaptiveCard.actionTypeRegistry.registerType("Action.Http", function () { return new HttpAction(); });
+        AdaptiveCard.actionTypeRegistry.registerType("Action.OpenUrl", function () { return new OpenUrlAction(); });
+        AdaptiveCard.actionTypeRegistry.registerType("Action.Submit", function () { return new SubmitAction(); });
+        AdaptiveCard.actionTypeRegistry.registerType("Action.ShowCard", function () { return new ShowCardAction(); });
+    };
+    AdaptiveCard.prototype.isVersionSupported = function () {
+        var unsupportedVersion = (AdaptiveCard.currentVersion.major < this.minVersion.major) ||
+            (AdaptiveCard.currentVersion.major == this.minVersion.major && AdaptiveCard.currentVersion.minor < this.minVersion.minor);
+        return !unsupportedVersion;
+    };
+    AdaptiveCard.prototype.getBackgroundColor = function () {
+        return hostConfig.adaptiveCard.backgroundColor;
+    };
+    Object.defineProperty(AdaptiveCard.prototype, "padding", {
+        get: function () {
+            return hostConfig.adaptiveCard.padding;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    AdaptiveCard.prototype.getJsonTypeName = function () {
+        return "AdaptiveCard";
+    };
+    AdaptiveCard.prototype.validate = function () {
+        var result = [];
+        if (this._cardTypeName != "AdaptiveCard") {
+            result.push({
+                error: Enums.ValidationError.MissingCardType,
+                message: "Invalid or missing card type. Make sure the card's type property is set to \"AdaptiveCard\"."
+            });
+        }
+        if (!this.isVersionSupported()) {
+            result.push({
+                error: Enums.ValidationError.UnsupportedCardVersion,
+                message: "The specified card version is not supported."
+            });
+        }
+        return result.concat(_super.prototype.validate.call(this));
+    };
+    AdaptiveCard.prototype.parse = function (json) {
+        this._cardTypeName = json["type"];
+        var minVersion = json["minVersion"];
+        var regEx = /(\d+).(\d+)/gi;
+        var matches = regEx.exec(minVersion);
+        if (matches != null && matches.length == 3) {
+            this.minVersion.major = parseInt(matches[1]);
+            this.minVersion.minor = parseInt(matches[2]);
+        }
+        this.fallbackText = json["fallbackText"];
+        _super.prototype.parse.call(this, json, "body");
+    };
+    AdaptiveCard.prototype.render = function () {
+        var renderedCard;
+        if (!this.isVersionSupported()) {
+            renderedCard = document.createElement("div");
+            renderedCard.innerHTML = this.fallbackText ? this.fallbackText : "The specified card version is not supported.";
+            return renderedCard;
+        }
+        else {
+            return _super.prototype.render.call(this);
+        }
+    };
+    return AdaptiveCard;
+}(ContainerWithActions));
+AdaptiveCard.currentVersion = { major: 1, minor: 0 };
+AdaptiveCard.elementTypeRegistry = new TypeRegistry();
+AdaptiveCard.actionTypeRegistry = new TypeRegistry();
+AdaptiveCard.onExecuteAction = null;
+AdaptiveCard.onShowPopupCard = null;
+AdaptiveCard.onParseError = null;
+exports.AdaptiveCard = AdaptiveCard;
+// This calls acts as a static constructor (see https://github.com/Microsoft/TypeScript/issues/265)
+AdaptiveCard.initialize();
+var InlineAdaptiveCard = (function (_super) {
+    __extends(InlineAdaptiveCard, _super);
+    function InlineAdaptiveCard() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    Object.defineProperty(InlineAdaptiveCard.prototype, "padding", {
+        get: function () {
+            return hostConfig.actions.showCard.padding;
+        },
+        enumerable: true,
+        configurable: true
+    });
+    InlineAdaptiveCard.prototype.getBackgroundColor = function () {
+        return null;
+    };
+    InlineAdaptiveCard.prototype.getForbiddenActionTypes = function () {
+        return [ShowCardAction];
+    };
+    return InlineAdaptiveCard;
+}(AdaptiveCard));
+var defaultHostConfig = {
+    supportsInteractivity: true,
+    strongSeparation: {
+        spacing: 40,
+        lineThickness: 1,
+        lineColor: "#EEEEEE"
+    },
+    fontFamily: "Segoe UI",
+    fontSizes: {
+        small: 8,
+        normal: 10,
+        medium: 12,
+        large: 14,
+        extraLarge: 16
+    },
+    fontWeights: {
+        lighter: 200,
+        normal: 400,
+        bolder: 600
+    },
+    colors: {
+        dark: {
+            normal: "#0000FF",
+            subtle: "#222222"
+        },
+        light: {
+            normal: "#FFFFFF",
+            subtle: "#DDDDDD"
+        },
+        accent: {
+            normal: "#0000FF",
+            subtle: "#0000DD"
+        },
+        attention: {
+            normal: "#FF6600",
+            subtle: "#DD4400"
+        },
+        good: {
+            normal: "#00FF00",
+            subtle: "#00DD00"
+        },
+        warning: {
+            normal: "#FF0000",
+            subtle: "#DD0000"
+        }
+    },
+    imageSizes: {
+        small: 40,
+        medium: 80,
+        large: 160
+    },
+    actions: {
+        maxActions: 5,
+        separation: {
+            spacing: 20
+        },
+        buttonSpacing: 20,
+        stretch: false,
+        showCard: {
+            actionMode: "inlineEdgeToEdge",
+            inlineTopMargin: 16,
+            backgroundColor: "#22000000",
+            padding: {
+                top: 16,
+                right: 16,
+                bottom: 16,
+                left: 16
+            }
+        },
+        actionsOrientation: "horizontal",
+        actionAlignment: "left"
+    },
+    adaptiveCard: {
+        backgroundColor: "#00000000",
+        padding: {
+            left: 20,
+            top: 20,
+            right: 20,
+            bottom: 20
+        }
+    },
+    container: {
+        separation: {
+            spacing: 20
+        },
+        normal: {},
+        emphasis: {
+            backgroundColor: "#EEEEEE",
+            borderColor: "#AAAAAA",
+            borderThickness: {
+                top: 1,
+                right: 1,
+                bottom: 1,
+                left: 1
+            },
+            padding: {
+                top: 10,
+                right: 10,
+                bottom: 10,
+                left: 10
+            }
+        }
+    },
+    textBlock: {
+        color: "dark",
+        separations: {
+            small: {
+                spacing: 20,
+            },
+            normal: {
+                spacing: 20
+            },
+            medium: {
+                spacing: 20
+            },
+            large: {
+                spacing: 20
+            },
+            extraLarge: {
+                spacing: 20
+            }
+        }
+    },
+    image: {
+        size: "medium",
+        separation: {
+            spacing: 20
+        }
+    },
+    imageSet: {
+        imageSize: "medium",
+        separation: {
+            spacing: 20
+        }
+    },
+    factSet: {
+        separation: {
+            spacing: 20
+        },
+        title: {
+            color: "dark",
+            size: "normal",
+            isSubtle: false,
+            weight: "bolder",
+            wrap: true,
+            maxWidth: 150
+        },
+        value: {
+            color: "dark",
+            size: "normal",
+            isSubtle: false,
+            weight: "normal",
+            wrap: true
+        },
+        spacing: 10
+    },
+    input: {
+        separation: {
+            spacing: 20
+        }
+    },
+    columnSet: {
+        separation: {
+            spacing: 20
+        }
+    },
+    column: {
+        separation: {
+            spacing: 20
+        }
+    }
+};
+var hostConfig = defaultHostConfig;
+function setHostConfig(configuration) {
+    hostConfig = configuration;
+}
+exports.setHostConfig = setHostConfig;
+function resetHostConfig() {
+    hostConfig = defaultHostConfig;
+}
+exports.resetHostConfig = resetHostConfig;
+
 
 /***/ }),
 /* 14 */
@@ -2838,295 +3599,176 @@ module.exports=/[\0-\uD7FF\uE000-\uFFFF]|[\uD800-\uDBFF][\uDC00-\uDFFF]|[\uD800-
 "use strict";
 
 Object.defineProperty(exports, "__esModule", { value: true });
-var Adaptive = __webpack_require__(5);
-var Enums = __webpack_require__(1);
-var JsonParser = (function () {
-    function JsonParser() {
+function parseSpacingDefinition(obj) {
+    return obj ? {
+        top: obj["top"],
+        right: obj["right"],
+        bottom: obj["bottom"],
+        left: obj["left"]
+    } : null;
+}
+function parseColorDefinition(obj) {
+    return obj ? {
+        normal: obj["normal"],
+        subtle: obj["subtle"]
+    } : null;
+}
+function parseSeparationDefinition(obj) {
+    return obj ? {
+        spacing: obj["spacing"],
+        lineThickness: obj["lineThickness"],
+        lineColor: obj["lineColor"]
+    } : null;
+}
+function parseAdaptiveCardConfiguration(obj) {
+    return obj ? {
+        backgroundColor: obj["backgroundColor"],
+        padding: parseSpacingDefinition(obj["padding"])
+    } : null;
+}
+function parseTextBlockConfiguration(obj) {
+    return obj ? {
+        color: obj["color"],
+        separations: {
+            small: parseSeparationDefinition(obj["separations"]["small"]),
+            normal: parseSeparationDefinition(obj["separations"]["normal"]),
+            medium: parseSeparationDefinition(obj["separations"]["medium"]),
+            large: parseSeparationDefinition(obj["separations"]["large"]),
+            extraLarge: parseSeparationDefinition(obj["separations"]["extraLarge"])
+        }
+    } : null;
+}
+function parseContainerStyleDefinition(obj) {
+    return obj ? {
+        backgroundColor: obj["backgroundColor"],
+        padding: parseSpacingDefinition(obj["padding"]),
+        borderColor: obj["borderColor"],
+        borderThickness: obj["borderThickness"]
+    } : null;
+}
+function parseContainerConfiguration(obj) {
+    return obj ? {
+        separation: parseSeparationDefinition(obj["separation"]),
+        normal: parseContainerStyleDefinition(obj["normal"]),
+        emphasis: parseContainerStyleDefinition(obj["emphasis"])
+    } : null;
+}
+function parseImageConfiguration(obj) {
+    return obj ? {
+        separation: parseSeparationDefinition(obj["separation"]),
+        size: obj["size"]
+    } : null;
+}
+function parseImageSetConfiguration(obj) {
+    return obj ? {
+        separation: parseSeparationDefinition(obj["separation"]),
+        imageSize: obj["imageSize"]
+    } : null;
+}
+function parseFactTextDefinition(obj) {
+    return obj ? {
+        size: obj["size"],
+        color: obj["color"],
+        isSubtle: obj["isSubtle"],
+        weight: obj["weight"],
+        wrap: obj["wrap"]
+    } : null;
+}
+function parseFactTitleDefinition(obj) {
+    var result = parseFactTextDefinition(obj);
+    if (result) {
+        result.maxWidth = obj["maxWidth"];
     }
-    JsonParser.prototype.parseBaseAction = function (json, action) {
-        action.title = json["title"];
-    };
-    JsonParser.prototype.parseExternalAction = function (json, action) {
-        this.parseBaseAction(json, action);
-    };
-    JsonParser.prototype.parseActionOpenUrl = function (json, action) {
-        this.parseExternalAction(json, action);
-        action.url = json["url"];
-    };
-    JsonParser.prototype.parseActionHttp = function (json, action) {
-        this.parseExternalAction(json, action);
-        action.url = json["url"];
-        action.method = json["method"];
-        action.body = json["body"];
-        if (json["headers"] != null) {
-            var jsonHeaders = json["headers"];
-            for (var i = 0; i < jsonHeaders.length; i++) {
-                var httpHeader = new Adaptive.HttpHeader();
-                httpHeader.name = jsonHeaders[i]["name"];
-                httpHeader.value = jsonHeaders[i]["value"];
-                action.headers.push(httpHeader);
-            }
-        }
-    };
-    JsonParser.prototype.parseActionSubmit = function (json, action) {
-        this.parseExternalAction(json, action);
-        action.data = json["data"];
-    };
-    JsonParser.prototype.parseActionShowCard = function (json, action) {
-        this.parseBaseAction(json, action);
-        action.card.actionButtonStyle = Enums.ActionButtonStyle.Push;
-        var s = [];
-        this.parseContainer(json["card"], action.card, "body");
-    };
-    JsonParser.prototype.createAction = function (json) {
-        var result;
-        var actionType = json["type"];
-        switch (actionType) {
-            case Adaptive.ActionOpenUrl.TypeName:
-                result = new Adaptive.ActionOpenUrl();
-                this.parseActionOpenUrl(json, result);
-                break;
-            case Adaptive.ActionHttp.TypeName:
-                result = new Adaptive.ActionHttp();
-                this.parseActionHttp(json, result);
-                break;
-            case Adaptive.ActionSubmit.TypeName:
-                result = new Adaptive.ActionSubmit();
-                this.parseActionSubmit(json, result);
-                break;
-            case Adaptive.ActionShowCard.TypeName:
-                result = new Adaptive.ActionShowCard();
-                this.parseActionShowCard(json, result);
-                break;
-            default:
-                throw new Error("Unknown action type: " + actionType);
-        }
-        return result;
-    };
-    JsonParser.prototype.parseCardElement = function (json, cardElement) {
-        cardElement.speak = json["speak"];
-        cardElement.horizontalAlignment = Enums.stringToHorizontalAlignment(json["horizontalAlignment"], Enums.HorizontalAlignment.Left);
-        cardElement.separation = Enums.stringToSeparation(json["separation"], Adaptive.AdaptiveCard.renderOptions.defaultSeparation);
-    };
-    JsonParser.prototype.parseTextBlock = function (json, textBlock) {
-        this.parseCardElement(json, textBlock);
-        textBlock.text = json["text"];
-        textBlock.size = Enums.stringToTextSize(json["size"], Enums.TextSize.Normal);
-        textBlock.weight = Enums.stringToTextWeight(json["weight"], Enums.TextWeight.Normal);
-        textBlock.color = Enums.stringToTextColor(json["color"], null);
-        textBlock.isSubtle = json["isSubtle"];
-        textBlock.wrap = json["wrap"];
-    };
-    JsonParser.prototype.parseImage = function (json, image) {
-        this.parseCardElement(json, image);
-        image.url = json["url"];
-        image.style = Enums.stringToImageStyle(json["style"], Enums.ImageStyle.Normal);
-        image.size = Enums.stringToSize(json["size"], Enums.Size.Medium);
-        var selectActionJson = json["selectAction"];
-        if (selectActionJson != undefined) {
-            image.selectAction = this.createAction(selectActionJson);
-        }
-    };
-    JsonParser.prototype.parseImageSet = function (json, imageSet) {
-        this.parseCardElement(json, imageSet);
-        imageSet.imageSize = Enums.stringToSize(json["imageSize"], Enums.Size.Medium);
-        if (json["images"] != null) {
-            var jsonImages = json["images"];
-            for (var i = 0; i < jsonImages.length; i++) {
-                var image = new Adaptive.Image();
-                image.size = imageSet.imageSize;
-                image.url = jsonImages[i]["url"];
-                imageSet.images.push(image);
-            }
-        }
-    };
-    JsonParser.prototype.parseFactSet = function (json, factSet) {
-        this.parseCardElement(json, factSet);
-        if (json["facts"] != null) {
-            var jsonFacts = json["facts"];
-            for (var i = 0; i < jsonFacts.length; i++) {
-                var fact = new Adaptive.Fact();
-                fact.name = jsonFacts[i]["title"];
-                fact.value = jsonFacts[i]["value"];
-                fact.speak = jsonFacts[i]["speak"];
-                factSet.facts.push(fact);
-            }
-        }
-    };
-    JsonParser.prototype.parseContainerActions = function (json, container) {
-        var jsonActions = json;
-        for (var i = 0; i < jsonActions.length; i++) {
-            var action = this.createAction(jsonActions[i]);
-            if (action != null) {
-                container.addAction(action);
-            }
-        }
-    };
-    JsonParser.prototype.parseContainer = function (json, container, itemsCollectionPropertyName) {
-        this.parseCardElement(json, container);
-        container.backgroundImageUrl = json["backgroundImage"];
-        container.backgroundColor = json["backgroundColor"];
-        container.textColor = Enums.stringToTextColor(json["textColor"], null);
-        if (json[itemsCollectionPropertyName] != null) {
-            var items = json[itemsCollectionPropertyName];
-            for (var i = 0; i < items.length; i++) {
-                var element = this.createCardElement(items[i], container);
-                if (element != null) {
-                    container.addItem(element);
-                }
-            }
-        }
-        if (json["actions"] != undefined) {
-            this.parseContainerActions(json["actions"], container);
-        }
-        var selectActionJson = json["selectAction"];
-        if (selectActionJson != undefined) {
-            container.selectAction = this.createAction(selectActionJson);
-        }
-    };
-    JsonParser.prototype.parseColumn = function (json, column) {
-        this.parseContainer(json, column, "items");
-        if (json["size"] === "auto") {
-            column.weight = 0;
-        }
-        else if (json["size"] === "stretch") {
-            column.weight = -1;
-        }
-        else {
-            column.weight = Number(json["size"]);
-        }
-    };
-    JsonParser.prototype.parseColumnSet = function (json, columnSet) {
-        this.parseCardElement(json, columnSet);
-        if (json["columns"] != null) {
-            var jsonColumns = json["columns"];
-            for (var i = 0; i < jsonColumns.length; i++) {
-                var column = new Adaptive.Column();
-                this.parseColumn(jsonColumns[i], column);
-                columnSet.columns.push(column);
-            }
-        }
-    };
-    JsonParser.prototype.parseInput = function (json, input) {
-        this.parseCardElement(json, input);
-        input.id = json["id"];
-        input.defaultValue = json["value"];
-    };
-    JsonParser.prototype.parseInputText = function (json, input) {
-        this.parseInput(json, input);
-        input.maxLength = json["maxLength"];
-        input.isMultiline = json["isMultiline"];
-        input.placeholder = json["placeholder"];
-    };
-    JsonParser.prototype.parseInputNumber = function (json, input) {
-        this.parseInput(json, input);
-        input.min = json["min"];
-        input.max = json["max"];
-    };
-    JsonParser.prototype.parseInputDate = function (json, input) {
-        this.parseInput(json, input);
-    };
-    JsonParser.prototype.parseInputTime = function (json, input) {
-        this.parseInput(json, input);
-    };
-    JsonParser.prototype.parseInputToggle = function (json, input) {
-        this.parseInput(json, input);
-        input.title = json["title"];
-        input.valueOn = json["valueOn"];
-        input.valueOff = json["valueOff"];
-    };
-    JsonParser.prototype.parseInputChoiceSet = function (json, input) {
-        this.parseInput(json, input);
-        input.isCompact = !(json["style"] === "expanded");
-        input.isMultiSelect = json["isMultiSelect"];
-        input.placeholder = json["placeholder"];
-        if (json["choices"] != undefined) {
-            var choiceArray = json["choices"];
-            for (var i = 0; i < choiceArray.length; i++) {
-                var choice = new Adaptive.Choice();
-                choice.title = choiceArray[i]["title"];
-                choice.value = choiceArray[i]["value"];
-                input.choices.push(choice);
-            }
-        }
-    };
-    JsonParser.prototype.createCardElement = function (json, container) {
-        var result;
-        var elementType = json["type"];
-        switch (elementType) {
-            case Adaptive.Container.TypeName:
-                result = new Adaptive.Container();
-                this.parseContainer(json, result, "items");
-                break;
-            case Adaptive.TextBlock.TypeName:
-                result = new Adaptive.TextBlock();
-                this.parseTextBlock(json, result);
-                break;
-            case Adaptive.Image.TypeName:
-                result = new Adaptive.Image();
-                this.parseImage(json, result);
-                break;
-            case Adaptive.ImageSet.TypeName:
-                result = new Adaptive.ImageSet();
-                this.parseImageSet(json, result);
-                break;
-            case Adaptive.FactSet.TypeName:
-                result = new Adaptive.FactSet();
-                this.parseFactSet(json, result);
-                break;
-            case Adaptive.ColumnSet.TypeName:
-                result = new Adaptive.ColumnSet();
-                this.parseColumnSet(json, result);
-                break;
-            case Adaptive.InputText.TypeName:
-                result = new Adaptive.InputText();
-                this.parseInputText(json, result);
-                break;
-            case Adaptive.InputNumber.TypeName:
-                result = new Adaptive.InputNumber();
-                this.parseInputNumber(json, result);
-                break;
-            case Adaptive.InputDate.TypeName:
-                result = new Adaptive.InputDate();
-                this.parseInputDate(json, result);
-                break;
-            case Adaptive.InputTime.TypeName:
-                result = new Adaptive.InputTime();
-                this.parseInputTime(json, result);
-                break;
-            case Adaptive.InputToggle.TypeName:
-                result = new Adaptive.InputToggle();
-                this.parseInputToggle(json, result);
-                break;
-            case Adaptive.InputChoiceSet.TypeName:
-                result = new Adaptive.InputChoiceSet();
-                this.parseInputChoiceSet(json, result);
-                break;
-            default:
-                throw new Error("Unknown element type: " + elementType);
-        }
-        return result;
-    };
-    JsonParser.prototype.parse = function (json) {
-        var cardTypeName = json["type"];
-        if (cardTypeName != "AdaptiveCard" && Adaptive.AdaptiveCard.onRenderError) {
-            Adaptive.AdaptiveCard.onRenderError(Enums.RenderError.MissingCardType, "Invalid card type. Make sure the card's type property is set to \"AdaptiveCard\".");
-        }
-        this._card = new Adaptive.AdaptiveCard();
-        var minVersion = json["minVersion"];
-        var regEx = /(\d+).(\d+)/gi;
-        var matches = regEx.exec(minVersion);
-        if (matches != null && matches.length == 3) {
-            this._card.minVersion.major = parseInt(matches[1]);
-            this._card.minVersion.minor = parseInt(matches[2]);
-        }
-        this._card.fallbackText = json["fallbackText"];
-        this.parseContainer(json, this._card.root, "body");
-        return this._card;
-    };
-    return JsonParser;
-}());
-exports.JsonParser = JsonParser;
+    return result;
+}
+function parseFactSetConfiguration(obj) {
+    return obj ? {
+        separation: parseSeparationDefinition(obj["separation"]),
+        title: parseFactTitleDefinition(obj["title"]),
+        value: parseFactTextDefinition(obj["value"]),
+        spacing: obj["spacing"]
+    } : null;
+}
+function parseColumnSetConfiguration(obj) {
+    return obj ? {
+        separation: parseSeparationDefinition(obj["separation"])
+    } : null;
+}
+function parseColumnConfiguration(obj) {
+    return obj ? {
+        separation: parseSeparationDefinition(obj["separation"])
+    } : null;
+}
+function parseShowCardActionConfiguration(obj) {
+    return obj ? {
+        actionMode: obj["actionMode"],
+        inlineTopMargin: obj["inlineTopMargin"],
+        backgroundColor: obj["backgroundColor"],
+        padding: parseSpacingDefinition(obj["padding"])
+    } : null;
+}
+function parseActionsConfiguration(obj) {
+    return obj ? {
+        maxActions: obj["maxActions"],
+        supportedActionTypes: obj["supportedActionTypes"],
+        separation: parseSeparationDefinition(obj["separation"]),
+        buttonSpacing: obj["buttonSpacing"],
+        stretch: obj["stretch"],
+        showCard: parseShowCardActionConfiguration(obj["showCard"]),
+        actionsOrientation: obj["actionsOrientation"],
+        actionAlignment: obj["actionAlignment"]
+    } : null;
+}
+function parseInputConfiguration(obj) {
+    return obj ? {
+        separation: parseSeparationDefinition(obj["separation"])
+    } : null;
+}
+function parseHostConfig(serializedConfiguration) {
+    var obj = JSON.parse(serializedConfiguration);
+    return obj ? {
+        supportedElementTypes: obj["supportedElementTypes"],
+        supportsInteractivity: obj["supportsInteractivity"],
+        fontFamily: obj["fontFamily"],
+        fontSizes: {
+            small: obj["fontSizes"]["small"],
+            normal: obj["fontSizes"]["normal"],
+            medium: obj["fontSizes"]["medium"],
+            large: obj["fontSizes"]["large"],
+            extraLarge: obj["fontSizes"]["extraLarge"]
+        },
+        fontWeights: {
+            lighter: obj["fontWeights"]["lighter"],
+            normal: obj["fontWeights"]["normal"],
+            bolder: obj["fontWeights"]["bolder"]
+        },
+        imageSizes: {
+            small: obj["imageSizes"]["small"],
+            medium: obj["imageSizes"]["medium"],
+            large: obj["imageSizes"]["large"],
+        },
+        colors: {
+            dark: parseColorDefinition(obj["colors"]["dark"]),
+            light: parseColorDefinition(obj["colors"]["light"]),
+            accent: parseColorDefinition(obj["colors"]["accent"]),
+            good: parseColorDefinition(obj["colors"]["good"]),
+            warning: parseColorDefinition(obj["colors"]["warning"]),
+            attention: parseColorDefinition(obj["colors"]["attention"])
+        },
+        strongSeparation: parseSeparationDefinition(obj["strongSeparation"]),
+        actions: parseActionsConfiguration(obj["actions"]),
+        adaptiveCard: parseAdaptiveCardConfiguration(obj["adaptiveCard"]),
+        container: parseContainerConfiguration(obj["container"]),
+        textBlock: parseTextBlockConfiguration(obj["textBlock"]),
+        image: parseImageConfiguration(obj["image"]),
+        imageSet: parseImageSetConfiguration(obj["imageSet"]),
+        factSet: parseFactSetConfiguration(obj["factSet"]),
+        column: parseColumnConfiguration(obj["column"]),
+        columnSet: parseColumnSetConfiguration(obj["columnSet"]),
+        input: parseInputConfiguration(obj["input"])
+    } : null;
+}
+exports.parseHostConfig = parseHostConfig;
 
 
 /***/ }),
@@ -5917,10 +6559,10 @@ module.exports = function (opts) {
   var re = {};
 
   // Use direct extract instead of `regenerate` to reduse browserified size
-  re.src_Any = __webpack_require__(13).source;
-  re.src_Cc  = __webpack_require__(11).source;
-  re.src_Z   = __webpack_require__(12).source;
-  re.src_P   = __webpack_require__(4).source;
+  re.src_Any = __webpack_require__(12).source;
+  re.src_Cc  = __webpack_require__(10).source;
+  re.src_Z   = __webpack_require__(11).source;
+  re.src_P   = __webpack_require__(3).source;
 
   // \p{\Z\P\Cc\CF} (white spaces + control + format + punctuation)
   re.src_ZPCc = [ re.src_Z, re.src_P, re.src_Cc ].join('|');
@@ -6413,7 +7055,7 @@ var ParserCore   = __webpack_require__(26);
 var ParserBlock  = __webpack_require__(25);
 var ParserInline = __webpack_require__(27);
 var LinkifyIt    = __webpack_require__(16);
-var mdurl        = __webpack_require__(10);
+var mdurl        = __webpack_require__(9);
 var punycode     = __webpack_require__(67);
 
 
@@ -6997,7 +7639,7 @@ module.exports = MarkdownIt;
 
 
 
-var Ruler           = __webpack_require__(2);
+var Ruler           = __webpack_require__(1);
 
 
 var _rules = [
@@ -7127,7 +7769,7 @@ module.exports = ParserBlock;
 
 
 
-var Ruler  = __webpack_require__(2);
+var Ruler  = __webpack_require__(1);
 
 
 var _rules = [
@@ -7191,7 +7833,7 @@ module.exports = Core;
 
 
 
-var Ruler           = __webpack_require__(2);
+var Ruler           = __webpack_require__(1);
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -7202,8 +7844,8 @@ var _rules = [
   [ 'newline',         __webpack_require__(59) ],
   [ 'escape',          __webpack_require__(55) ],
   [ 'backticks',       __webpack_require__(52) ],
-  [ 'strikethrough',   __webpack_require__(9).tokenize ],
-  [ 'emphasis',        __webpack_require__(8).tokenize ],
+  [ 'strikethrough',   __webpack_require__(8).tokenize ],
+  [ 'emphasis',        __webpack_require__(7).tokenize ],
   [ 'link',            __webpack_require__(58) ],
   [ 'image',           __webpack_require__(57) ],
   [ 'autolink',        __webpack_require__(51) ],
@@ -7213,8 +7855,8 @@ var _rules = [
 
 var _rules2 = [
   [ 'balance_pairs',   __webpack_require__(53) ],
-  [ 'strikethrough',   __webpack_require__(9).postProcess ],
-  [ 'emphasis',        __webpack_require__(8).postProcess ],
+  [ 'strikethrough',   __webpack_require__(8).postProcess ],
+  [ 'emphasis',        __webpack_require__(7).postProcess ],
   [ 'text_collapse',   __webpack_require__(62) ]
 ];
 
@@ -8468,7 +9110,7 @@ module.exports = function hr(state, startLine, endLine, silent) {
 
 
 var block_names = __webpack_require__(19);
-var HTML_OPEN_CLOSE_TAG_RE = __webpack_require__(7).HTML_OPEN_CLOSE_TAG_RE;
+var HTML_OPEN_CLOSE_TAG_RE = __webpack_require__(6).HTML_OPEN_CLOSE_TAG_RE;
 
 // An array of opening and corresponding closing sequences for html tags,
 // last argument defines whether it can terminate a paragraph or not
@@ -9246,7 +9888,7 @@ module.exports = function reference(state, startLine, _endLine, silent) {
 
 
 
-var Token = __webpack_require__(3);
+var Token = __webpack_require__(2);
 var isSpace = __webpack_require__(0).isSpace;
 
 
@@ -10210,7 +10852,7 @@ module.exports = function smartquotes(state) {
 //
 
 
-var Token = __webpack_require__(3);
+var Token = __webpack_require__(2);
 
 
 function StateCore(src, md, env) {
@@ -10417,7 +11059,7 @@ module.exports = function link_pairs(state) {
 
 
 
-var entities          = __webpack_require__(6);
+var entities          = __webpack_require__(5);
 var has               = __webpack_require__(0).has;
 var isValidEntityCode = __webpack_require__(0).isValidEntityCode;
 var fromCodePoint     = __webpack_require__(0).fromCodePoint;
@@ -10532,7 +11174,7 @@ module.exports = function escape(state, silent) {
 
 
 
-var HTML_TAG_RE = __webpack_require__(7).HTML_TAG_RE;
+var HTML_TAG_RE = __webpack_require__(6).HTML_TAG_RE;
 
 
 function isLetter(ch) {
@@ -10951,7 +11593,7 @@ module.exports = function newline(state, silent) {
 
 
 
-var Token          = __webpack_require__(3);
+var Token          = __webpack_require__(2);
 var isWhiteSpace   = __webpack_require__(0).isWhiteSpace;
 var isPunctChar    = __webpack_require__(0).isPunctChar;
 var isMdAsciiPunct = __webpack_require__(0).isMdAsciiPunct;
@@ -12348,8 +12990,8 @@ function __export(m) {
     for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
 }
 Object.defineProperty(exports, "__esModule", { value: true });
-__export(__webpack_require__(5));
-__export(__webpack_require__(1));
+__export(__webpack_require__(13));
+__export(__webpack_require__(4));
 __export(__webpack_require__(14));
 
 
@@ -12440,6 +13082,10 @@ function processMarkdown(text) {
     return markdownProcessor.render(text);
 }
 exports.processMarkdown = processMarkdown;
+function getValueOrDefault(obj, defaultValue) {
+    return obj ? obj : defaultValue;
+}
+exports.getValueOrDefault = getValueOrDefault;
 function isNullOrEmpty(value) {
     return value === undefined || value === null || value === "";
 }
@@ -12450,48 +13096,46 @@ function appendChild(node, child) {
     }
 }
 exports.appendChild = appendChild;
-function getClassNameFromInstance(object) {
-    return getClassNameFromConstructor(object.constructor);
+function renderSeparation(separationDefinition, orientation) {
+    var separator = document.createElement("div");
+    if (orientation == "vertical") {
+        if (separationDefinition.lineThickness) {
+            separator.style.marginTop = (separationDefinition.spacing / 2) + "px";
+            separator.style.paddingTop = (separationDefinition.spacing / 2) + "px";
+            separator.style.borderTop = separationDefinition.lineThickness + "px solid " + stringToCssColor(separationDefinition.lineColor);
+        }
+        else {
+            separator.style.height = separationDefinition.spacing + "px";
+        }
+    }
+    else {
+        if (separationDefinition.lineThickness) {
+            separator.style.marginLeft = (separationDefinition.spacing / 2) + "px";
+            separator.style.paddingLeft = (separationDefinition.spacing / 2) + "px";
+            separator.style.borderLeft = separationDefinition.lineThickness + "px solid " + stringToCssColor(separationDefinition.lineColor);
+        }
+        else {
+            separator.style.width = separationDefinition.spacing + "px";
+        }
+    }
+    return separator;
 }
-exports.getClassNameFromInstance = getClassNameFromInstance;
-function getClassNameFromConstructor(constructor) {
-    // There is a cleaner way to do this in ES6, but in order to support
-    // IE11 we need to stick to ES5.
-    var constructorString = constructor.toString();
-    return constructorString.match(/\w+/g)[1];
-}
-exports.getClassNameFromConstructor = getClassNameFromConstructor;
-function getHasBottomPadding(element) {
-    return parseInt(window.getComputedStyle(element).paddingBottom) > 0;
-}
-exports.getHasBottomPadding = getHasBottomPadding;
-function getActualPaddingInternal(element, padding) {
-    var computedStyle = window.getComputedStyle(element);
-    if (padding.top == 0) {
-        padding.top = parseInt(computedStyle.paddingTop);
+exports.renderSeparation = renderSeparation;
+function stringToCssColor(color) {
+    var regEx = /#([0-9A-F]{2})([0-9A-F]{2})([0-9A-F]{2})([0-9A-F]{2})?/gi;
+    var matches = regEx.exec(color);
+    if (matches[4]) {
+        var a = parseInt(matches[1], 16) / 255;
+        var r = parseInt(matches[2], 16);
+        var g = parseInt(matches[3], 16);
+        var b = parseInt(matches[4], 16);
+        return "rgba(" + r + "," + g + "," + b + "," + a + ")";
     }
-    if (padding.right == 0) {
-        padding.right = parseInt(computedStyle.paddingRight);
-    }
-    if (padding.bottom == 0) {
-        padding.bottom = parseInt(computedStyle.paddingBottom);
-    }
-    if (padding.left == 0) {
-        padding.left = parseInt(computedStyle.paddingLeft);
-    }
-    if (element.className.indexOf("rootContainer") >= 0) {
-        return;
-    }
-    if (element.parentElement) {
-        getActualPaddingInternal(element.parentElement, padding);
+    else {
+        return color;
     }
 }
-function getActualPadding(element) {
-    var padding = { top: 0, right: 0, bottom: 0, left: 0 };
-    getActualPaddingInternal(element, padding);
-    return padding;
-}
-exports.getActualPadding = getActualPadding;
+exports.stringToCssColor = stringToCssColor;
 var StringWithSubstitutions = (function () {
     function StringWithSubstitutions() {
         this._isProcessed = false;
@@ -12532,18 +13176,6 @@ var StringWithSubstitutions = (function () {
     return StringWithSubstitutions;
 }());
 exports.StringWithSubstitutions = StringWithSubstitutions;
-function substituteInputValues(o, inputs) {
-    for (var field in o) {
-        var fieldValue = o[field];
-        if (fieldValue instanceof StringWithSubstitutions) {
-            fieldValue.substituteInputValues(inputs);
-        }
-        else if (typeof (fieldValue) == "object" && fieldValue) {
-            substituteInputValues(fieldValue, inputs);
-        }
-    }
-}
-exports.substituteInputValues = substituteInputValues;
 
 
 /***/ }),
@@ -12559,11 +13191,11 @@ module.exports=/[\xAD\u0600-\u0605\u061C\u06DD\u070F\u08E2\u180E\u200B-\u200F\u2
 "use strict";
 
 
-exports.Any = __webpack_require__(13);
-exports.Cc  = __webpack_require__(11);
+exports.Any = __webpack_require__(12);
+exports.Cc  = __webpack_require__(10);
 exports.Cf  = __webpack_require__(71);
-exports.P   = __webpack_require__(4);
-exports.Z   = __webpack_require__(12);
+exports.P   = __webpack_require__(3);
+exports.Z   = __webpack_require__(11);
 
 
 /***/ }),
