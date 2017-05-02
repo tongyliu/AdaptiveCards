@@ -795,7 +795,6 @@ var HostContainer = (function () {
                     spacing: 20
                 },
                 buttonSpacing: 20,
-                stretch: false,
                 showCard: {
                     actionMode: "inlineEdgeToEdge",
                     inlineTopMargin: 16,
@@ -23077,7 +23076,6 @@ var BingContainer = (function (_super) {
                     spacing: 20
                 },
                 buttonSpacing: 20,
-                stretch: false,
                 showCard: {
                     actionMode: "inlineEdgeToEdge",
                     inlineTopMargin: 16,
@@ -23295,7 +23293,6 @@ var CortanaCarContainer = (function (_super) {
                     spacing: 20
                 },
                 buttonSpacing: 20,
-                stretch: false,
                 showCard: {
                     actionMode: "inlineEdgeToEdge",
                     inlineTopMargin: 16,
@@ -23455,7 +23452,7 @@ var LiveTileContainer = (function (_super) {
     };
     LiveTileContainer.prototype.getHostConfig = function () {
         return {
-            supportsInteractivity: true,
+            supportsInteractivity: false,
             strongSeparation: {
                 spacing: 40,
                 lineThickness: 1,
@@ -23511,7 +23508,6 @@ var LiveTileContainer = (function (_super) {
                     spacing: 20
                 },
                 buttonSpacing: 20,
-                stretch: false,
                 showCard: {
                     actionMode: "inlineEdgeToEdge",
                     inlineTopMargin: 16,
@@ -23602,7 +23598,7 @@ var LiveTileContainer = (function (_super) {
                     maxWidth: 150,
                 },
                 value: {
-                    color: "dark",
+                    color: "light",
                     size: "normal",
                     isSubtle: false,
                     weight: "normal",
@@ -23723,7 +23719,7 @@ var SkypeContainer = (function (_super) {
         return {
             supportsInteractivity: true,
             strongSeparation: {
-                spacing: 40,
+                spacing: 20,
                 lineThickness: 1,
                 lineColor: "#EEEEEE"
             },
@@ -23776,8 +23772,7 @@ var SkypeContainer = (function (_super) {
                 separation: {
                     spacing: 20
                 },
-                buttonSpacing: 20,
-                stretch: false,
+                buttonSpacing: 10,
                 showCard: {
                     actionMode: "popup",
                     inlineTopMargin: 16,
@@ -23790,20 +23785,20 @@ var SkypeContainer = (function (_super) {
                     }
                 },
                 actionsOrientation: "vertical",
-                actionAlignment: "center"
+                actionAlignment: "stretch"
             },
             adaptiveCard: {
                 backgroundColor: "#AEEAEAEA",
                 padding: {
-                    left: 20,
-                    top: 20,
-                    right: 20,
-                    bottom: 20
+                    left: 10,
+                    top: 10,
+                    right: 10,
+                    bottom: 10
                 }
             },
             container: {
                 separation: {
-                    spacing: 20
+                    spacing: 10
                 },
                 normal: {},
                 emphasis: {
@@ -23827,37 +23822,37 @@ var SkypeContainer = (function (_super) {
                 color: "dark",
                 separations: {
                     small: {
-                        spacing: 20,
+                        spacing: 10,
                     },
                     normal: {
-                        spacing: 20
+                        spacing: 10
                     },
                     medium: {
-                        spacing: 20
+                        spacing: 10
                     },
                     large: {
-                        spacing: 20
+                        spacing: 10
                     },
                     extraLarge: {
-                        spacing: 20
+                        spacing: 10
                     }
                 }
             },
             image: {
                 size: "medium",
                 separation: {
-                    spacing: 20
+                    spacing: 10
                 }
             },
             imageSet: {
                 imageSize: "medium",
                 separation: {
-                    spacing: 20
+                    spacing: 10
                 }
             },
             factSet: {
                 separation: {
-                    spacing: 20
+                    spacing: 10
                 },
                 title: {
                     color: "dark",
@@ -23878,17 +23873,17 @@ var SkypeContainer = (function (_super) {
             },
             input: {
                 separation: {
-                    spacing: 20
+                    spacing: 10
                 }
             },
             columnSet: {
                 separation: {
-                    spacing: 20
+                    spacing: 10
                 }
             },
             column: {
                 separation: {
-                    spacing: 20
+                    spacing: 10
                 }
             }
         };
@@ -24016,7 +24011,6 @@ var TeamsConnectorContainer = (function (_super) {
                     spacing: 20
                 },
                 buttonSpacing: 10,
-                stretch: true,
                 showCard: {
                     actionMode: "inlineEdgeToEdge",
                     inlineTopMargin: 16,
@@ -24029,7 +24023,7 @@ var TeamsConnectorContainer = (function (_super) {
                     }
                 },
                 actionsOrientation: "horizontal",
-                actionAlignment: "left"
+                actionAlignment: "stretch"
             },
             adaptiveCard: {
                 backgroundColor: "#00000000",
@@ -24228,7 +24222,6 @@ var ToastContainer = (function (_super) {
                     spacing: 10
                 },
                 buttonSpacing: 10,
-                stretch: true,
                 showCard: {
                     actionMode: "inlineEdgeToEdge",
                     inlineTopMargin: 16,
@@ -24241,7 +24234,7 @@ var ToastContainer = (function (_super) {
                     }
                 },
                 actionsOrientation: "horizontal",
-                actionAlignment: "left"
+                actionAlignment: "stretch"
             },
             adaptiveCard: {
                 backgroundColor: "#1F1F1F",
@@ -24318,7 +24311,7 @@ var ToastContainer = (function (_super) {
                     maxWidth: 150,
                 },
                 value: {
-                    color: "dark",
+                    color: "light",
                     size: "normal",
                     isSubtle: false,
                     weight: "normal",
@@ -24453,7 +24446,6 @@ var WebChatContainer = (function (_super) {
                     spacing: 8
                 },
                 buttonSpacing: 20,
-                stretch: false,
                 showCard: {
                     actionMode: "inlineEdgeToEdge",
                     inlineTopMargin: 16,
@@ -24681,9 +24673,7 @@ var CardElement = (function () {
         configurable: true
     });
     CardElement.prototype.adjustAlignment = function (element) {
-        if (this.horizontalAlignment != "left") {
-            element.style.textAlign = this.horizontalAlignment;
-        }
+        element.style.textAlign = this.horizontalAlignment;
     };
     CardElement.prototype.adjustLayout = function (element) {
         element.style.boxSizing = "border-box";
@@ -24712,7 +24702,7 @@ var CardElement = (function () {
     };
     CardElement.prototype.parse = function (json) {
         this.speak = json["speak"];
-        this.horizontalAlignment = json["horizontalAlignment"];
+        this.horizontalAlignment = Utils.getValueOrDefault(json["horizontalAlignment"], "left");
         this.separation = Utils.getValueOrDefault(json["separation"], "default");
     };
     CardElement.prototype.validate = function () {
@@ -24769,7 +24759,7 @@ var TextBlock = (function (_super) {
         _this.size = "normal";
         _this.weight = "normal";
         _this.isSubtle = false;
-        _this.wrap = true;
+        _this.wrap = false;
         return _this;
     }
     TextBlock.prototype.internalRender = function () {
@@ -24879,7 +24869,7 @@ var TextBlock = (function (_super) {
         this.weight = Utils.getValueOrDefault(json["weight"], "normal");
         this.color = Utils.getValueOrDefault(json["color"], hostConfig.textBlock.color);
         this.isSubtle = json["isSubtle"];
-        this.wrap = json["wrap"] === undefined ? true : json["wrap"];
+        this.wrap = json["wrap"] === undefined ? false : json["wrap"];
         this.maxLines = json["maxLines"];
     };
     TextBlock.prototype.getJsonTypeName = function () {
@@ -25602,6 +25592,9 @@ var ActionButton = (function () {
         this._action = action;
         this._style = style;
         this._element = document.createElement("div");
+        this._element.style.overflow = "hidden";
+        this._element.style.whiteSpace = "nowrap";
+        this._element.style.textOverflow = "ellipsis";
         this._element.onclick = function (e) { _this.click(); };
         this.updateCssStyle();
     }
@@ -26020,16 +26013,18 @@ var ActionCollection = (function () {
                 break;
         }
         if (hostConfig.actions.actionsOrientation == "horizontal") {
-            if (hostConfig.actions.stretch) {
+            if (hostConfig.actions.actionAlignment == "stretch") {
                 buttonStrip.style.display = "flex";
             }
             else {
                 buttonStrip.style.display = "inline-flex";
-                buttonStrip.style.width = "100%";
             }
         }
         else {
             buttonStrip.style.display = "inline-table";
+            if (hostConfig.actions.actionAlignment == "stretch") {
+                buttonStrip.style.width = "100%";
+            }
         }
         this._actionCardContainer = document.createElement("div");
         this._actionCardContainer.style.backgroundColor = Utils.stringToCssColor(hostConfig.actions.showCard.backgroundColor);
@@ -26050,21 +26045,19 @@ var ActionCollection = (function () {
             var forbiddenActionTypes = this._owner.getForbiddenActionTypes();
             for (var i = 0; i < maxActions; i++) {
                 if (isActionAllowed(this.items[i], forbiddenActionTypes)) {
-                    var buttonStripItem = document.createElement("div");
-                    buttonStripItem.style.whiteSpace = "nowrap";
-                    buttonStripItem.style.overflow = "hidden";
-                    buttonStripItem.style.overflow = "table-cell";
-                    buttonStripItem.style.flex = hostConfig.actions.stretch ? "0 1 100%" : "0 1 auto";
                     var actionButton = new ActionButton(this.items[i], actionButtonStyle);
+                    actionButton.element.style.overflow = "hidden";
+                    actionButton.element.style.overflow = "table-cell";
+                    actionButton.element.style.flex = hostConfig.actions.actionAlignment == "stretch" ? "0 1 100%" : "0 1 auto";
                     actionButton.text = this.items[i].title;
                     actionButton.onClick = function (ab) { _this.actionClicked(ab); };
                     this._actionButtons.push(actionButton);
-                    Utils.appendChild(buttonStripItem, actionButton.element);
-                    Utils.appendChild(buttonStrip, buttonStripItem);
+                    buttonStrip.appendChild(actionButton.element);
                     if (i < this.items.length - 1 && hostConfig.actions.buttonSpacing > 0) {
                         var spacer = document.createElement("div");
                         if (hostConfig.actions.actionsOrientation == "horizontal") {
-                            spacer.style.flex = "0 0 " + hostConfig.actions.buttonSpacing + "px";
+                            spacer.style.flex = "0 0 auto";
+                            spacer.style.width = hostConfig.actions.buttonSpacing + "px";
                         }
                         else {
                             spacer.style.height = hostConfig.actions.buttonSpacing + "px";
@@ -26074,7 +26067,10 @@ var ActionCollection = (function () {
                     renderedActions++;
                 }
             }
-            Utils.appendChild(element, buttonStrip);
+            var buttonStripContainer = document.createElement("div");
+            buttonStripContainer.style.overflow = "hidden";
+            buttonStripContainer.appendChild(buttonStrip);
+            Utils.appendChild(element, buttonStripContainer);
         }
         Utils.appendChild(element, this._actionCardContainer);
         return renderedActions > 0 ? element : null;
@@ -26414,27 +26410,39 @@ var ColumnSet = (function (_super) {
         _this._columns = [];
         return _this;
     }
+    ColumnSet.prototype.adjustAlignment = function (element) {
+        element.style.textAlign = hostConfig.actions.actionAlignment;
+    };
     ColumnSet.prototype.internalRender = function () {
         if (this._columns.length > 0) {
-            var element = document.createElement("div");
-            element.style.display = "flex";
+            // An outer div is necessary for it's responsible for
+            // horizontally aligning its content, via adjustAlignment
+            var outerElement = document.createElement("div");
+            outerElement.style.overflow = "hidden";
+            var innerElement = document.createElement("div");
             var renderedColumnCount = 0;
+            var stretchedColumns = 0;
             for (var i = 0; i < this._columns.length; i++) {
+                if (this._columns[i].size == "stretch") {
+                    stretchedColumns++;
+                }
                 var renderedColumn = this._columns[i].render();
                 if (renderedColumn != null) {
-                    Utils.appendChild(element, renderedColumn);
+                    Utils.appendChild(innerElement, renderedColumn);
                     if (this._columns.length > 1 && i < this._columns.length - 1 && this._columns[i + 1].separation != "none") {
                         var separationDefinition = this._columns[i + 1].separation == "default" ? this._columns[i + 1].getDefaultSeparationDefinition() : hostConfig.strongSeparation;
                         if (separationDefinition) {
                             var separator = Utils.renderSeparation(separationDefinition, "horizontal");
                             separator.style.flex = "0 0 auto";
-                            Utils.appendChild(element, separator);
+                            Utils.appendChild(innerElement, separator);
                         }
                     }
                     renderedColumnCount++;
                 }
             }
-            return renderedColumnCount > 0 ? element : null;
+            innerElement.style.display = stretchedColumns > 0 ? "flex" : "inline-flex";
+            outerElement.appendChild(innerElement);
+            return renderedColumnCount > 0 ? outerElement : null;
         }
         else {
             return null;
@@ -26774,7 +26782,6 @@ var defaultHostConfig = {
             spacing: 20
         },
         buttonSpacing: 20,
-        stretch: false,
         showCard: {
             actionMode: "inlineEdgeToEdge",
             inlineTopMargin: 16,
@@ -27021,7 +27028,6 @@ function parseActionsConfiguration(obj) {
         supportedActionTypes: obj["supportedActionTypes"],
         separation: parseSeparationDefinition(obj["separation"]),
         buttonSpacing: obj["buttonSpacing"],
-        stretch: obj["stretch"],
         showCard: parseShowCardActionConfiguration(obj["showCard"]),
         actionsOrientation: obj["actionsOrientation"],
         actionAlignment: obj["actionAlignment"]
@@ -44813,9 +44819,9 @@ function setupContainerPicker() {
     hostContainerOptions.push(new HostContainerOption("Speech", new speech_1.SpeechContainer("css/bing.css")));
     if (hostContainerPicker) {
         hostContainerPicker.addEventListener("change", function () {
-            // Disable this for now because it interferes with dev.html
-            // update the query string
-            // history.pushState(hostContainerPicker.value, `Visualizer - ${hostContainerPicker.value}`, `index.html?hostApp=${hostContainerPicker.value}`);
+            // Update the query string
+            var htmlFileName = location.pathname.indexOf("index.html") >= 0 ? "index.html" : "dev.html";
+            history.pushState(hostContainerPicker.value, "Visualizer - " + hostContainerPicker.value, htmlFileName + ("?hostApp=" + hostContainerPicker.value));
             loadStyleSheetAndConfig();
             tryRenderCard();
         });
