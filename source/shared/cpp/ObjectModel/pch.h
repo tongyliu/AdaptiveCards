@@ -10,4 +10,4 @@
 #include <algorithm>
 #include <unordered_map>
 #include <fstream>
-#include <cstring>
+#include <locale>
