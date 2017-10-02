@@ -28,6 +28,7 @@ namespace AdaptiveCards { namespace Uwp
         IFACEMETHODIMP Remove(_In_ HSTRING type);
 
     private:
+
         std::shared_ptr<RegistrationMap> m_registration;
     };
 

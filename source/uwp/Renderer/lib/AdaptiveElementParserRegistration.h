@@ -28,6 +28,8 @@ namespace AdaptiveCards { namespace Uwp
         IFACEMETHODIMP Remove(_In_ HSTRING type);
 
     private:
+        static std::shared_ptr<BaseCardElement> CustomParserForSharedModel(const Json::Value& root);
+
         std::shared_ptr<RegistrationMap> m_registration;
     };
 

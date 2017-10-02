@@ -1,6 +1,7 @@
 #include "pch.h"
 #include "AdaptiveElementParserRegistration.h"
 #include "Util.h"
+#include "ElementParserRegistration.h"
 
 using namespace Microsoft::WRL;
 using namespace ABI::AdaptiveCards::Uwp;
@@ -21,6 +22,12 @@ namespace AdaptiveCards { namespace Uwp
     _Use_decl_annotations_
     HRESULT AdaptiveElementParserRegistration::Set(HSTRING type, IAdaptiveElementParser* Parser)
     {
+        std::shared_ptr<BaseCardElement> CustomParserForSharedModel(const Json::Value& root);
+
+        std::string typeAsString = HStringToUTF8(type);
+
+        ElementParserRegistration::AddParser(typeAsString, );
+
         ComPtr<IAdaptiveElementParser> localParser(Parser);
         (*m_registration)[HStringToUTF8(type)] = localParser;
 
