@@ -4,11 +4,15 @@
 #include "Enums.h"
 #include "BaseCardElement.h"
 #include "Column.h"
+#include "CustomParser.h"
 
 namespace AdaptiveCards
 {
+class ColumnSetParser;
+
 class ColumnSet : public BaseCardElement
 {
+friend class ColumnSetParser;
 public:
     ColumnSet();
     ColumnSet(std::vector<std::shared_ptr<Column>>& columns);
@@ -18,11 +22,17 @@ public:
 
     std::vector<std::shared_ptr<Column>>& GetColumns();
     const std::vector<std::shared_ptr<Column>>& GetColumns() const;
-    static std::shared_ptr<ColumnSet> Deserialize(const Json::Value& root);
-    static std::shared_ptr<ColumnSet> DeserializeFromString(const std::string& jsonString);
 
 private:
     static const std::unordered_map<CardElementType, std::function<std::shared_ptr<Column>(const Json::Value&)>, EnumHash> ColumnParser;
     std::vector<std::shared_ptr<Column>> m_columns;
+};
+
+class ColumnSetParser : public ICustomParser
+{
+public:
+    std::shared_ptr<BaseCardElement> Deserialize(const Json::Value& root);
+    std::shared_ptr<BaseCardElement> DeserializeFromString(const std::string& jsonString);
+
 };
 }

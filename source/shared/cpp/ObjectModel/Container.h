@@ -4,11 +4,13 @@
 #include "pch.h"
 #include "BaseActionElement.h"
 #include "BaseCardElement.h"
+#include "CustomParser.h"
 
 namespace AdaptiveCards
 {
 class Container : public BaseCardElement
 {
+friend class ContainerParser;
 public:
     Container();
     Container(Spacing spacing, bool separator, ContainerStyle style);
@@ -23,9 +25,6 @@ public:
     ContainerStyle GetStyle() const;
     void SetStyle(const ContainerStyle value);
 
-    static std::shared_ptr<Container> Deserialize(const Json::Value& root);
-    static std::shared_ptr<Container> DeserializeFromString(const std::string& jsonString);
-
     std::shared_ptr<BaseActionElement> GetSelectAction() const;
     void SetSelectAction(const std::shared_ptr<BaseActionElement> action);
 
@@ -33,5 +32,12 @@ private:
     ContainerStyle m_style;
     std::vector<std::shared_ptr<AdaptiveCards::BaseCardElement>> m_items;
     std::shared_ptr<BaseActionElement> m_selectAction;
+};
+
+class ContainerParser : public ICustomParser
+{
+public:
+    std::shared_ptr<BaseCardElement> Deserialize(const Json::Value& root);
+    std::shared_ptr<BaseCardElement> DeserializeFromString(const std::string& jsonString);
 };
 }

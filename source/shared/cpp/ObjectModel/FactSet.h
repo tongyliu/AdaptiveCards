@@ -4,12 +4,14 @@
 #include "Enums.h"
 #include "Fact.h"
 #include "BaseCardElement.h"
+#include "CustomParser.h"
 
 namespace AdaptiveCards
 {
 class BaseCardElement;
 class FactSet : public BaseCardElement
 {
+friend class FactSetParser;
 public:
     FactSet();
     FactSet(Spacing spacing, bool separation);
@@ -20,10 +22,15 @@ public:
 
     std::vector<std::shared_ptr<Fact>>& GetFacts();
     const std::vector<std::shared_ptr<Fact>>& GetFacts() const;
-    static std::shared_ptr<FactSet> Deserialize(const Json::Value& root);
-    static std::shared_ptr<FactSet> DeserializeFromString(const std::string& jsonString);
 
 private:
     std::vector<std::shared_ptr<Fact>> m_facts; 
+};
+
+class FactSetParser : public ICustomParser
+{
+public:
+    std::shared_ptr<BaseCardElement> Deserialize(const Json::Value& root);
+    std::shared_ptr<BaseCardElement> DeserializeFromString(const std::string& jsonString);
 };
 }

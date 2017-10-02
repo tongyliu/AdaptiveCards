@@ -80,7 +80,7 @@ Json::Value Container::SerializeToJsonValue()
     return root;
 }
 
-std::shared_ptr<Container> Container::Deserialize(const Json::Value& value)
+std::shared_ptr<BaseCardElement> ContainerParser::Deserialize(const Json::Value& value)
 {
     ParseUtil::ExpectTypeString(value, CardElementType::Container);
 
@@ -98,7 +98,7 @@ std::shared_ptr<Container> Container::Deserialize(const Json::Value& value)
     return container;
 }
 
-std::shared_ptr<Container> Container::DeserializeFromString(const std::string& jsonString)
+std::shared_ptr<BaseCardElement> ContainerParser::DeserializeFromString(const std::string& jsonString)
 {
-    return Container::Deserialize(ParseUtil::GetJsonValueFromString(jsonString));
+    return ContainerParser::Deserialize(ParseUtil::GetJsonValueFromString(jsonString));
 }

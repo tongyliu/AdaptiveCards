@@ -325,14 +325,13 @@ std::vector<std::shared_ptr<BaseCardElement>> ParseUtil::GetElementCollection(
         // Get the element's type
         std::string typeString = GetTypeAsString(curJsonValue);
 
-        std::function<std::shared_ptr<BaseCardElement>(const Json::Value&)> parserFunction;
-        bool hasParser = ElementParserRegistration::GetParser(typeString, &parserFunction);
+        std::shared_ptr<ICustomParser> parser = ElementParserRegistration::GetParser(typeString);
 
         //Parse it if it's allowed by the current parsers
-        if (hasParser)
+        if (parser != nullptr)
         {
             // Use the parser that maps to the type
-            elements.push_back(parserFunction(curJsonValue));
+            elements.push_back(parser->Deserialize(curJsonValue));
         }
     }
 

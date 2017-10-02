@@ -43,7 +43,7 @@ Json::Value ColumnSet::SerializeToJsonValue()
     return root;
 }
 
-std::shared_ptr<ColumnSet> ColumnSet::Deserialize(const Json::Value& value)
+std::shared_ptr<BaseCardElement> ColumnSetParser::Deserialize(const Json::Value& value)
 {
     ParseUtil::ExpectTypeString(value, CardElementType::ColumnSet);
 
@@ -55,7 +55,7 @@ std::shared_ptr<ColumnSet> ColumnSet::Deserialize(const Json::Value& value)
     return container;
 }
 
-std::shared_ptr<ColumnSet> ColumnSet::DeserializeFromString(const std::string& jsonString)
+std::shared_ptr<BaseCardElement> ColumnSetParser::DeserializeFromString(const std::string& jsonString)
 {
-    return ColumnSet::Deserialize(ParseUtil::GetJsonValueFromString(jsonString));
+    return ColumnSetParser::Deserialize(ParseUtil::GetJsonValueFromString(jsonString));
 }

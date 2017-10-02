@@ -3,6 +3,7 @@
 #include "pch.h"
 #include "BaseInputElement.h"
 #include "Enums.h"
+#include "CustomParser.h"
 
 namespace AdaptiveCards
 {
@@ -10,9 +11,6 @@ class TimeInput : public BaseInputElement
 {
 public:
     TimeInput();
-
-    static std::shared_ptr<TimeInput> Deserialize(const Json::Value& root);
-    static std::shared_ptr<TimeInput> DeserializeFromString(const std::string& jsonString);
 
     virtual std::string Serialize();
     Json::Value SerializeToJsonValue();
@@ -34,5 +32,12 @@ private:
     std::string m_min;
     std::string m_placeholder;
     std::string m_value;
+};
+
+class TimeInputParser : ICustomParser
+{
+public:
+    std::shared_ptr<BaseCardElement> Deserialize(const Json::Value& root);
+    std::shared_ptr<BaseCardElement> DeserializeFromString(const std::string& jsonString);
 };
 }

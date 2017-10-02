@@ -10,25 +10,6 @@ NumberInput::NumberInput() :
 {
 }
 
-std::shared_ptr<NumberInput> NumberInput::Deserialize(const Json::Value& json)
-{
-    ParseUtil::ExpectTypeString(json, CardElementType::NumberInput);
-
-    std::shared_ptr<NumberInput> numberInput = BaseInputElement::Deserialize<NumberInput>(json);
-
-    numberInput->SetPlaceholder(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Placeholder));
-    numberInput->SetValue(ParseUtil::GetInt(json, AdaptiveCardSchemaKey::Value, 0));
-    numberInput->SetMax(ParseUtil::GetInt(json, AdaptiveCardSchemaKey::Max, std::numeric_limits<int>::max()));
-    numberInput->SetMin(ParseUtil::GetInt(json, AdaptiveCardSchemaKey::Min, std::numeric_limits<int>::min()));
-
-    return numberInput;
-}
-
-std::shared_ptr<NumberInput> NumberInput::DeserializeFromString(const std::string& jsonString)
-{
-    return NumberInput::Deserialize(ParseUtil::GetJsonValueFromString(jsonString));
-}
-
 std::string NumberInput::Serialize()
 {
     Json::FastWriter writer;
@@ -85,4 +66,23 @@ int NumberInput::GetMin() const
 void NumberInput::SetMin(const int value)
 {
     m_min = value;
+}
+
+std::shared_ptr<BaseCardElement> NumberInputParser::Deserialize(const Json::Value& json)
+{
+    ParseUtil::ExpectTypeString(json, CardElementType::NumberInput);
+
+    std::shared_ptr<NumberInput> numberInput = BaseInputElement::Deserialize<NumberInput>(json);
+
+    numberInput->SetPlaceholder(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Placeholder));
+    numberInput->SetValue(ParseUtil::GetInt(json, AdaptiveCardSchemaKey::Value, 0));
+    numberInput->SetMax(ParseUtil::GetInt(json, AdaptiveCardSchemaKey::Max, std::numeric_limits<int>::max()));
+    numberInput->SetMin(ParseUtil::GetInt(json, AdaptiveCardSchemaKey::Min, std::numeric_limits<int>::min()));
+
+    return numberInput;
+}
+
+std::shared_ptr<BaseCardElement> NumberInputParser::DeserializeFromString(const std::string& jsonString)
+{
+    return NumberInputParser::Deserialize(ParseUtil::GetJsonValueFromString(jsonString));
 }

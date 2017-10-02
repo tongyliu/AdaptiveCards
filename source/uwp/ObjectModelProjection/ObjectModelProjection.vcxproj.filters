@@ -71,6 +71,7 @@
     <ClInclude Include="..\..\shared\cpp\ObjectModel\Separator.h" />
     <ClInclude Include="..\..\shared\cpp\ObjectModel\ElementParserRegistration.h" />
     <ClInclude Include="..\..\shared\cpp\ObjectModel\ActionParserRegistration.h" />
+    <ClInclude Include="..\..\shared\cpp\ObjectModel\CustomParser.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="json">

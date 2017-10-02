@@ -8,25 +8,6 @@ TimeInput::TimeInput() :
 {
 }
 
-std::shared_ptr<TimeInput> TimeInput::Deserialize(const Json::Value& json)
-{
-    ParseUtil::ExpectTypeString(json, CardElementType::TimeInput);
-
-    std::shared_ptr<TimeInput> timeInput = BaseInputElement::Deserialize<TimeInput>(json);
-
-    timeInput->SetMax(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Max));
-    timeInput->SetMin(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Min));
-    timeInput->SetPlaceholder(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Placeholder));
-    timeInput->SetValue(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Value));
-
-    return timeInput;
-}
-
-std::shared_ptr<TimeInput> TimeInput::DeserializeFromString(const std::string& jsonString)
-{
-    return TimeInput::Deserialize(ParseUtil::GetJsonValueFromString(jsonString));
-}
-
 std::string TimeInput::Serialize()
 {
     Json::FastWriter writer;
@@ -84,3 +65,23 @@ void TimeInput::SetValue(const std::string value)
 {
     m_value = value;
 }
+
+std::shared_ptr<BaseCardElement> TimeInputParser::Deserialize(const Json::Value& json)
+{
+    ParseUtil::ExpectTypeString(json, CardElementType::TimeInput);
+
+    std::shared_ptr<TimeInput> timeInput = BaseInputElement::Deserialize<TimeInput>(json);
+
+    timeInput->SetMax(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Max));
+    timeInput->SetMin(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Min));
+    timeInput->SetPlaceholder(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Placeholder));
+    timeInput->SetValue(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Value));
+
+    return timeInput;
+}
+
+std::shared_ptr<BaseCardElement> TimeInputParser::DeserializeFromString(const std::string& jsonString)
+{
+    return TimeInputParser::Deserialize(ParseUtil::GetJsonValueFromString(jsonString));
+}
+

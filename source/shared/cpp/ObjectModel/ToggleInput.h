@@ -3,6 +3,7 @@
 #include "pch.h"
 #include "BaseInputElement.h"
 #include "Enums.h"
+#include "CustomParser.h"
 
 namespace AdaptiveCards
 {
@@ -10,9 +11,6 @@ class ToggleInput : public BaseInputElement
 {
 public:
     ToggleInput();
-
-    static std::shared_ptr<ToggleInput> Deserialize(const Json::Value& root);
-    static std::shared_ptr<ToggleInput> DeserializeFromString(const std::string& jsonString);
 
     virtual std::string Serialize();
     Json::Value SerializeToJsonValue();
@@ -34,5 +32,12 @@ private:
     std::string m_value;
     std::string m_valueOff;
     std::string m_valueOn;
+};
+
+class ToggleInputParser : public ICustomParser
+{
+public:
+    std::shared_ptr<BaseCardElement> Deserialize(const Json::Value& root);
+    std::shared_ptr<BaseCardElement> DeserializeFromString(const std::string& jsonString);
 };
 }

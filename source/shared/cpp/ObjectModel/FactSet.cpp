@@ -54,7 +54,7 @@ Json::Value FactSet::SerializeToJsonValue()
     return root;
 }
 
-std::shared_ptr<FactSet> FactSet::Deserialize(const Json::Value& value)
+std::shared_ptr<BaseCardElement> FactSetParser::Deserialize(const Json::Value& value)
 {
     ParseUtil::ExpectTypeString(value, CardElementType::FactSet);
 
@@ -67,7 +67,7 @@ std::shared_ptr<FactSet> FactSet::Deserialize(const Json::Value& value)
     return factSet;
 }
 
-std::shared_ptr<FactSet> FactSet::DeserializeFromString(const std::string& jsonString)
+std::shared_ptr<BaseCardElement> FactSetParser::DeserializeFromString(const std::string& jsonString)
 {
-    return FactSet::Deserialize(ParseUtil::GetJsonValueFromString(jsonString));
+    return FactSetParser::Deserialize(ParseUtil::GetJsonValueFromString(jsonString));
 }

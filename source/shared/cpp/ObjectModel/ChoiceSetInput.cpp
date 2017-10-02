@@ -77,7 +77,7 @@ void AdaptiveCards::ChoiceSetInput::SetChoiceSetStyle(const ChoiceSetStyle choic
     m_choiceSetStyle = choiceSetStyle;
 }
 
-std::shared_ptr<ChoiceSetInput> ChoiceSetInput::Deserialize(const Json::Value& json)
+std::shared_ptr<BaseCardElement> ChoiceSetInputParser::Deserialize(const Json::Value& json)
 {
     ParseUtil::ExpectTypeString(json, CardElementType::ChoiceSetInput);
 
@@ -93,7 +93,7 @@ std::shared_ptr<ChoiceSetInput> ChoiceSetInput::Deserialize(const Json::Value& j
     return choiceSet;
 }
 
-std::shared_ptr<ChoiceSetInput> ChoiceSetInput::DeserializeFromString(const std::string& jsonString)
+std::shared_ptr<BaseCardElement> ChoiceSetInputParser::DeserializeFromString(const std::string& jsonString)
 {
-    return ChoiceSetInput::Deserialize(ParseUtil::GetJsonValueFromString(jsonString));
+    return ChoiceSetInputParser::Deserialize(ParseUtil::GetJsonValueFromString(jsonString));
 }

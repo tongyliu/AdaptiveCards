@@ -8,25 +8,6 @@ DateInput::DateInput() :
 {
 }
 
-std::shared_ptr<DateInput> DateInput::Deserialize(const Json::Value& json)
-{
-    ParseUtil::ExpectTypeString(json, CardElementType::DateInput);
-
-    std::shared_ptr<DateInput> dateInput = BaseInputElement::Deserialize<DateInput>(json);
-
-    dateInput->SetMax(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Max));
-    dateInput->SetMin(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Min));
-    dateInput->SetPlaceholder(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Placeholder));
-    dateInput->SetValue(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Value));
-
-    return dateInput;
-}
-
-std::shared_ptr<DateInput> DateInput::DeserializeFromString(const std::string& jsonString)
-{
-    return DateInput::Deserialize(ParseUtil::GetJsonValueFromString(jsonString));
-}
-
 std::string DateInput::Serialize()
 {
     Json::FastWriter writer;
@@ -83,4 +64,23 @@ std::string DateInput::GetValue() const
 void DateInput::SetValue(const std::string value)
 {
     m_value = value;
+}
+
+std::shared_ptr<BaseCardElement> DateInputParser::Deserialize(const Json::Value& json)
+{
+    ParseUtil::ExpectTypeString(json, CardElementType::DateInput);
+
+    std::shared_ptr<DateInput> dateInput = BaseInputElement::Deserialize<DateInput>(json);
+
+    dateInput->SetMax(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Max));
+    dateInput->SetMin(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Min));
+    dateInput->SetPlaceholder(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Placeholder));
+    dateInput->SetValue(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Value));
+
+    return dateInput;
+}
+
+std::shared_ptr<BaseCardElement> DateInputParser::DeserializeFromString(const std::string& jsonString)
+{
+    return DateInputParser::Deserialize(ParseUtil::GetJsonValueFromString(jsonString));
 }

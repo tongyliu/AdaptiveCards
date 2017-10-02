@@ -10,26 +10,6 @@ TextInput::TextInput() :
 {
 }
 
-std::shared_ptr<TextInput> TextInput::Deserialize(const Json::Value& json)
-{
-    ParseUtil::ExpectTypeString(json, CardElementType::TextInput);
-
-    std::shared_ptr<TextInput> textInput = BaseInputElement::Deserialize<TextInput>(json);
-
-    textInput->SetPlaceholder(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Placeholder));
-    textInput->SetValue(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Value));
-    textInput->SetIsMultiline(ParseUtil::GetBool(json, AdaptiveCardSchemaKey::IsMultiline, false));
-    textInput->SetMaxLength(ParseUtil::GetUInt(json, AdaptiveCardSchemaKey::MaxLength, 0));
-    textInput->SetTextInputStyle(ParseUtil::GetEnumValue<TextInputStyle>(json, AdaptiveCardSchemaKey::Style, TextInputStyle::Text, TextInputStyleFromString));
-
-    return textInput;
-}
-
-std::shared_ptr<TextInput> TextInput::DeserializeFromString(const std::string& jsonString)
-{
-    return TextInput::Deserialize(ParseUtil::GetJsonValueFromString(jsonString));
-}
-
 std::string TextInput::Serialize()
 {
     Json::FastWriter writer;
@@ -97,4 +77,24 @@ TextInputStyle AdaptiveCards::TextInput::GetTextInputStyle() const
 void AdaptiveCards::TextInput::SetTextInputStyle(const TextInputStyle value)
 {
     m_style = value;
+}
+
+std::shared_ptr<BaseCardElement> TextInputParser::Deserialize(const Json::Value& json)
+{
+    ParseUtil::ExpectTypeString(json, CardElementType::TextInput);
+
+    std::shared_ptr<TextInput> textInput = BaseInputElement::Deserialize<TextInput>(json);
+
+    textInput->SetPlaceholder(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Placeholder));
+    textInput->SetValue(ParseUtil::GetString(json, AdaptiveCardSchemaKey::Value));
+    textInput->SetIsMultiline(ParseUtil::GetBool(json, AdaptiveCardSchemaKey::IsMultiline, false));
+    textInput->SetMaxLength(ParseUtil::GetUInt(json, AdaptiveCardSchemaKey::MaxLength, 0));
+    textInput->SetTextInputStyle(ParseUtil::GetEnumValue<TextInputStyle>(json, AdaptiveCardSchemaKey::Style, TextInputStyle::Text, TextInputStyleFromString));
+
+    return textInput;
+}
+
+std::shared_ptr<BaseCardElement> TextInputParser::DeserializeFromString(const std::string& jsonString)
+{
+    return TextInputParser::Deserialize(ParseUtil::GetJsonValueFromString(jsonString));
 }

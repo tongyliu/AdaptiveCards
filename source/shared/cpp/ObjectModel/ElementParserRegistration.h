@@ -2,6 +2,7 @@
 
 #include "pch.h"
 #include "BaseCardElement.h"
+#include "CustomParser.h"
 
 namespace AdaptiveCards
 {
@@ -9,15 +10,13 @@ namespace AdaptiveCards
     {
     public:
 
-        static void AddParser(std::string elementType, std::function<std::shared_ptr<BaseCardElement>(const Json::Value&)> parserFunction);
+        static void AddParser(std::string elementType, std::shared_ptr<ICustomParser> parser);
         static void RemoveParser(std::string elementType);
-
-        static bool GetParser(
-            std::string elementType,
-            std::function<std::shared_ptr<BaseCardElement>(const Json::Value&)>* parserFunction);
+        static std::shared_ptr<ICustomParser> GetParser(std::string elementType);
 
     private:
-        static std::unordered_map<std::string, std::function<std::shared_ptr<BaseCardElement>(const Json::Value&)>, CaseInsensitiveHash, CaseInsensitiveEqualTo> CardElementParsers;
+        static std::unordered_map<std::string, std::shared_ptr<ICustomParser>, CaseInsensitiveHash, CaseInsensitiveEqualTo> CardElementParsers;
+
         static bool ParsersInitialized;
         static void EnsureParsersInitialized();
     };

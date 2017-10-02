@@ -3,6 +3,7 @@
 #include "pch.h"
 #include "BaseInputElement.h"
 #include "Enums.h"
+#include "CustomParser.h"
 
 namespace AdaptiveCards
 {
@@ -10,9 +11,6 @@ class NumberInput : public BaseInputElement
 {
 public:
     NumberInput();
-
-    static std::shared_ptr<NumberInput> Deserialize(const Json::Value& root);
-    static std::shared_ptr<NumberInput> DeserializeFromString(const std::string& jsonString);
 
     virtual std::string Serialize();
     virtual Json::Value SerializeToJsonValue();
@@ -34,5 +32,12 @@ private:
     int m_value;
     int m_max;
     int m_min;
+};
+
+class NumberInputParser : ICustomParser
+{
+public:
+    std::shared_ptr<BaseCardElement> Deserialize(const Json::Value& root);
+    std::shared_ptr<BaseCardElement> DeserializeFromString(const std::string& jsonString);
 };
 }
