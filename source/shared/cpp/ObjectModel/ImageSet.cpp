@@ -83,8 +83,10 @@ std::shared_ptr<BaseCardElement> ImageSetParser::Deserialize(const Json::Value& 
     // Get ImageSize
     imageSet->m_imageSize = ParseUtil::GetEnumValue<ImageSize>(value, AdaptiveCardSchemaKey::ImageSize, ImageSize::None, ImageSizeFromString);
 
+    std::shared_ptr<ImageParser> imageParser = std::make_shared<ImageParser>();
+
     // Parse Images
-    auto images = ParseUtil::GetElementCollectionOfSingleType<Image>(value, AdaptiveCardSchemaKey::Images, ImageParser::DeserializeWithoutCheckingType, true);
+    auto images = ParseUtil::GetElementCollectionOfSingleType<Image>(value, AdaptiveCardSchemaKey::Images, imageParser, true);
     imageSet->m_images = std::move(images);
 
     return imageSet;

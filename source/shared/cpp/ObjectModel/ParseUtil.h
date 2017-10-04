@@ -4,6 +4,7 @@
 #include "AdaptiveCardParseException.h"
 #include "Enums.h"
 #include "json/json.h"
+#include "CustomParser.h"
 
 namespace AdaptiveCards
 {
@@ -67,7 +68,7 @@ public:
     static std::vector<std::shared_ptr<T>> GetElementCollectionOfSingleType(
         const Json::Value& json,
         AdaptiveCardSchemaKey key,
-        const std::function<std::shared_ptr<T>(const Json::Value&)>& deserializer,
+        std::shared_ptr<ICustomParser> parser,
         bool isRequired = false);
 
     static std::vector<std::shared_ptr<BaseActionElement>> GetActionCollection(
@@ -136,7 +137,7 @@ template <typename T>
 std::vector<std::shared_ptr<T>> ParseUtil::GetElementCollectionOfSingleType(
     const Json::Value& json,
     AdaptiveCardSchemaKey key,
-    const std::function<std::shared_ptr<T>(const Json::Value&)>& deserializer,
+    std::shared_ptr<ICustomParser> parser,
     bool isRequired)
 {
     auto elementArray = GetArray(json, key, isRequired);
@@ -153,7 +154,7 @@ std::vector<std::shared_ptr<T>> ParseUtil::GetElementCollectionOfSingleType(
     for (const Json::Value& curJsonValue : elementArray)
     {
         // Parse the element
-        auto el = deserializer(curJsonValue);
+        auto el = parser->Deserialize(curJsonValue);
         if (el != nullptr)
         {
             elements.push_back(el);
