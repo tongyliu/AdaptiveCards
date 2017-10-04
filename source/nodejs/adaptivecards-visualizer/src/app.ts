@@ -14,6 +14,7 @@ import { SlackContainer } from "./containers/slack";
 import { KikContainer } from "./containers/kik";
 import { FacebookContainer } from "./containers/facebook";
 import { BingContainer } from "./containers/bing";
+import { BingApiContainer } from "./containers/bingapi";
 import { TimelineContainer } from "./containers/timeline";
 import { OutlookContainer } from "./containers/outlook";
 
@@ -253,6 +254,11 @@ function setupContainerPicker() {
         new HostContainerOption(
             "WebChat (Bot Framework)",
             new WebChatContainer("css/webchat.css")));
+
+    hostContainerOptions.push(
+        new HostContainerOption(
+            "Bing (API)",
+            new BingApiContainer(285, 150, "css/bing.css")));
 
     hostContainerOptions.push(
         new HostContainerOption(
