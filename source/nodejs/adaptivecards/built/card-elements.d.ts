@@ -12,6 +12,7 @@ export declare abstract class CardElement {
     private _isVisibile;
     private _renderedElement;
     private _separatorElement;
+    private _renderCallbacks;
     private internalRenderSeparator();
     private updateRenderedElementVisibility();
     protected internalGetNonZeroPadding(padding: HostConfig.PaddingDefinition): void;
@@ -19,6 +20,7 @@ export declare abstract class CardElement {
     protected showBottomSpacer(requestingElement: CardElement): void;
     protected hideBottomSpacer(requestingElement: CardElement): void;
     protected setParent(value: CardElement): void;
+    protected addRenderCallback(fn: () => void): void;
     protected readonly useDefaultSizing: boolean;
     protected abstract internalRender(): HTMLElement;
     protected readonly allowCustomPadding: boolean;
@@ -38,7 +40,8 @@ export declare abstract class CardElement {
     getForbiddenActionTypes(): Array<any>;
     parse(json: any): void;
     validate(): Array<IValidationError>;
-    render(): HTMLElement;
+    renderElement(): HTMLElement;
+    onRender(): void;
     updateLayout(processChildren?: boolean): void;
     isAtTheVeryTop(): boolean;
     isFirstElement(element: CardElement): boolean;
@@ -61,6 +64,10 @@ export declare abstract class CardElement {
     isVisible: boolean;
     readonly renderedElement: HTMLElement;
     readonly separatorElement: HTMLElement;
+}
+export declare abstract class CardElementWithChildren extends CardElement {
+    protected readonly abstract children: Array<CardElement>;
+    onRender(): void;
 }
 export declare class TextBlock extends CardElement {
     size: Enums.TextSize;
@@ -105,8 +112,9 @@ export declare class Image extends CardElement {
     renderSpeech(): string;
     selectAction: Action;
 }
-export declare class ImageSet extends CardElement {
+export declare class ImageSet extends CardElementWithChildren {
     private _images;
+    protected readonly children: Array<Image>;
     protected internalRender(): HTMLElement;
     imageSize: Enums.Size;
     getJsonTypeName(): string;
@@ -266,12 +274,13 @@ export declare class BackgroundImage {
     parse(json: any): void;
     apply(element: HTMLElement): void;
 }
-export declare class Container extends CardElement {
+export declare class Container extends CardElementWithChildren {
     private _selectAction;
     private isElementAllowed(element, forbiddenElementTypes);
     private _items;
     private _style?;
     private readonly hasExplicitStyle;
+    protected readonly children: Array<CardElement>;
     protected showBottomSpacer(requestingElement: CardElement): void;
     protected hideBottomSpacer(requestingElement: CardElement): void;
     protected applyPadding(): void;
@@ -305,9 +314,10 @@ export declare class Column extends Container {
     parse(json: any): void;
     readonly isStandalone: boolean;
 }
-export declare class ColumnSet extends CardElement {
+export declare class ColumnSet extends CardElementWithChildren {
     private _columns;
     private _selectAction;
+    protected readonly children: Array<Column>;
     protected internalRender(): HTMLElement;
     getJsonTypeName(): string;
     parse(json: any): void;
@@ -371,6 +381,7 @@ export declare class AdaptiveCard extends ContainerWithActions {
     getJsonTypeName(): string;
     validate(): Array<IValidationError>;
     parse(json: any): void;
-    render(): HTMLElement;
+    renderElement(): HTMLElement;
+    render(targetContainer: HTMLElement): HTMLElement;
     canContentBleed(): boolean;
 }

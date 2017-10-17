@@ -57,6 +57,10 @@ var CardElement = /** @class */ (function () {
         this._isVisibile = true;
         this._renderedElement = null;
         this._separatorElement = null;
+        // Array of functions that will execute after this element is rendered
+        // The functions should take no args and return void (use arrow functions
+        // to preserve local and instance variables)
+        this._renderCallbacks = [];
         this.horizontalAlignment = null;
         this.spacing = Enums.Spacing.Default;
         this.separator = false;
@@ -114,6 +118,9 @@ var CardElement = /** @class */ (function () {
     };
     CardElement.prototype.setParent = function (value) {
         this._parent = value;
+    };
+    CardElement.prototype.addRenderCallback = function (fn) {
+        this._renderCallbacks.push(fn);
     };
     Object.defineProperty(CardElement.prototype, "useDefaultSizing", {
         get: function () {
@@ -208,7 +215,7 @@ var CardElement = /** @class */ (function () {
     CardElement.prototype.validate = function () {
         return [];
     };
-    CardElement.prototype.render = function () {
+    CardElement.prototype.renderElement = function () {
         this._renderedElement = this.internalRender();
         this._separatorElement = this.internalRenderSeparator();
         if (this._renderedElement) {
@@ -218,6 +225,12 @@ var CardElement = /** @class */ (function () {
             this.updateRenderedElementVisibility();
         }
         return this._renderedElement;
+    };
+    CardElement.prototype.onRender = function () {
+        for (var _i = 0, _a = this._renderCallbacks; _i < _a.length; _i++) {
+            var fn = _a[_i];
+            fn();
+        }
     };
     CardElement.prototype.updateLayout = function (processChildren) {
         if (processChildren === void 0) { processChildren = true; }
@@ -344,6 +357,21 @@ var CardElement = /** @class */ (function () {
     return CardElement;
 }());
 exports.CardElement = CardElement;
+var CardElementWithChildren = /** @class */ (function (_super) {
+    __extends(CardElementWithChildren, _super);
+    function CardElementWithChildren() {
+        return _super !== null && _super.apply(this, arguments) || this;
+    }
+    CardElementWithChildren.prototype.onRender = function () {
+        for (var _i = 0, _a = this.children; _i < _a.length; _i++) {
+            var child = _a[_i];
+            child.onRender();
+        }
+        _super.prototype.onRender.call(this);
+    };
+    return CardElementWithChildren;
+}(CardElement));
+exports.CardElementWithChildren = CardElementWithChildren;
 var TextBlock = /** @class */ (function (_super) {
     __extends(TextBlock, _super);
     function TextBlock() {
@@ -572,7 +600,7 @@ var FactSet = /** @class */ (function (_super) {
                 textBlock.weight = this.hostConfig.factSet.title.weight;
                 textBlock.wrap = this.hostConfig.factSet.title.wrap;
                 textBlock.spacing = Enums.Spacing.None;
-                Utils.appendChild(tdElement, textBlock.render());
+                Utils.appendChild(tdElement, textBlock.renderElement());
                 Utils.appendChild(trElement, tdElement);
                 tdElement = document.createElement("td");
                 tdElement.style.padding = "0px 0px 0px 10px";
@@ -586,7 +614,7 @@ var FactSet = /** @class */ (function (_super) {
                 textBlock.weight = this.hostConfig.factSet.value.weight;
                 textBlock.wrap = this.hostConfig.factSet.value.wrap;
                 textBlock.spacing = Enums.Spacing.None;
-                Utils.appendChild(tdElement, textBlock.render());
+                Utils.appendChild(tdElement, textBlock.renderElement());
                 Utils.appendChild(trElement, tdElement);
                 Utils.appendChild(element, trElement);
             }
@@ -793,6 +821,13 @@ var ImageSet = /** @class */ (function (_super) {
         _this.imageSize = Enums.Size.Medium;
         return _this;
     }
+    Object.defineProperty(ImageSet.prototype, "children", {
+        get: function () {
+            return this._images;
+        },
+        enumerable: true,
+        configurable: true
+    });
     ImageSet.prototype.internalRender = function () {
         var element = null;
         if (this._images.length > 0) {
@@ -800,7 +835,7 @@ var ImageSet = /** @class */ (function (_super) {
             element.style.display = "flex";
             element.style.flexWrap = "wrap";
             for (var i = 0; i < this._images.length; i++) {
-                var renderedImage = this._images[i].render();
+                var renderedImage = this._images[i].renderElement();
                 renderedImage.style.display = "inline-flex";
                 renderedImage.style.margin = "0px";
                 renderedImage.style.marginRight = "10px";
@@ -850,7 +885,7 @@ var ImageSet = /** @class */ (function (_super) {
         return speak;
     };
     return ImageSet;
-}(CardElement));
+}(CardElementWithChildren));
 exports.ImageSet = ImageSet;
 var Input = /** @class */ (function (_super) {
     __extends(Input, _super);
@@ -985,7 +1020,7 @@ var ToggleInput = /** @class */ (function (_super) {
         var label = new TextBlock();
         label.hostConfig = this.hostConfig;
         label.text = this.title;
-        var labelElement = label.render();
+        var labelElement = label.renderElement();
         labelElement.style.display = "inline-block";
         labelElement.style.marginLeft = "6px";
         labelElement.style.verticalAlign = "middle";
@@ -1081,7 +1116,7 @@ var ChoiceSetInput = /** @class */ (function (_super) {
                     var label = new TextBlock();
                     label.hostConfig = this.hostConfig;
                     label.text = this.choices[i].title;
-                    var labelElement = label.render();
+                    var labelElement = label.renderElement();
                     labelElement.style.display = "inline-block";
                     labelElement.style.marginLeft = "6px";
                     labelElement.style.verticalAlign = "middle";
@@ -1119,7 +1154,7 @@ var ChoiceSetInput = /** @class */ (function (_super) {
                 var label = new TextBlock();
                 label.hostConfig = this.hostConfig;
                 label.text = this.choices[i].title;
-                var labelElement = label.render();
+                var labelElement = label.renderElement();
                 labelElement.style.display = "inline-block";
                 labelElement.style.marginLeft = "6px";
                 labelElement.style.verticalAlign = "middle";
@@ -1651,7 +1686,7 @@ var ActionCollection = /** @class */ (function () {
     }
     ActionCollection.prototype.showStatusCard = function (status) {
         invokeSetParent(status, this._owner);
-        this._statusCard = status.render();
+        this._statusCard = status.renderElement();
         this.refreshContainer();
     };
     ActionCollection.prototype.hideStatusCard = function () {
@@ -1699,7 +1734,7 @@ var ActionCollection = /** @class */ (function () {
     ActionCollection.prototype.showActionCard = function (action) {
         if (action.card == null)
             return;
-        var renderedCard = action.card.render();
+        var renderedCard = action.card.renderElement();
         this._actionCard = renderedCard;
         this._expandedAction = action;
         this.refreshContainer();
@@ -2038,6 +2073,13 @@ var Container = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    Object.defineProperty(Container.prototype, "children", {
+        get: function () {
+            return this._items;
+        },
+        enumerable: true,
+        configurable: true
+    });
     Container.prototype.showBottomSpacer = function (requestingElement) {
         if ((!requestingElement || this.isLastElement(requestingElement))) {
             this.applyPadding();
@@ -2198,7 +2240,7 @@ var Container = /** @class */ (function (_super) {
         if (this._items.length > 0) {
             var renderedElementCount = 0;
             for (var i = 0; i < this._items.length; i++) {
-                var renderedElement = this.isElementAllowed(this._items[i], this.getForbiddenElementTypes()) ? this._items[i].render() : null;
+                var renderedElement = this.isElementAllowed(this._items[i], this.getForbiddenElementTypes()) ? this._items[i].renderElement() : null;
                 if (renderedElement) {
                     if (renderedElementCount > 0 && this._items[i].separatorElement) {
                         this._items[i].separatorElement.style.flex = "0 0 auto";
@@ -2418,7 +2460,7 @@ var Container = /** @class */ (function (_super) {
         configurable: true
     });
     return Container;
-}(CardElement));
+}(CardElementWithChildren));
 exports.Container = Container;
 var Column = /** @class */ (function (_super) {
     __extends(Column, _super);
@@ -2509,6 +2551,13 @@ var ColumnSet = /** @class */ (function (_super) {
         _this._columns = [];
         return _this;
     }
+    Object.defineProperty(ColumnSet.prototype, "children", {
+        get: function () {
+            return this._columns;
+        },
+        enumerable: true,
+        configurable: true
+    });
     ColumnSet.prototype.internalRender = function () {
         var _this = this;
         if (this._columns.length > 0) {
@@ -2546,7 +2595,7 @@ var ColumnSet = /** @class */ (function (_super) {
                     // Best way to emulate "internal" access I know of
                     this._columns[i]["_computedWeight"] = computedWeight;
                 }
-                var renderedColumn = this._columns[i].render();
+                var renderedColumn = this._columns[i].renderElement();
                 if (renderedColumn) {
                     if (renderedColumnCount > 0 && this._columns[i].separatorElement) {
                         this._columns[i].separatorElement.style.flex = "0 0 auto";
@@ -2680,7 +2729,7 @@ var ColumnSet = /** @class */ (function (_super) {
         configurable: true
     });
     return ColumnSet;
-}(CardElement));
+}(CardElementWithChildren));
 exports.ColumnSet = ColumnSet;
 function raiseAnchorClickedEvent(anchor) {
     return AdaptiveCard.onAnchorClicked != null ? AdaptiveCard.onAnchorClicked(anchor) : false;
@@ -2921,14 +2970,14 @@ var AdaptiveCard = /** @class */ (function (_super) {
         this.fallbackText = json["fallbackText"];
         _super.prototype.parse.call(this, json, "body");
     };
-    AdaptiveCard.prototype.render = function () {
+    AdaptiveCard.prototype.renderElement = function () {
         var renderedCard;
         if (!this.isVersionSupported()) {
             renderedCard = document.createElement("div");
             renderedCard.innerHTML = this.fallbackText ? this.fallbackText : "The specified card version is not supported.";
         }
         else {
-            renderedCard = _super.prototype.render.call(this);
+            renderedCard = _super.prototype.renderElement.call(this);
             if (renderedCard) {
                 renderedCard.tabIndex = 0;
                 if (!Utils.isNullOrEmpty(this.speak)) {
@@ -2937,6 +2986,12 @@ var AdaptiveCard = /** @class */ (function (_super) {
             }
         }
         return renderedCard;
+    };
+    AdaptiveCard.prototype.render = function (targetContainer) {
+        var element = this.renderElement();
+        targetContainer.appendChild(element);
+        this.onRender();
+        return element;
     };
     AdaptiveCard.prototype.canContentBleed = function () {
         return true;
@@ -2981,8 +3036,8 @@ var InlineAdaptiveCard = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
-    InlineAdaptiveCard.prototype.render = function () {
-        var renderedCard = _super.prototype.render.call(this);
+    InlineAdaptiveCard.prototype.renderElement = function () {
+        var renderedCard = _super.prototype.renderElement.call(this);
         renderedCard.setAttribute("aria-live", "polite");
         renderedCard.removeAttribute("tabindex");
         return renderedCard;
