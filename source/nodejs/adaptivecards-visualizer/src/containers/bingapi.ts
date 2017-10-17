@@ -1,5 +1,6 @@
 import { HostContainer } from "./host-container";
 import {
+    AdaptiveCard,
     HostConfig,
     Size,
     TextSize,
@@ -25,19 +26,17 @@ export class BingApiContainer extends HostContainer {
         this._height = height;
     }
 
-    protected renderContainer(renderedCard: HTMLElement): HTMLElement {
+    protected renderContainer(adaptiveCard: AdaptiveCard, target: HTMLElement) {
         var element = document.createElement("div");
         element.style.width = this._width + "px";
         element.style.height = this._height + "px";
         element.style.backgroundColor = BingApiContainer.backgroundColor;
         element.style.border = BingApiContainer.borderStyle;
         element.style.overflow = "hidden";
+        target.appendChild(element);
 
+        var renderedCard = adaptiveCard.render(element);
         renderedCard.style.height = "100%";
-
-        element.appendChild(renderedCard);
-
-        return element;
     }
 
     public getHostConfig(): HostConfig {
