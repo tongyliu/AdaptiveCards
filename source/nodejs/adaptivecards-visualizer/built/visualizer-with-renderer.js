@@ -28324,8 +28324,10 @@ var TextBlock = /** @class */ (function (_super) {
             if (this.wrap) {
                 element.style.wordWrap = "break-word";
                 if (this.maxLines > 0) {
-                    element.style.maxHeight = (computedLineHeight * this.maxLines) + "px";
+                    var maxHeight = computedLineHeight * this.maxLines;
+                    element.style.maxHeight = maxHeight + "px";
                     element.style.overflow = "hidden";
+                    this.addTruncationCallback(element, maxHeight, computedLineHeight);
                 }
             }
             else {
@@ -28376,6 +28378,87 @@ var TextBlock = /** @class */ (function (_super) {
         if (this.text)
             return '<s>' + this.text + '</s>\n';
         return null;
+    };
+    TextBlock.prototype.addTruncationCallback = function (element, maxHeight, lineHeight) {
+        // For now, only truncate TextBlocks that contain just a single
+        // paragraph -- since the maxLines calculation doesn't take into
+        // account Markdown lists
+        var children = element.children;
+        var truncationSupported = children.length == 1
+            && children[0].tagName.toLowerCase() == 'p';
+        if (truncationSupported) {
+            var firstParagraph = children[0];
+            var originalText = firstParagraph.innerHTML;
+            this.addRenderCallback(function () {
+                firstParagraph.innerHTML = originalText;
+                TextBlock.truncate(firstParagraph, maxHeight, lineHeight);
+            });
+        }
+    };
+    TextBlock.truncate = function (element, maxHeight, lineHeight) {
+        var fits = function () {
+            // Allow a one pixel overflow to account for rounding differences
+            // between browsers
+            return maxHeight - element.scrollHeight >= -1.0;
+        };
+        // This check also handles the case where the element isn't currently
+        // added to the DOM -- scrollHeight will be 0
+        if (fits())
+            return;
+        var fullText = element.innerHTML;
+        var truncateAt = function (idx) {
+            element.innerHTML = fullText.substring(0, idx) + '...';
+        };
+        // We'll do a binary search for the longest string that fits
+        // Try to break on spaces first (safe, as it won't split HTML tags)
+        var spacePositions = [];
+        for (var i = 0; i < fullText.length; ++i) {
+            if (fullText[i] == ' ') {
+                spacePositions.push(i);
+            }
+        }
+        var lo = 0;
+        var hi = spacePositions.length;
+        var bestBreakIdx = 0;
+        while (lo < hi) {
+            var mid = Math.floor((lo + hi) / 2);
+            truncateAt(spacePositions[mid]);
+            if (fits()) {
+                bestBreakIdx = spacePositions[mid];
+                lo = mid + 1;
+            }
+            else {
+                hi = mid;
+            }
+        }
+        truncateAt(bestBreakIdx);
+        // If we have extra room, try to expand the string character by
+        // character (covers the case where we have to break in the middle of
+        // a super long word)
+        if (maxHeight - element.scrollHeight >= lineHeight - 1.0) {
+            var idx = bestBreakIdx;
+            do {
+                idx = TextBlock.findNextCharacter(fullText, idx);
+                truncateAt(idx);
+                if (fits()) {
+                    bestBreakIdx = idx;
+                }
+                else {
+                    break;
+                }
+            } while (idx < fullText.length);
+            truncateAt(bestBreakIdx);
+        }
+    };
+    TextBlock.findNextCharacter = function (html, currIdx) {
+        currIdx += 1;
+        // If we found the start of an HTML tag, keep advancing until we get
+        // past it, so we don't end up truncating in the middle of the tag
+        while (currIdx < html.length && html[currIdx] == '<') {
+            while (currIdx < html.length && html[currIdx++] != '>')
+                ;
+        }
+        return currIdx;
     };
     return TextBlock;
 }(CardElement));

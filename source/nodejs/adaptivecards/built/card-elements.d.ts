@@ -81,6 +81,9 @@ export declare class TextBlock extends CardElement {
     parse(json: any): void;
     getJsonTypeName(): string;
     renderSpeech(): string;
+    private addTruncationCallback(element, maxHeight, lineHeight);
+    private static truncate(element, maxHeight, lineHeight);
+    private static findNextCharacter(html, currIdx);
 }
 export declare class Fact {
     name: string;
