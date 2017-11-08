@@ -552,9 +552,7 @@ var TextBlock = /** @class */ (function (_super) {
             && children[0].tagName.toLowerCase() == 'p';
         if (truncationSupported) {
             var firstParagraph = children[0];
-            var originalText = firstParagraph.innerHTML;
             this.addRenderCallback(function () {
-                firstParagraph.innerHTML = originalText;
                 TextBlock.truncate(firstParagraph, maxHeight, lineHeight);
             });
         }
@@ -2706,7 +2704,7 @@ var ColumnSet = /** @class */ (function (_super) {
         if (json["columns"] != null) {
             var jsonColumns = json["columns"];
             for (var i = 0; i < jsonColumns.length; i++) {
-                var column = new Column();
+                var column = AdaptiveCard.elementTypeRegistry.createInstance("Column");
                 column.parse(jsonColumns[i]);
                 this.addColumn(column);
             }
@@ -2964,6 +2962,7 @@ var AdaptiveCard = /** @class */ (function (_super) {
         AdaptiveCard.elementTypeRegistry.registerType("ImageSet", function () { return new ImageSet(); });
         AdaptiveCard.elementTypeRegistry.registerType("FactSet", function () { return new FactSet(); });
         AdaptiveCard.elementTypeRegistry.registerType("ColumnSet", function () { return new ColumnSet(); });
+        AdaptiveCard.elementTypeRegistry.registerType("Column", function () { return new Column(); });
         AdaptiveCard.elementTypeRegistry.registerType("ActionSet", function () { return new ActionSet(); });
         AdaptiveCard.elementTypeRegistry.registerType("Input.Text", function () { return new TextInput(); });
         AdaptiveCard.elementTypeRegistry.registerType("Input.Date", function () { return new DateInput(); });
