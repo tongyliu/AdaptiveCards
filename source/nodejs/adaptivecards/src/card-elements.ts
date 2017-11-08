@@ -3084,7 +3084,7 @@ export class ColumnSet extends CardElementWithChildren {
             let jsonColumns = json["columns"] as Array<any>;
 
             for (let i = 0; i < jsonColumns.length; i++) {
-                var column = new Column();
+                var column = <Column>AdaptiveCard.elementTypeRegistry.createInstance("Column");
 
                 column.parse(jsonColumns[i]);
 
@@ -3417,6 +3417,7 @@ export class AdaptiveCard extends ContainerWithActions {
         AdaptiveCard.elementTypeRegistry.registerType("ImageSet", () => { return new ImageSet(); });
         AdaptiveCard.elementTypeRegistry.registerType("FactSet", () => { return new FactSet(); });
         AdaptiveCard.elementTypeRegistry.registerType("ColumnSet", () => { return new ColumnSet(); });
+        AdaptiveCard.elementTypeRegistry.registerType("Column", () => { return new Column(); });
         AdaptiveCard.elementTypeRegistry.registerType("ActionSet", () => { return new ActionSet(); });
         AdaptiveCard.elementTypeRegistry.registerType("Input.Text", () => { return new TextInput(); });
         AdaptiveCard.elementTypeRegistry.registerType("Input.Date", () => { return new DateInput(); });
